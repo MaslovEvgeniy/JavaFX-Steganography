@@ -1,8 +1,8 @@
 package model;
 
-/**
- * Created by Maslov on 12.03.2017.
- */
+import utils.Decoder;
+import utils.Encoder;
+
 public class Model {
     private Encoder encoder;
     private Decoder decoder;
@@ -11,7 +11,5 @@ public class Model {
         this.encoder = encoder;
         this.decoder = decoder;
     }
-
-
 
 }

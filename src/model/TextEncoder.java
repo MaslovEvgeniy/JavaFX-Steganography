@@ -1,8 +1,11 @@
 package model;
 
-/**
- * Created by Maslov on 12.03.2017.
- */
-public class TextEncoder {
 
+import utils.Encoder;
+
+public class TextEncoder implements Encoder<String> {
+    @Override
+    public String encode() {
+        return null;
+    }
 }

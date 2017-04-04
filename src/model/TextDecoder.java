@@ -1,7 +1,11 @@
 package model;
 
-/**
- * Created by Maslov on 12.03.2017.
- */
-public class TextDecoder {
+
+import utils.Decoder;
+
+public class TextDecoder implements Decoder<String> {
+    @Override
+    public String decode() {
+        return null;
+    }
 }

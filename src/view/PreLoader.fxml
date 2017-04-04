@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PreLoaderController">
+   <children>
+      <ImageView fitHeight="376.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/images/preloader_img.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" fontSmoothingType="LCD" stroke="WHITE" strokeWidth="0.0" text="LSB-стеганография" textAlignment="CENTER" wrappingWidth="374.33935546875">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Text>
+   </children>
+</StackPane>
