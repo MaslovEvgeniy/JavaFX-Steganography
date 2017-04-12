@@ -23,7 +23,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="800.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
    <children>
       <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="41.0" prefWidth="359.0" style="-fx-background-color: #e53935;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -73,14 +73,14 @@
                                                 <Image url="@../resources/images/DragDrop.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXButton fx:id="closeButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#handleClose" ripplerFill="WHITE" style="-fx-background-color: linear-gradient(#FFA726, #e53935); -fx-background-radius: 40; -fx-background-insets: 0;" text=" " StackPane.alignment="BOTTOM_RIGHT">
+                                          <JFXButton fx:id="closeButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#handleClose" ripplerFill="WHITE" styleClass="closeButton" text=" " visible="false" StackPane.alignment="BOTTOM_RIGHT">
                                              <graphic>
                                                 <FontAwesomeIconView fx:id="but_close" fill="WHITE" glyphName="PLUS" rotate="45.0" size="30" />
                                              </graphic>
                                           </JFXButton>
-                                          <JFXButton fx:id="openButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#handleOpenFile" ripplerFill="WHITE" style="-fx-background-color: linear-gradient(#64B5F6, #1565C0); -fx-background-radius: 40; -fx-background-insets: 0;" text=" " StackPane.alignment="TOP_RIGHT">
+                                          <JFXButton fx:id="openButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#handleOpenFile" ripplerFill="WHITE" styleClass="openButton" text=" " StackPane.alignment="TOP_RIGHT">
                                              <graphic>
-                                                <FontAwesomeIconView fx:id="but_open" fill="WHITE" glyphName="PLUS" size="30" />
+                                                <FontAwesomeIconView fx:id="but_open" fill="WHITE" glyphName="PLUS" size="30" styleClass="openButton" />
                                              </graphic>
                                              <tooltip>
                                                 <Tooltip text="Загрузить изображение" />
