@@ -6,6 +6,7 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Tab?>
@@ -23,11 +24,11 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="800.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
    <children>
-      <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="41.0" prefWidth="359.0" style="-fx-background-color: #e53935;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="41.0" prefWidth="359.0" style="-fx-background-color: #325BF5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXHamburger fx:id="hamburger" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT">
+            <JFXHamburger fx:id="hamburger" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" style="-fx-: white;">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
@@ -37,24 +38,24 @@
             <DropShadow />
          </effect>
       </HBox>
-      <JFXTabPane layoutX="395.0" layoutY="46.0" prefHeight="754.0" prefWidth="800.0" tabMaxHeight="50.0" tabMaxWidth="300.0" tabMinHeight="50.0" tabMinWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <JFXTabPane layoutX="395.0" layoutY="46.0" prefHeight="754.0" prefWidth="800.0" styleClass="tab-selected-line" tabMaxHeight="50.0" tabMaxWidth="300.0" tabMinHeight="50.0" tabMinWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
          <tabs>
             <Tab text="Кодирование">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane alignment="TOP_CENTER" prefHeight="710.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                        <GridPane alignment="TOP_CENTER" layoutY="-7.0" prefHeight="710.0" prefWidth="800.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                            <children>
                               <VBox prefHeight="614.0" prefWidth="400.0">
                                  <children>
-                                    <StackPane fx:id="stackPane1" prefHeight="225.0" prefWidth="392.0" style="-fx-padding: 10; -fx-background-radius: 15; -fx-background-color: #E0E0E0;">
+                                    <StackPane fx:id="stackPane1" prefHeight="225.0" prefWidth="392.0" styleClass="stackPane">
                                        <children>
                                           <Rectangle fx:id="rect1" arcHeight="5.0" arcWidth="5.0" fill="#e0e0e0" height="193.0" stroke="TRANSPARENT" strokeType="INSIDE" width="352.0" y="-7.0" StackPane.alignment="CENTER" />
                                           <ImageView fx:id="imageViewDrag" fitHeight="207.0" fitWidth="361.0" onDragDropped="#handleDrop" onDragEntered="#handleEntered" onDragExited="#handleExited" onDragOver="#handleDragOver" pickOnBounds="true" preserveRatio="true">
@@ -73,14 +74,14 @@
                                                 <Image url="@../resources/images/DragDrop.png" />
                                              </image>
                                           </ImageView>
-                                          <JFXButton fx:id="closeButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#handleClose" ripplerFill="WHITE" style="-fx-background-color: linear-gradient(#FFA726, #e53935); -fx-background-radius: 40; -fx-background-insets: 0;" text=" " StackPane.alignment="BOTTOM_RIGHT">
+                                          <JFXButton fx:id="closeButton" contentDisplay="GRAPHIC_ONLY" onAction="#handleClose" ripplerFill="WHITE" styleClass="closeButton" text=" " visible="false" StackPane.alignment="BOTTOM_RIGHT">
                                              <graphic>
-                                                <FontAwesomeIconView fx:id="but_close" fill="WHITE" glyphName="PLUS" rotate="45.0" size="30" />
+                                                <FontAwesomeIconView fx:id="but_close" fill="WHITE" glyphName="PLUS" rotate="45.0" size="30" textAlignment="CENTER" />
                                              </graphic>
                                           </JFXButton>
-                                          <JFXButton fx:id="openButton" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onAction="#handleOpenFile" ripplerFill="WHITE" style="-fx-background-color: linear-gradient(#64B5F6, #1565C0); -fx-background-radius: 40; -fx-background-insets: 0;" text=" " StackPane.alignment="TOP_RIGHT">
+                                          <JFXButton fx:id="openButton" contentDisplay="GRAPHIC_ONLY" onAction="#handleOpenFile" ripplerFill="WHITE" styleClass="openButton" text=" " StackPane.alignment="TOP_RIGHT">
                                              <graphic>
-                                                <FontAwesomeIconView fx:id="but_open" fill="WHITE" glyphName="PLUS" size="30" />
+                                                <FontAwesomeIconView fx:id="but_open" fill="WHITE" glyphName="PLUS" size="30" styleClass="openButton" />
                                              </graphic>
                                              <tooltip>
                                                 <Tooltip text="Загрузить изображение" />
@@ -99,23 +100,57 @@
                                           <Font size="14.0" />
                                        </font>
                                     </JFXTextArea>
-                                    <JFXButton fx:id="encodeButton" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" prefHeight="34.0" prefWidth="111.0" ripplerFill="#e33f0b" style="-fx-background-color: #1A237E;" text="Закодировать" textAlignment="CENTER" textFill="#f2efef">
+                                    <JFXButton fx:id="encodeButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="125.0" ripplerFill="#f55239" styleClass="encodeButton" text="Закодировать" textAlignment="CENTER" textFill="#f2efef">
                                        <VBox.margin>
                                           <Insets left="260.0" />
                                        </VBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
                                     </JFXButton>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                                 <children>
+                                    <StackPane prefHeight="430.0" prefWidth="400.0" styleClass="stackPane">
+                                       <VBox.margin>
+                                          <Insets bottom="25.0" left="5.0" top="30.0" />
+                                       </VBox.margin>
+                                       <children>
+                                          <ImageView fitHeight="255.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/images/Result.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXButton fx:id="openButton1" contentDisplay="GRAPHIC_ONLY" onAction="#handleOpenFile" ripplerFill="WHITE" style="-fx-background-color: #64DD17;" StackPane.alignment="BOTTOM_RIGHT">
+                                             <graphic>
+                                                <FontAwesomeIconView fx:id="but_open1" fill="WHITE" glyphName="CHECK" size="30" styleClass="openButton" />
+                                             </graphic>
+                                             <tooltip>
+                                                <Tooltip text="Загрузить изображение" />
+                                             </tooltip>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                             <styleClass>
+                                                <String fx:value="openButton" />
+                                                <String fx:value="btn" />
+                                             </styleClass>
+                                          </JFXButton>
+                                       </children>
+                                    </StackPane>
                                  </children>
                               </VBox>
                            </children>
                         </GridPane>
                         <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" disable="true" prefHeight="800.0" prefWidth="230.0" />
                      </children></AnchorPane>
-              </content>
+               </content>
             </Tab>
             <Tab text="Раскодирование">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-              </content>
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
             </Tab>
          </tabs>
       </JFXTabPane>
