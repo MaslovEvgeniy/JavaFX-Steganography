@@ -1,44 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXDrawer?>
-<?import com.jfoenix.controls.JFXHamburger?>
 <?import com.jfoenix.controls.JFXTabPane?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="800.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="800.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="41.0" prefWidth="359.0" style="-fx-background-color: #325BF5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <JFXHamburger fx:id="hamburger" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" style="-fx-: white;">
-               <HBox.margin>
-                  <Insets left="50.0" />
-               </HBox.margin>
-            </JFXHamburger>
-         </children>
-         <effect>
-            <DropShadow />
-         </effect>
-      </HBox>
-      <JFXTabPane layoutX="395.0" layoutY="46.0" prefHeight="754.0" prefWidth="800.0" styleClass="tab-selected-line" tabMaxHeight="50.0" tabMaxWidth="300.0" tabMinHeight="50.0" tabMinWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+      <JFXTabPane layoutX="405.0" layoutY="56.0" prefHeight="400.0" prefWidth="600.0" styleClass="tab-selected-line" tabMaxHeight="50.0" tabMaxWidth="300.0" tabMinHeight="50.0" tabMinWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
             <Tab text="Кодирование">
                <content>
@@ -60,6 +44,11 @@
                                           <Insets bottom="25.0" left="5.0" top="30.0" />
                                        </VBox.margin>
                                        <children>
+                                          <ImageView fx:id="FinalImageView" fitHeight="255.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../resources/images/Result.png" />
+                                             </image>
+                                          </ImageView>
                                           <JFXButton fx:id="openButton1" alignment="TOP_RIGHT" onAction="#handleOpenFile" ripplerFill="WHITE" style="-fx-background-color: #64DD17;" text="Сохранить" textFill="WHITE" StackPane.alignment="BOTTOM_RIGHT">
                                              <graphic>
                                                 <FontAwesomeIconView fx:id="but_open1" fill="WHITE" glyphName="CHECK" size="30" styleClass="openButton" />
@@ -78,11 +67,6 @@
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
                                           </JFXButton>
-                                          <ImageView fx:id="FinalImageView" fitHeight="255.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../resources/images/Result.png" />
-                                             </image>
-                                          </ImageView>
                                        </children>
                                     </StackPane>
                                  </children>
@@ -126,17 +110,49 @@
                                           <Insets top="30.0" />
                                        </VBox.margin>
                                     </StackPane>
-                                    <JFXTextArea fx:id="textToEncode" labelFloat="true" maxHeight="-Infinity" prefHeight="150.0" prefWidth="344.0" promptText="Введите текст для кодирования" style="-fx-min-height: 150;" wrapText="true">
+                                    <StackPane fx:id="stackPane11" layoutX="10.0" layoutY="40.0" prefHeight="225.0" prefWidth="392.0" styleClass="stackPane">
+                                       <children>
+                                          <Rectangle fx:id="rect11" arcHeight="5.0" arcWidth="5.0" fill="#e0e0e0" height="193.0" stroke="TRANSPARENT" strokeType="INSIDE" width="352.0" y="-7.0" StackPane.alignment="CENTER" />
+                                          <ImageView fx:id="imageViewDrag1" fitHeight="207.0" fitWidth="361.0" onDragDropped="#handleDrop" onDragEntered="#handleEntered" onDragExited="#handleExited" onDragOver="#handleDragOver" pickOnBounds="true" preserveRatio="true">
+                                             <viewport>
+                                                <Rectangle2D />
+                                             </viewport>
+                                             <image>
+                                                <Image url="@../resources/images/DragDrop.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="imageView1" fitHeight="207.0" fitWidth="361.0" onDragDropped="#handleDrop" onDragEntered="#handleEntered" onDragExited="#handleExited" onDragOver="#handleDragOver" pickOnBounds="true" preserveRatio="true">
+                                             <viewport>
+                                                <Rectangle2D />
+                                             </viewport>
+                                             <image>
+                                                <Image url="@../resources/images/DragDrop.png" />
+                                             </image>
+                                             <StackPane.margin>
+                                                <Insets />
+                                             </StackPane.margin>
+                                          </ImageView>
+                                          <JFXButton fx:id="closeButton1" contentDisplay="GRAPHIC_ONLY" onAction="#handleClose" ripplerFill="WHITE" styleClass="closeButton" text=" " visible="false" StackPane.alignment="BOTTOM_RIGHT">
+                                             <graphic>
+                                                <FontAwesomeIconView fx:id="but_close1" fill="WHITE" glyphName="PLUS" rotate="45.0" size="30" textAlignment="CENTER" />
+                                             </graphic>
+                                          </JFXButton>
+                                          <JFXButton fx:id="openButton2" contentDisplay="GRAPHIC_ONLY" onAction="#handleOpenFile" ripplerFill="WHITE" styleClass="openButton" text=" " StackPane.alignment="TOP_RIGHT">
+                                             <graphic>
+                                                <FontAwesomeIconView fx:id="but_open2" fill="WHITE" glyphName="PLUS" size="30" styleClass="openButton" />
+                                             </graphic>
+                                             <tooltip>
+                                                <Tooltip text="Загрузить изображение" />
+                                             </tooltip>
+                                          </JFXButton>
+                                       </children>
                                        <VBox.margin>
-                                          <Insets bottom="30.0" left="30.0" right="30.0" top="50.0" />
+                                          <Insets top="30.0" />
                                        </VBox.margin>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                    </JFXTextArea>
+                                    </StackPane>
                                     <JFXButton fx:id="encodeButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="125.0" ripplerFill="WHITE" styleClass="encodeButton" text="Закодировать" textAlignment="CENTER" textFill="#f2efef">
                                        <VBox.margin>
-                                          <Insets left="260.0" />
+                                          <Insets left="260.0" top="20.0" />
                                        </VBox.margin>
                                        <font>
                                           <Font name="System Bold" size="14.0" />
@@ -146,7 +162,8 @@
                               </VBox>
                            </children>
                         </GridPane>
-                     </children></AnchorPane>
+                     </children>
+                  </AnchorPane>
                </content>
             </Tab>
             <Tab text="Раскодирование">
@@ -156,6 +173,5 @@
             </Tab>
          </tabs>
       </JFXTabPane>
-      <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" prefHeight="800.0" prefWidth="0.0" />
    </children>
 </AnchorPane>

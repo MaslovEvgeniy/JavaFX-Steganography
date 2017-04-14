@@ -70,6 +70,9 @@ public class MainWindowController implements Initializable {
     private ImageView imageViewDrag;
 
     @FXML
+    private ImageView FinalImageView;
+
+    @FXML
     private StackPane stackPane1;
 
     @FXML
