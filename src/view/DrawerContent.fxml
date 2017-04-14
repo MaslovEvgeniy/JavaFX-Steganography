@@ -51,29 +51,6 @@
             </Text>
          </children>
       </HBox>
-      <HBox fx:id="textToImage1" alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="230.0" styleClass="hbox" stylesheets="@../resources/css/drawer.css">
-         <children>
-            <FontAwesomeIconView glyphName="INFO" size="22" textAlignment="CENTER">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </FontAwesomeIconView>
-            <Text fx:id="text1" strokeType="OUTSIDE" strokeWidth="0.0" text="О программе">
-               <HBox.margin>
-                  <Insets left="17.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Text>
-         </children>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-         <padding>
-            <Insets left="10.0" />
-         </padding>
-      </HBox>
    </children>
    <effect>
       <DropShadow />

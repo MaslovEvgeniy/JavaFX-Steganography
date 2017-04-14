@@ -1,7 +1,3 @@
-.jfx-hamburger StackPane{
-    -fx-background-color: white;
-}
-
 .jfx-tab-pane > .headers-region {
     -fx-background-color: #595959;
  }
@@ -46,4 +42,6 @@
     -fx-background-radius: 15;
     -fx-background-color:  #E0E0E0;
 }
+
+
 

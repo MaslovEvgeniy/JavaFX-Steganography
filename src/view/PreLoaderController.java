@@ -26,7 +26,7 @@ public class PreLoaderController implements Initializable {
         @Override
         public void run() {
             try {
-                Thread.sleep(0);
+                Thread.sleep(500);
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
