@@ -14,14 +14,13 @@ public class Transition {
         ftr.setToValue(1);
         ftr.play();
     }
+
     public static void fadeOut(Node node) {
         FadeTransition ftr = new FadeTransition(Duration.millis(500), node);
         ftr.setFromValue(1);
         ftr.setToValue(0);
         ftr.play();
     }
-
-
 
     public static void fill(Shape shape, Color colorFrom, Color colorTo ) {
         FillTransition ft = new FillTransition(Duration.millis(500), shape, colorFrom, colorTo);
