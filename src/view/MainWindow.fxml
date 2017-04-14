@@ -6,6 +6,7 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Tab?>
@@ -25,9 +26,9 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="800.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
    <children>
-      <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="41.0" prefWidth="359.0" styleClass="hbox_hamburger" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="41.0" prefWidth="359.0" style="-fx-background-color: #325BF5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXHamburger fx:id="hamburger" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT">
+            <JFXHamburger fx:id="hamburger" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" style="-fx-: white;">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
@@ -59,19 +60,23 @@
                                           <Insets bottom="25.0" left="5.0" top="30.0" />
                                        </VBox.margin>
                                        <children>
-                                          <JFXButton fx:id="openButton1" alignment="TOP_RIGHT" onAction="#handleOpenFile" ripplerFill="WHITE" styleClass="saveButton" text="Сохранить" textFill="WHITE" StackPane.alignment="BOTTOM_RIGHT">
+                                          <JFXButton fx:id="openButton1" alignment="TOP_RIGHT" onAction="#handleOpenFile" ripplerFill="WHITE" style="-fx-background-color: #64DD17;" text="Сохранить" textFill="WHITE" StackPane.alignment="BOTTOM_RIGHT">
+                                             <graphic>
+                                                <FontAwesomeIconView fx:id="but_open1" fill="WHITE" glyphName="CHECK" size="30" styleClass="openButton" />
+                                             </graphic>
                                              <tooltip>
                                                 <Tooltip text="Загрузить изображение" />
                                              </tooltip>
                                              <padding>
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
+                                             <styleClass>
+                                                <String fx:value="openButton" />
+                                                <String fx:value="btn" />
+                                             </styleClass>
                                              <font>
                                                 <Font name="System Bold" size="14.0" />
                                              </font>
-                                             <graphic>
-                                                <FontAwesomeIconView fx:id="but_open1" fill="WHITE" glyphName="CHECK" size="30" styleClass="openButton" />
-                                             </graphic>
                                           </JFXButton>
                                           <ImageView fx:id="FinalImageView" fitHeight="255.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -121,7 +126,7 @@
                                           <Insets top="30.0" />
                                        </VBox.margin>
                                     </StackPane>
-                                    <JFXTextArea fx:id="textToEncode" labelFloat="true" maxHeight="-Infinity" prefHeight="150.0" prefWidth="344.0" promptText="Введите текст для кодирования" styleClass="text" wrapText="true">
+                                    <JFXTextArea fx:id="textToEncode" labelFloat="true" maxHeight="-Infinity" prefHeight="150.0" prefWidth="344.0" promptText="Введите текст для кодирования" style="-fx-min-height: 150;" wrapText="true">
                                        <VBox.margin>
                                           <Insets bottom="30.0" left="30.0" right="30.0" top="50.0" />
                                        </VBox.margin>
