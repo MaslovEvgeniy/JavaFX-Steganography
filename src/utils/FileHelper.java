@@ -13,6 +13,7 @@ public class FileHelper {
         validExtensions.add("jpg");
         validExtensions.add("png");
         validExtensions.add("bmp");
+        validExtensions.add("jpeg");
 
         String ext = getExtension(file.getName());
 

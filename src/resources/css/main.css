@@ -1,15 +1,71 @@
+.hbox_hamburger {
+    -fx-background-color: #325BF5;
+}
+
+.jfx-hamburger StackPane{
+    -fx-background-color: white;
+}
+
+.jfx-tab-pane .headers-region {
+    -fx-background-color: #595959;
+ }
+
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: #595959;
+}
+
+.jfx-button .jfx-rippler{
+      -fx-rippler-fill: #f44336;
+}
+
+.jfx-tab-pane .tab-selected-line {
+    -fx-stroke: #f44336;
+    -fx-stroke-width: 2pt;
+}
+
 .openButton {
-    -fx-background-color: linear-gradient(#64B5F6, #1565C0);
+    -fx-background-color: #1565C0;
     -fx-background-radius: 40;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
 }
 
 .closeButton {
-    -fx-background-color: linear-gradient(#FFA726, #e53935);
+    -fx-background-color: #e53935;
     -fx-background-radius: 40;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+}
+
+.saveButton {
+    -fx-background-color: #64DD17;
+    -fx-background-radius: 40;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+    -fx-text-fill: white;
 }
 
 .openButton:hover, .closeButton:hover {
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
     -fx-scale-z: 1.1;
+}
+
+.encodeButton {
+    -fx-background-color: #2d68b9;
+}
+
+.stackPane {
+    -fx-padding: 10;
+    -fx-background-radius: 15;
+    -fx-background-color:  #E0E0E0;
+}
+
+.text {
+    -fx-min-height: 150;
+}
+
+.saveButton:hover{
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 40;
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
 }
