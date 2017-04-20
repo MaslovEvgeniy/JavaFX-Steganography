@@ -1,11 +1,11 @@
 package model;
 
-
+import javafx.scene.image.Image;
 import utils.Encoder;
 
-public class TextEncoder implements Encoder<String> {
+public class TextEncoder implements Encoder {
     @Override
-    public String encode() {
+    public Image encode() {
         return null;
     }
 }
