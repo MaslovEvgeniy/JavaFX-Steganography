@@ -7,9 +7,9 @@ import utils.Decoder;
 /**
  * Created by Maslov on 12.03.2017.
  */
-public class ImageDecoder implements Decoder<Image> {
+public class ImageDecoder implements Decoder {
     @Override
-    public Image decode() {
+    public String decode(Image image) {
         return null;
     }
 }
