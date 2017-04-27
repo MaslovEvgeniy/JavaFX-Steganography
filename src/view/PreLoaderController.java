@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -39,6 +40,8 @@ public class PreLoaderController implements Initializable {
                         Scene scene = new Scene(root);
                         Stage stage = new Stage();
                         stage.setScene(scene);
+                        stage.setTitle("LSB-Steganography");
+                        stage.getIcons().add(new Image("/resources/images/logo.png",3000,3000,false,true));
                         stage.show();
                         rootPane.getScene().getWindow().hide();
                     }

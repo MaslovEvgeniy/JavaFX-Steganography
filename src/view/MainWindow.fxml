@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXHamburger?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
@@ -77,6 +78,7 @@
                                           </ImageView>
                                        </children>
                                     </StackPane>
+                                    <JFXTextArea fx:id="resultText" />
                                  </children>
                               </VBox>
                               <VBox prefHeight="614.0" prefWidth="400.0">
@@ -118,21 +120,31 @@
                                           <Insets top="30.0" />
                                        </VBox.margin>
                                     </StackPane>
+                                    <JFXTextField fx:id="inputPath" alignment="CENTER" disable="true" editable="false" prefHeight="25.0" prefWidth="344.0" promptText="PATH" unFocusColor="#222121">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </JFXTextField>
                                     <JFXTextArea fx:id="textToEncode" disable="true" labelFloat="true" maxHeight="-Infinity" prefHeight="150.0" prefWidth="344.0" promptText="Введите текст для кодирования" styleClass="text" wrapText="true">
                                        <VBox.margin>
-                                          <Insets bottom="30.0" left="30.0" right="30.0" top="50.0" />
+                                          <Insets bottom="30.0" left="30.0" right="30.0" top="20.0" />
                                        </VBox.margin>
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </JFXTextArea>
-                                    <JFXButton fx:id="encodeButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="125.0" ripplerFill="WHITE" styleClass="encodeButton" text="Закодировать" textAlignment="CENTER" textFill="#f2efef">
+                                    <JFXButton fx:id="encodeButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleEncode" prefHeight="34.0" prefWidth="125.0" ripplerFill="WHITE" styleClass="encodeButton" text="Закодировать" textAlignment="CENTER" textFill="#f2efef">
                                        <VBox.margin>
                                           <Insets left="260.0" />
                                        </VBox.margin>
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
+                                    </JFXButton>
+                                    <JFXButton fx:id="DecodeButton" onAction="#handleDecode" text="DECODE">
+                                       <VBox.margin>
+                                          <Insets left="300.0" top="50.0" />
+                                       </VBox.margin>
                                     </JFXButton>
                                  </children>
                               </VBox>
