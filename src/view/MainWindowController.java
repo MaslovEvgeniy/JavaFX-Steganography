@@ -12,10 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.*;
@@ -37,6 +39,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MainWindowController implements Initializable {
+
+    @FXML
+    private AnchorPane rootPane;
 
     @FXML
     private JFXTextArea textToEncode;
@@ -76,6 +81,18 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private Rectangle rect1;
+
+    @FXML
+    private Text numbOfBitsText;
+
+    @FXML
+    private JFXSlider bitsSlider;
+
+    @FXML
+    private JFXButton saveButton;
+
+    @FXML
+    private JFXSnackbar snackBar;
 
     private static String FileExtention = null;
 
@@ -122,10 +139,15 @@ public class MainWindowController implements Initializable {
             String path = files.get(0).getPath();
             inputPath.setText(path);
             FileExtention = path.substring(path.lastIndexOf("."));
+
             imageView.setImage(img);
             closeButton.setVisible(true);
             openButton.setVisible(false);
             textToEncode.setDisable(false);
+            bitsSlider.setDisable(false);
+            numbOfBitsText.setOpacity(1);
+            encodeButton.setDisable(false);
+
           } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -157,6 +179,9 @@ public class MainWindowController implements Initializable {
             closeButton.setVisible(false);
             openButton.setVisible(true);
             textToEncode.setDisable(true);
+            bitsSlider.setDisable(true);
+            numbOfBitsText.setOpacity(0.5);
+            encodeButton.setDisable(true);
         }
     }
 
@@ -186,6 +211,12 @@ public class MainWindowController implements Initializable {
             closeButton.setVisible(true);
             openButton.setVisible(false);
             textToEncode.setDisable(false);
+            bitsSlider.setDisable(false);
+            numbOfBitsText.setOpacity(1);
+            encodeButton.setDisable(false);
+
+            showSnackBar("Изображение добавлено");
+
         }
     }
 
@@ -198,6 +229,7 @@ public class MainWindowController implements Initializable {
     private void handleEncode(ActionEvent event) {
         controller.injectUI(imageView, FinalImageView, textToEncode, resultText);
         controller.onEncode();
+        saveButton.setVisible(true);
     }
 
     @FXML
@@ -207,6 +239,11 @@ public class MainWindowController implements Initializable {
 
     private Model makeModel() {
         return new Model(new TextEncoder(), new TextDecoder());
+    }
+
+    private void showSnackBar(String message) {
+        snackBar = new JFXSnackbar(rootPane);
+        snackBar.show(message, 2000);
     }
 
 }

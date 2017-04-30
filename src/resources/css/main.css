@@ -69,3 +69,13 @@
     -fx-alignment: CENTER;
     -fx-content-display: LEFT;
 }
+
+.jfx-slider .thumb{
+   -fx-background-color: #2d68b9;
+}
+
+.jfx-snackbar-toast {
+    -fx-background-color: #424242;
+    -fx-text-fill: #fff;
+    -fx-padding: 10 15;
+}
