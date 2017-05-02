@@ -8,13 +8,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Control;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -44,52 +44,13 @@ public class MainWindowController implements Initializable {
     private AnchorPane rootPane;
 
     @FXML
-    private JFXTextArea textToEncode;
-
-    @FXML
-    private JFXTextArea resultText;
-
-    @FXML
-    private JFXButton encodeButton;
-
-    @FXML
-    private JFXButton DecodeButton;
-
-    @FXML
-    private JFXButton openButton;
-
-    @FXML
-    private JFXButton closeButton;
-
-    @FXML
     private JFXHamburger hamburger;
 
     @FXML
     private JFXDrawer drawer;
 
     @FXML
-    private ImageView imageView;
-
-    @FXML
-    private ImageView imageViewDrag;
-
-    @FXML
-    private ImageView FinalImageView;
-
-    @FXML
-    private JFXTextField inputPath;
-
-    @FXML
-    private Rectangle rect1;
-
-    @FXML
-    private Text numbOfBitsText;
-
-    @FXML
-    private JFXSlider bitsSlider;
-
-    @FXML
-    private JFXButton saveButton;
+    private Pane contentPane;
 
     @FXML
     private JFXSnackbar snackBar;
@@ -103,6 +64,10 @@ public class MainWindowController implements Initializable {
         try {
             VBox box = FXMLLoader.load(getClass().getResource("DrawerContent.fxml"));
             drawer.setSidePane(box);
+
+            GridPane gridPane = FXMLLoader.load(getClass().getResource("TextToImage.fxml"));
+            contentPane.getChildren().add(gridPane);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -120,130 +85,10 @@ public class MainWindowController implements Initializable {
         });
     }
 
-    @FXML
-    private void handleDragOver(DragEvent event) {
-        if (event.getDragboard().hasFiles()) {
-            List <File> files = event.getDragboard().getFiles();
-            File file = files.get(0);
-
-            if(FileHelper.checkExtension(file))
-                event.acceptTransferModes(TransferMode.ANY);
-        }
-    }
-
-    @FXML
-    private void handleDrop(DragEvent event) {
-        try {
-            List<File> files = event.getDragboard().getFiles();
-            Image img = new Image(new FileInputStream(files.get(0)));
-            String path = files.get(0).getPath();
-            inputPath.setText(path);
-            FileExtention = path.substring(path.lastIndexOf("."));
-
-            imageView.setImage(img);
-            closeButton.setVisible(true);
-            openButton.setVisible(false);
-            textToEncode.setDisable(false);
-            bitsSlider.setDisable(false);
-            numbOfBitsText.setOpacity(1);
-            encodeButton.setDisable(false);
-
-          } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void handleEntered(DragEvent event) {
-        Transition.fill(rect1, Color.valueOf("#E0E0E0"), Color.WHITE);
-        Transition.fadeOut(imageView);
-        Transition.fadeIn(imageViewDrag);
-    }
-
-    @FXML
-    private void handleExited(DragEvent event) {
-        Transition.fill(rect1, Color.WHITE, Color.valueOf("#E0E0E0"));
-        Transition.fadeIn(imageView);
-        Transition.fadeOut(imageViewDrag);
-    }
-
-    @FXML
-    void handleClose(ActionEvent event) {
-        if (imageView.getImage() != null) {
-            Transition.fadeOut(imageView);
-            imageView.setImage(null);
-            inputPath.setText("PATH");
-
-            Transition.fadeIn(imageViewDrag);
-
-            closeButton.setVisible(false);
-            openButton.setVisible(true);
-            textToEncode.setDisable(true);
-            bitsSlider.setDisable(true);
-            numbOfBitsText.setOpacity(0.5);
-            encodeButton.setDisable(true);
-        }
-    }
-
-    @FXML
-    private void handleOpenFile(ActionEvent event) throws IOException {
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Выберите изображение");
-        fileChooser.getExtensionFilters().
-                addAll(new FileChooser.ExtensionFilter("Image Files (*.bmp, *.png, *.jpg, *.jpeg)",
-                        "*.bmp", "*.png", "*.jpg", "*.jpeg"));
-
-        File file = fileChooser.showOpenDialog(imageView.getScene().getWindow());
-        if (file != null) {
-            String imageFile = file.toURI().toURL().toString();
-
-            Image image = new Image(imageFile);
-            imageView.setImage(image);
-
-            String path = file.getPath();
-            inputPath.setText(path);
-            FileExtention = path.substring(path.lastIndexOf("."));
-
-            Transition.fadeOut(imageViewDrag);
-            Transition.fadeIn(imageView);
-
-            closeButton.setVisible(true);
-            openButton.setVisible(false);
-            textToEncode.setDisable(false);
-            bitsSlider.setDisable(false);
-            numbOfBitsText.setOpacity(1);
-            encodeButton.setDisable(false);
-
-            showSnackBar("Изображение добавлено");
-
-        }
-    }
-
-    @FXML
-    private void handleSaveFile(ActionEvent event) {
-
-    }
-
-    @FXML
-    private void handleEncode(ActionEvent event) {
-        controller.injectUI(imageView, FinalImageView, textToEncode, resultText);
-        controller.onEncode();
-        saveButton.setVisible(true);
-    }
-
-    @FXML
-    private void handleDecode(ActionEvent event) {
-        controller.onDecode();
-    }
 
     private Model makeModel() {
         return new Model(new TextEncoder(), new TextDecoder());
     }
 
-    private void showSnackBar(String message) {
-        snackBar = new JFXSnackbar(rootPane);
-        snackBar.show(message, 2000);
-    }
 
 }

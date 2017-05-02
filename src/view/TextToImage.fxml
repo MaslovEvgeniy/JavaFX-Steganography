@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXSnackbar?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
@@ -14,8 +18,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane alignment="TOP_CENTER" prefHeight="710.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ImageToImageController">
+<GridPane fx:id="gridPane" alignment="TOP_CENTER" prefHeight="720.0" prefWidth="810.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TextToImageController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -31,27 +36,25 @@
                   <Insets bottom="25.0" left="5.0" top="30.0" />
                </VBox.margin>
                <children>
+                  <JFXButton fx:id="saveButton" alignment="TOP_RIGHT" contentDisplay="GRAPHIC_ONLY" onAction="#handleSaveFile" ripplerFill="WHITE" styleClass="saveButton" text="Сохранить" textFill="WHITE" visible="false" StackPane.alignment="BOTTOM_RIGHT">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CHECK" size="30" styleClass="openButton" />
+                     </graphic>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </JFXButton>
                   <ImageView fx:id="FinalImageView" fitHeight="255.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/images/Result.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="openButton1" alignment="TOP_RIGHT" onAction="#handleOpenFile" ripplerFill="WHITE" styleClass="saveButton" text="Сохранить" textFill="WHITE" StackPane.alignment="BOTTOM_RIGHT">
-                     <graphic>
-                        <FontAwesomeIconView fx:id="but_open1" fill="WHITE" glyphName="CHECK" size="30" styleClass="openButton" />
-                     </graphic>
-                     <tooltip>
-                        <Tooltip text="Загрузить изображение" />
-                     </tooltip>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </JFXButton>
                </children>
             </StackPane>
+            <JFXTextArea fx:id="resultText" />
          </children>
       </VBox>
       <VBox prefHeight="614.0" prefWidth="400.0">
@@ -93,55 +96,47 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </StackPane>
-            <StackPane fx:id="stackPane11" layoutX="10.0" layoutY="40.0" prefHeight="225.0" prefWidth="392.0" styleClass="stackPane">
-               <children>
-                  <Rectangle fx:id="rect11" arcHeight="5.0" arcWidth="5.0" fill="#e0e0e0" height="193.0" stroke="TRANSPARENT" strokeType="INSIDE" width="352.0" y="-7.0" StackPane.alignment="CENTER" />
-                  <ImageView fx:id="imageViewDrag1" fitHeight="207.0" fitWidth="361.0" onDragDropped="#handleDrop" onDragEntered="#handleEntered" onDragExited="#handleExited" onDragOver="#handleDragOver" pickOnBounds="true" preserveRatio="true">
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                     <image>
-                        <Image url="@../resources/images/DragDrop.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="imageView1" fitHeight="207.0" fitWidth="361.0" onDragDropped="#handleDrop" onDragEntered="#handleEntered" onDragExited="#handleExited" onDragOver="#handleDragOver" pickOnBounds="true" preserveRatio="true">
-                     <viewport>
-                        <Rectangle2D />
-                     </viewport>
-                     <image>
-                        <Image url="@../resources/images/DragDrop.png" />
-                     </image>
-                     <StackPane.margin>
-                        <Insets />
-                     </StackPane.margin>
-                  </ImageView>
-                  <JFXButton fx:id="closeButton1" contentDisplay="GRAPHIC_ONLY" onAction="#handleClose" ripplerFill="WHITE" styleClass="closeButton" text=" " visible="false" StackPane.alignment="BOTTOM_RIGHT">
-                     <graphic>
-                        <FontAwesomeIconView fx:id="but_close1" fill="WHITE" glyphName="PLUS" rotate="45.0" size="30" textAlignment="CENTER" />
-                     </graphic>
-                  </JFXButton>
-                  <JFXButton fx:id="openButton2" contentDisplay="GRAPHIC_ONLY" onAction="#handleOpenFile" ripplerFill="WHITE" styleClass="openButton" text=" " StackPane.alignment="TOP_RIGHT">
-                     <graphic>
-                        <FontAwesomeIconView fx:id="but_open2" fill="WHITE" glyphName="PLUS" size="30" styleClass="openButton" />
-                     </graphic>
-                     <tooltip>
-                        <Tooltip text="Загрузить изображение" />
-                     </tooltip>
-                  </JFXButton>
-               </children>
+            <JFXTextField fx:id="inputPath" disable="true" editable="false" prefHeight="25.0" prefWidth="344.0" promptText="PATH" unFocusColor="#222121">
                <VBox.margin>
-                  <Insets top="30.0" />
+                  <Insets left="10.0" right="10.0" top="5.0" />
                </VBox.margin>
-            </StackPane>
-            <JFXButton fx:id="encodeButton" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="125.0" ripplerFill="WHITE" styleClass="encodeButton" text="Закодировать" textAlignment="CENTER" textFill="#f2efef">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </JFXTextField>
+            <JFXTextArea fx:id="textToEncode" disable="true" labelFloat="true" maxHeight="-Infinity" prefHeight="150.0" prefWidth="344.0" promptText="Введите текст для кодирования" styleClass="text" wrapText="true">
                <VBox.margin>
-                  <Insets left="260.0" top="20.0" />
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXTextArea>
+            <Text fx:id="numbOfBitsText" disable="true" opacity="0.5" strokeType="OUTSIDE" strokeWidth="0.0" text="Количество бит:">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="30.0" />
+               </VBox.margin>
+            </Text>
+            <JFXSlider fx:id="bitsSlider" blockIncrement="1.0" disable="true" majorTickUnit="1.0" max="8.0" min="1.0" minorTickCount="0" showTickLabels="true" snapToTicks="true" style="-fx-skin: red;" value="1.0">
+               <VBox.margin>
+                  <Insets left="30.0" right="30.0" />
+               </VBox.margin>
+            </JFXSlider>
+            <JFXButton fx:id="encodeButton" alignment="CENTER" contentDisplay="CENTER" disable="true" onAction="#handleEncode" prefHeight="34.0" prefWidth="125.0" ripplerFill="WHITE" styleClass="encodeButton" text="Закодировать" textAlignment="CENTER" textFill="#f2efef">
+               <VBox.margin>
+                  <Insets left="260.0" top="10.0" />
                </VBox.margin>
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </JFXButton>
+            <JFXButton fx:id="DecodeButton" onAction="#handleDecode" text="DECODE">
+               <VBox.margin>
+                  <Insets left="300.0" top="50.0" />
+               </VBox.margin>
+            </JFXButton>
          </children>
       </VBox>
+      <JFXSnackbar fx:id="snackBar" />
    </children>
 </GridPane>
