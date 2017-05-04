@@ -98,6 +98,9 @@ public class ImageToImageController {
     private JFXSnackbar snackBar;
 
     @FXML
+    void handleOpenFile() {};
+
+    @FXML
     void handleDragOver(DragEvent event) {
 
     }
@@ -144,7 +147,6 @@ public class ImageToImageController {
             openButton.setVisible(false);
             closeButton.setVisible(true);
             openHidButton.setVisible(true);
-            encodeButton.setDisable(false);
 
             showSnackBar("Изображение добавлено");
 
