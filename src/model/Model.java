@@ -15,7 +15,7 @@ public class Model {
     }
 
     public Image encode(Image image, String message) {
-        return encoder.encode(image, message, 6);
+        return encoder.encode(image, message, 1);
     }
 
     //decoder
