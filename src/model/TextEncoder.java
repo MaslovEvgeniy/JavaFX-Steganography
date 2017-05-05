@@ -130,7 +130,4 @@ public class TextEncoder implements Encoder<String> {
         return bits;
     }
 
-
-
-
 }
