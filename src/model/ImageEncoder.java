@@ -8,8 +8,7 @@ import utils.Encoder;
  */
 public class ImageEncoder implements Encoder<Image>{
     @Override
-    public Image encode(Image image, Image message) {
-
-        return null;
+    public Image encode(Image image, Image message, int noOfLSB) {
+        return  null;
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.image.WritableImage;
 import javafx.util.Pair;
 import utils.Encoder;
 
+import javax.imageio.metadata.IIOMetadata;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -17,9 +18,17 @@ import java.util.stream.IntStream;
 public class TextEncoder implements Encoder<String> {
 
     private static int noOfLSB =1;     //DELETE
+    private static int x=0, y=0;
 
     @Override
-    public Image encode(Image image, String message) {
+    public Image encode(Image image, String message, int noOfLSB) {
+        writeBitsToImg(image, prepareHeaderbits(message), 1 );
+        writeBitsToImg(image, prepareMessageBits(message), noOfLSB);
+        return image;
+    }
+
+
+    private void writeBitsToImg(Image image, boolean[] bits, int noOfLSB) {
         int width = (int) image.getWidth();
         int height = (int) image.getHeight();
 
@@ -27,11 +36,8 @@ public class TextEncoder implements Encoder<String> {
         PixelWriter writer = copy.getPixelWriter();
         PixelReader reader = image.getPixelReader();
 
-        boolean[] bits = preparebits(message);
-
         int[] pos = new int[]{0, 8, 16, 24};
 
-        int x=0, y=0;
         int i = 128;
 
         int pixel = reader.getArgb(x, y);
@@ -39,19 +45,19 @@ public class TextEncoder implements Encoder<String> {
         try {
             for(int b=0, len=bits.length; b<len; b++) {
                 while(true) { //iterates for i
-                    for(int j=0; j<pos.length; j++) { //iterates through positions
-                        for(int k=pos[j]; k<pos[j]+noOfLSB; k++) { //iterates through no. of LSB's each position
+                    for(int j = 0; j < pos.length; j++) { //iterates through positions
+                        for(int k = pos[j]; k < pos[j] + noOfLSB; k++) { //iterates through no. of LSB's each position
                             if(bits[b]) { //(data[b] & i) gives bit in byte b
                                 pixel = (pixel | (1 << k)); //change k^th(k= 1-> 8) bit in pixel to 1
                             }
                             else {
                                 pixel = (pixel & ~(1 << k)); //change k^th(k= 1-> 8) bit in pixel to 0
                             }
-                            if(i>0) i/=2;
-                            if(i==0) {i=128;b++;} //gets new byte
+                            if(i > 0) i /= 2;
+                            if(i == 0) {i = 128; b++;} //gets new byte
                         }
                     }
-                    if(b<bits.length) {
+                    if(b < bits.length) {
                         writer.setArgb(x++, y, pixel);
 
                         if(x < width && y < height) pixel = reader.getArgb(x, y);
@@ -68,39 +74,14 @@ public class TextEncoder implements Encoder<String> {
             if(x >= width) {x=0; y++;}
             //if(y >= height) { AlertBox.error("Not enough pixels in Carrier image.", null); } //Ran out of pixels
         }
-        return copy;
     }
 
+    private boolean[] prepareHeaderbits(String message) {
 
-//    private static byte[] mergeMLengthWithData(String message) {
-//        //merge message length with data
-//        //MLength uses 4 bytes to denote message size in bytes
-//        byte[] data = message.getBytes();
-//        ByteBuffer bf = ByteBuffer.allocate(4);
-//        bf.putInt(data.length+4); // add 4 with data.length to also include mLength size
-//        byte[] mLength = bf.array();
-//        try {
-//            ByteArrayOutputStream bao = new ByteArrayOutputStream();
-//            bao.write(mLength);
-//            bao.write(data);
-//            data = bao.toByteArray();
-//        }
-//        catch(IOException e) {
-//           // AlertBox.error("Error in Encoding.", null);
-//        }
-//        return data;
-//    }
-
-
-    private boolean[] preparebits(String message) {
-        byte[] data = message.getBytes();
-
-        // int = 32 bits
-        // byte = 8 bits
-        boolean[] bits = new boolean[32 + 4  + data.length * 8];
+        boolean[] bits = new boolean[36]; //message length = 32 bits and noOfLSb = 4 bits
 
         // encode length
-        String binary = Integer.toBinaryString(data.length);
+        String binary = Integer.toBinaryString(message.length());
         while (binary.length() < 32) {
             binary = "0" + binary;
         }
@@ -109,27 +90,40 @@ public class TextEncoder implements Encoder<String> {
             bits[i] = binary.charAt(i) == '1';
         }
 
+        //encode noOfLSB size
         String bitsNumb = Integer.toBinaryString(noOfLSB);
         while (bitsNumb.length() < 4) {
             bitsNumb = "0" + bitsNumb;
         }
 
-        for (int i = 32; i < 36; i++) {
-            bits[i] = bitsNumb.charAt(i) == '1';
+        for (int i = 32, j = 0; i < 36; i++, j++) {
+                bits[i] = bitsNumb.charAt(j) == '1';
+                System.out.println(bits[i]);//
         }
 
-        // [7, 6, 5 ... 0]
-        // encode message
+//        for (int i = 0; i < bits.length; i++) {
+//            System.out.print(bits[i]);
+//        }
+
+        return bits;
+    }
+
+    private boolean[] prepareMessageBits(String message) {
+        byte[] data = message.getBytes();
+        boolean[] bits = new boolean[data.length * 8];
+
         for (int i = 0; i < data.length; i++) {
             byte b = data[i];
 
             for (int j = 0; j < 8; j++) {
-                bits[32 + 4 + i*8 + j] = ((b >> (7 - j)) & 1) == 1;
+                bits[i*8 + j] = ((b >> (7 - j)) & 1) == 1;
             }
         }
 
         return bits;
     }
+
+
 
 
 }
