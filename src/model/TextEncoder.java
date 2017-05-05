@@ -17,22 +17,29 @@ import java.util.stream.IntStream;
 
 public class TextEncoder implements Encoder<String> {
 
-    private static int noOfLSB =1;     //DELETE
+    private static int noOfLSBImage;
     private static int x=0, y=0;
+    private static Image image;
 
     @Override
-    public Image encode(Image image, String message, int noOfLSB) {
-        writeBitsToImg(image, prepareHeaderbits(message), 1 );
-        writeBitsToImg(image, prepareMessageBits(message), noOfLSB);
-        return image;
+    public Image encode(Image inImage, String message, int _noOfLSB) {
+        noOfLSBImage = _noOfLSB;
+        image=inImage;
+
+        WritableImage copy = new WritableImage(image.getPixelReader(), (int)image.getWidth(), (int)image.getHeight());
+
+        writeBitsToImg(copy, prepareHeaderbits(message), 1 );
+        writeBitsToImg(copy, prepareMessageBits(message), noOfLSBImage);
+
+        return copy;
     }
 
 
-    private void writeBitsToImg(Image image, boolean[] bits, int noOfLSB) {
+    private void writeBitsToImg(WritableImage copy, boolean[] bits, int noOfLSB) {
+
         int width = (int) image.getWidth();
         int height = (int) image.getHeight();
 
-        WritableImage copy = new WritableImage(image.getPixelReader(), width, height);
         PixelWriter writer = copy.getPixelWriter();
         PixelReader reader = image.getPixelReader();
 
@@ -91,7 +98,7 @@ public class TextEncoder implements Encoder<String> {
         }
 
         //encode noOfLSB size
-        String bitsNumb = Integer.toBinaryString(noOfLSB);
+        String bitsNumb = Integer.toBinaryString(noOfLSBImage);
         while (bitsNumb.length() < 4) {
             bitsNumb = "0" + bitsNumb;
         }
@@ -122,8 +129,5 @@ public class TextEncoder implements Encoder<String> {
 
         return bits;
     }
-
-
-
 
 }

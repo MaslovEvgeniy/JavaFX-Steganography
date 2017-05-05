@@ -14,6 +14,7 @@ public class Main extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.getIcons().add(new Image("/resources/images/logo2.png",3000,3000,false,true));
         stage.show();
     }
 

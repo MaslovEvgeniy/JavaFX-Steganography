@@ -41,7 +41,7 @@ public class PreLoaderController implements Initializable {
                         Stage stage = new Stage();
                         stage.setScene(scene);
                         stage.setTitle("LSB-Steganography");
-                        stage.getIcons().add(new Image("/resources/images/logo.png",3000,3000,false,true));
+                        stage.getIcons().add(new Image("/resources/images/logo2.png",3000,3000,false,true));
                         stage.show();
                         rootPane.getScene().getWindow().hide();
                     }
