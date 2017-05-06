@@ -2,8 +2,10 @@ package view;
 
 import com.jfoenix.controls.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
@@ -22,6 +24,8 @@ import model.TextEncoder;
 import utils.FileHelper;
 import utils.Transition;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -30,6 +34,9 @@ import java.util.List;
 
 public class TextToImageController {
 
+
+    @FXML
+    private AnchorPane dottedPane;
 
     @FXML
     private GridPane gridPane;
@@ -47,13 +54,16 @@ public class TextToImageController {
     private StackPane stackPane1;
 
     @FXML
+    private StackPane encodedStackPane;
+
+    @FXML
     private Rectangle rect1;
 
     @FXML
-    private ImageView imageViewDrag;
+    private ImageView imageView;
 
     @FXML
-    private ImageView imageView;
+    private ImageView imageViewDrop;
 
     @FXML
     private JFXButton closeButton;
@@ -74,7 +84,7 @@ public class TextToImageController {
     private JFXTextArea textToEncode;
 
     @FXML
-    private Text numbOfBitsText;
+    private Label numbOfBitsText;
 
     @FXML
     private JFXSlider bitsSlider;
@@ -128,27 +138,74 @@ public class TextToImageController {
     }
 
     @FXML
-    private void handleEntered(DragEvent event) {
+    private void initialize() {
+        imageView.setImage(imageViewDrop.getImage());
+        dottedPane.widthProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(imageView);
+            Transition.LayoutImage(imageViewDrop);
+            rect1.setWidth((double)newV - 3);
+        });
+
+        dottedPane.heightProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(imageView);
+            Transition.LayoutImage(imageViewDrop);
+            rect1.setHeight((double)newV - 3);
+        });
+
+        encodedStackPane.widthProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(FinalImageView);
+        });
+
+        encodedStackPane.heightProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(FinalImageView);
+        });
+
+        FinalImageView.imageProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(FinalImageView);
+        });
+
+        imageView.imageProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(imageView);
+            Transition.LayoutImage(imageViewDrop);
+            if (newV == null || imageViewDrop.getImage() == imageView.getImage()) {
+                dottedPane.setStyle("-fx-border-style: segments(7); -fx-border-color: #869ff3");
+                Transition.fadeOut(imageView);
+                Transition.fadeIn(imageViewDrop);
+            }
+            else {
+                dottedPane.setStyle("");
+                Transition.fadeOut(imageViewDrop);
+                Transition.fadeIn(imageView);
+            }
+        });
+
+        Transition.LayoutImage(imageView);
+        Transition.LayoutImage(imageViewDrop);
+    }
+        @FXML
+        private void handleEntered(DragEvent event) {
         Transition.fill(rect1, Color.valueOf("#E0E0E0"), Color.WHITE);
         Transition.fadeOut(imageView);
-        Transition.fadeIn(imageViewDrag);
+        Transition.fadeIn(imageViewDrop);
+        dottedPane.setStyle("-fx-border-style: segments(7); -fx-border-color: #869ff3");
     }
 
     @FXML
     private void handleExited(DragEvent event) {
         Transition.fill(rect1, Color.WHITE, Color.valueOf("#E0E0E0"));
         Transition.fadeIn(imageView);
-        Transition.fadeOut(imageViewDrag);
+        Transition.fadeOut(imageViewDrop);
+        if (imageViewDrop.getImage() != imageView.getImage())
+            dottedPane.setStyle("");
     }
 
     @FXML
     void handleClose(ActionEvent event) {
         if (imageView.getImage() != null) {
             Transition.fadeOut(imageView);
-            imageView.setImage(null);
+            Transition.fadeIn(imageViewDrop);
+            imageView.setImage(imageViewDrop.getImage());
             inputPath.setText("PATH");
-
-            Transition.fadeIn(imageViewDrag);
 
             closeButton.setVisible(false);
             openButton.setVisible(true);
@@ -177,9 +234,8 @@ public class TextToImageController {
 
             String path = file.getPath();
             inputPath.setText(path);
-            FileExtention = path.substring(path.lastIndexOf("."));
+           // FileExtention = path.substring(path.lastIndexOf("."));
 
-            Transition.fadeOut(imageViewDrag);
             Transition.fadeIn(imageView);
 
             closeButton.setVisible(true);
@@ -197,6 +253,27 @@ public class TextToImageController {
     @FXML
     private void handleSaveFile(ActionEvent event) {
 
+        File file;
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("File (*.png, *.bmp)", "*.png", "*.bmp");
+        fileChooser.getExtensionFilters().addAll(extFilter);
+
+        fileChooser.setTitle("Save As");
+        if((file = fileChooser.showSaveDialog(bitsSlider.getScene().getWindow())) != null)  {
+            String path = file.getPath();
+            String outputFileExt = path.substring(path.lastIndexOf("."));
+            //path = path.replace(outputFileExt, "*.bmp");
+            File f = new File(path);
+            outputFileExt = path.substring(path.lastIndexOf(".")+1);
+            try {
+                BufferedImage bImage = SwingFXUtils.fromFXImage(FinalImageView.getImage(), null);
+                ImageIO.write(bImage, outputFileExt.toUpperCase(), f);
+            }
+            catch(IOException e) {
+               showSnackBar("Ошибка сохранения");
+            }
+        }
+
     }
 
     @FXML
@@ -204,6 +281,7 @@ public class TextToImageController {
         controller.injectUI(imageView, FinalImageView, textToEncode, resultText);
         controller.onEncode();
         saveButton.setVisible(true);
+        showSnackBar("Информация закодирована");
     }
 
     @FXML

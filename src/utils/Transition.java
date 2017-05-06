@@ -3,6 +3,10 @@ package utils;
 import javafx.animation.FadeTransition;
 import javafx.animation.FillTransition;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
@@ -28,4 +32,37 @@ public class Transition {
         ft.setAutoReverse(false);
         ft.play();
     }
+
+
+    /**
+     * Set image size to fit parent
+     */
+    public static void LayoutImage(ImageView imgV) {
+        Pane parent = (Pane)imgV.getParent();
+        if (imgV != null && imgV.getImage() != null) {
+            int padding = 10;
+            double reflectionKoeff = 0.0;
+            double w = 0;
+            double h = 0;
+            double pw = parent.getWidth() - padding * 2;
+            double ph = parent.getHeight() - padding * 2;
+
+            Image img = imgV.getImage();
+            double raitoX = pw / img.getWidth();
+            double raitoY = ph / img.getHeight() / (1 + reflectionKoeff);
+
+            double reduceKoeff = Math.min(Math.min(raitoY, raitoX), 1.0);// не
+            // растягивать
+
+            w = img.getWidth() * reduceKoeff;
+            h = img.getHeight() * reduceKoeff;
+
+            imgV.setFitWidth(w);
+            imgV.setFitHeight(h);
+
+            imgV.setLayoutX((pw - imgV.getFitWidth()) / 2 + padding);
+            imgV.setLayoutY((ph - img.getHeight() * reduceKoeff * (1 + reflectionKoeff)) / 2 + padding);
+        }
+    }
+
 }

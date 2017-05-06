@@ -34,6 +34,7 @@ public class PreLoaderController implements Initializable {
                         Parent root = null;
                         try {
                             root = FXMLLoader.load(getClass().getResource("/view/MainWindow.fxml"));
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -42,6 +43,8 @@ public class PreLoaderController implements Initializable {
                         stage.setScene(scene);
                         stage.setTitle("LSB-Steganography");
                         stage.getIcons().add(new Image("/resources/images/logo2.png",3000,3000,false,true));
+                        stage.setMinWidth(870);
+                        stage.setMinHeight(720);
                         stage.show();
                         rootPane.getScene().getWindow().hide();
                     }
