@@ -6,16 +6,20 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+import java.io.IOException;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
         Parent root = FXMLLoader.load(getClass().getResource("view/PreLoader.fxml"));
         stage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.getIcons().add(new Image("/resources/images/logo2.png",3000,3000,false,true));
         stage.show();
+
     }
 
     public static void main(String args[]) {

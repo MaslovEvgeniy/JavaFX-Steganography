@@ -3,22 +3,72 @@
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
 <?import com.jfoenix.controls.JFXSnackbar?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="800.0" prefWidth="800.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
+<AnchorPane fx:id="rootPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="720.0" minWidth="810.0" prefHeight="800.0" prefWidth="800.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainWindowController">
    <children>
-      <Pane fx:id="contentPane" layoutY="41.0" prefHeight="801.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
-         
-      </Pane>
-      <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="41.0" prefWidth="359.0" styleClass="hbox_hamburger" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="contentPane" layoutX="62.0" layoutY="40.0" prefHeight="763.0" prefWidth="767.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <JFXSnackbar fx:id="snackBar" AnchorPane.bottomAnchor="0.0" />
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" prefHeight="800.0" prefWidth="0.0" />
+      <VBox fx:id="menu" accessibleRole="TAB_PANE" minWidth="63.0" prefHeight="711.0" prefWidth="63.0" style="-fx-background-color: #fdfdfd; -fx-border-color: #d7d7d7;" styleClass="vbox" AnchorPane.topAnchor="50.0">
+         <children>
+            <AnchorPane fx:id="menuTextToImage" minWidth="50.0" onMouseClicked="#handleTextToImage" prefHeight="50.0" prefWidth="324.0" styleClass="hbox">
+               <children>
+                  <FontAwesomeIconView fx:id="menuFontText" glyphName="FONT" layoutX="19.0" layoutY="33.0" size="24" style="-fx-fill: #747474;" AnchorPane.leftAnchor="17.0" />
+                  <Label ellipsisString="" layoutX="58.0" layoutY="16.0" prefHeight="17.0" prefWidth="197.0" text="Текст - Изображение" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </AnchorPane>
+            <AnchorPane fx:id="menuImageToImage" minWidth="50.0" onMouseClicked="#handleImageToImage" prefHeight="50.0" prefWidth="324.0" styleClass="hbox">
+               <children>
+                  <FontAwesomeIconView fx:id="menuFontImage" glyphName="IMAGE" layoutX="22.0" layoutY="33.0" size="24" style="-fx-fill: #747474;" AnchorPane.leftAnchor="17.0" />
+                  <Label ellipsisString="" layoutX="58.0" layoutY="16.0" prefHeight="17.0" prefWidth="197.0" text="Изображение - Изображение" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="menuHelp" minWidth="50.0" prefHeight="50.0" prefWidth="324.0" styleClass="hbox">
+               <children>
+                  <FontAwesomeIconView glyphName="QUESTION" layoutX="22.0" layoutY="33.0" size="24" style="-fx-fill: #747474;" />
+                  <Label ellipsisString="" layoutX="58.0" layoutY="16.0" prefHeight="17.0" prefWidth="197.0" text="Помощь" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="menuAbout" minWidth="50.0" prefHeight="50.0" prefWidth="324.0" styleClass="hbox">
+               <children>
+                  <FontAwesomeIconView glyphName="INFO" layoutX="22.0" layoutY="33.0" size="24" style="-fx-fill: #747474;" AnchorPane.leftAnchor="24.0" />
+                  <Label ellipsisString="" layoutX="58.0" layoutY="16.0" prefHeight="17.0" prefWidth="197.0" text="О программе" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <HBox alignment="TOP_RIGHT" layoutX="1.0" layoutY="40.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="61.0" styleClass="hbox_hamburger" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <JFXHamburger fx:id="hamburger" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT">
                <HBox.margin>
-                  <Insets left="50.0" />
+                  <Insets right="15.0" />
                </HBox.margin>
             </JFXHamburger>
          </children>
@@ -26,7 +76,5 @@
             <DropShadow />
          </effect>
       </HBox>
-      <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" prefHeight="800.0" prefWidth="0.0" />
-      <JFXSnackbar fx:id="snackBar" AnchorPane.bottomAnchor="0.0" />
    </children>
 </AnchorPane>
