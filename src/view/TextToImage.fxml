@@ -27,7 +27,7 @@
    <children>
       <JFXTabPane prefHeight="720.0" prefWidth="810.0" tabMaxHeight="50.0" tabMaxWidth="300.0" tabMinHeight="50.0" tabMinWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
-            <Tab text="Кодирование">
+            <Tab text="Внедрение текста">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -166,7 +166,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Раскодирование">
+            <Tab text="Извлечение текста">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
