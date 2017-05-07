@@ -42,7 +42,7 @@
                            <children>
                               <AnchorPane prefHeight="670.0" prefWidth="285.0" GridPane.columnIndex="1">
                                  <children>
-                                    <StackPane fx:id="encodedStackPane" minWidth="0.0" prefHeight="346.0" prefWidth="390.0" styleClass="stackPane" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                    <StackPane fx:id="encodedStackPane" layoutY="40.0" minHeight="321.0" minWidth="0.0" prefHeight="321.0" prefWidth="390.0" styleClass="stackPane" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
                                        <children>
                                           <ImageView fx:id="FinalImageView" fitHeight="255.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -67,11 +67,12 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="506.0" prefWidth="254.0">
                                  <children>
-                                    <GridPane layoutX="6.0" layoutY="12.0" prefHeight="488.0" prefWidth="397.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+                                    <GridPane layoutX="6.0" layoutY="12.0" prefHeight="488.0" prefWidth="397.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                       </columnConstraints>
                                       <rowConstraints>
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="0.0" vgrow="SOMETIMES" />
                                         <RowConstraints minHeight="10.0" prefHeight="164.0" vgrow="SOMETIMES" />
                                         <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="0.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="160.0" vgrow="SOMETIMES" />
@@ -80,7 +81,7 @@
                                         <RowConstraints maxHeight="40.0" minHeight="40.0" prefHeight="17.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <AnchorPane minHeight="0.0" prefHeight="78.0" prefWidth="397.0" GridPane.rowIndex="5">
+                                          <AnchorPane minHeight="0.0" prefHeight="78.0" prefWidth="397.0" GridPane.rowIndex="6">
                                              <children>
                                                 <StackPane layoutX="271.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                    <children>
@@ -94,7 +95,7 @@
                                                 <JFXButton fx:id="DecodeButton" layoutX="20.0" layoutY="2.0" onAction="#handleDecode" text="DECODE" />
                                              </children>
                                           </AnchorPane>
-                                          <StackPane fx:id="stackPane1" prefHeight="225.0" prefWidth="390.0" styleClass="stackPane">
+                                          <StackPane fx:id="stackPane1" prefHeight="225.0" prefWidth="390.0" styleClass="stackPane" GridPane.rowIndex="1">
                                              <children>
                                                 <AnchorPane fx:id="dottedPane" minHeight="0.0" minWidth="0.0" prefHeight="109.0" prefWidth="360.0" style="-fx-border-style: segments(7); -fx-border-color: #869ff3;" StackPane.alignment="CENTER">
                                                    <children>
@@ -109,7 +110,7 @@
                                                       </ImageView>
                                                       <JFXButton fx:id="closeButton" contentDisplay="GRAPHIC_ONLY" onAction="#handleClose" ripplerFill="WHITE" styleClass="closeButton" text=" " visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                                          <graphic>
-                                                            <FontAwesomeIconView fx:id="but_close" fill="WHITE" glyphName="PLUS" rotate="45.0" size="30" textAlignment="CENTER" />
+                                                            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" rotate="45.0" size="30" textAlignment="CENTER" />
                                                          </graphic>
                                                          <tooltip>
                                                             <Tooltip text="Сбросить изображение" />
@@ -117,7 +118,7 @@
                                                       </JFXButton>
                                                       <JFXButton fx:id="openButton" contentDisplay="GRAPHIC_ONLY" onAction="#handleOpenFile" ripplerFill="WHITE" styleClass="openButton" text=" " AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <graphic>
-                                                            <FontAwesomeIconView fx:id="but_open" fill="WHITE" glyphName="PLUS" size="30" styleClass="openButton" />
+                                                            <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="30" styleClass="openButton" />
                                                          </graphic>
                                                          <tooltip>
                                                             <Tooltip text="Загрузить изображение" />
@@ -135,31 +136,39 @@
                                                 </AnchorPane>
                                              </children>
                                           </StackPane>
-                                          <JFXTextField fx:id="inputPath" disable="true" editable="false" prefHeight="25.0" prefWidth="344.0" promptText="PATH" unFocusColor="#222121" GridPane.rowIndex="1">
+                                          <JFXTextField fx:id="inputPath" disable="true" editable="false" prefHeight="25.0" prefWidth="344.0" promptText="PATH" unFocusColor="#222121" GridPane.rowIndex="2">
                                              <opaqueInsets>
                                                 <Insets />
                                              </opaqueInsets>
                                           </JFXTextField>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" GridPane.rowIndex="2">
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" GridPane.rowIndex="3">
                                              <children>
-                                                <JFXTextArea fx:id="textToEncode" disable="true" labelFloat="true" layoutX="-14.0" layoutY="29.0" maxHeight="-Infinity" minHeight="116.0" prefHeight="116.0" prefWidth="390.0" promptText="Введите текст для кодирования" styleClass="text" wrapText="true" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+                                                <JFXTextArea fx:id="textToEncode" disable="true" labelFloat="true" layoutX="-14.0" layoutY="29.0" maxHeight="-Infinity" minHeight="125.0" prefHeight="125.0" prefWidth="390.0" promptText="Введите текст для кодирования" styleClass="text" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </JFXTextArea>
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane GridPane.rowIndex="3">
+                                          <AnchorPane GridPane.rowIndex="4">
                                              <children>
                                                 <Label fx:id="numbOfBitsText" prefHeight="21.0" prefWidth="390.0" text="Количество бит" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
                                              </children>
                                           </AnchorPane>
-                                          <JFXSlider fx:id="bitsSlider" blockIncrement="1.0" disable="true" majorTickUnit="1.0" max="8.0" min="1.0" minorTickCount="0" prefHeight="44.0" prefWidth="397.0" showTickLabels="true" snapToTicks="true" value="1.0" GridPane.rowIndex="4" />
+                                          <JFXSlider fx:id="bitsSlider" blockIncrement="1.0" disable="true" majorTickUnit="1.0" max="8.0" min="1.0" minorTickCount="0" prefHeight="44.0" prefWidth="397.0" showTickLabels="true" snapToTicks="true" value="1.0" GridPane.rowIndex="5" />
+                                          <AnchorPane>
+                                             <children>
+                                                <Label text="Изображение, в которое будет помещен текст:" textFill="#5f5e65" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0">
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </AnchorPane>
                                        </children>
                                     </GridPane>
                                  </children>
                               </AnchorPane>
-                              <JFXSnackbar fx:id="snackBar" />
                            </children>
                         </GridPane>
                      </children>
@@ -168,7 +177,100 @@
             </Tab>
             <Tab text="Извлечение текста">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane prefHeight="509.0" prefWidth="810.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="363.0" minHeight="10.0" prefHeight="357.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="233.0" minHeight="10.0" prefHeight="119.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <StackPane fx:id="stackPane11" prefHeight="200.0" prefWidth="404.0" styleClass="stackPane" GridPane.rowIndex="1">
+                                 <children>
+                                    <AnchorPane fx:id="dottedPaneToDecode" minHeight="0.0" minWidth="0.0" prefHeight="109.0" prefWidth="711.0" style="-fx-border-style: segments(7); -fx-border-color: #869ff3;" StackPane.alignment="CENTER">
+                                       <children>
+                                          <Rectangle fx:id="rectToDecode" arcHeight="5.0" arcWidth="5.0" fill="#e0e0e0" height="4.0" layoutX="2.0" layoutY="9.0" stroke="TRANSPARENT" strokeType="INSIDE" width="352.0" y="-7.0" AnchorPane.bottomAnchor="109.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="1.0" />
+                                          <ImageView fx:id="imageViewToDecode" fitHeight="207.0" fitWidth="247.0" layoutX="45.0" layoutY="4.0" onDragDropped="#handleDropToDecode" onDragEntered="#handleEnteredToDecode" onDragExited="#handleExitedToDecode" onDragOver="#handleDragOver" pickOnBounds="true" preserveRatio="true">
+                                             <viewport>
+                                                <Rectangle2D />
+                                             </viewport>
+                                             <image>
+                                                <Image url="@../resources/images/DragDrop.png" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXButton fx:id="closeButtonToDecode" contentDisplay="GRAPHIC_ONLY" onAction="#handleCloseToDecode" ripplerFill="WHITE" styleClass="closeButton" text=" " visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS" rotate="45.0" size="30" textAlignment="CENTER" />
+                                             </graphic>
+                                             <tooltip>
+                                                <Tooltip text="Сбросить изображение" />
+                                             </tooltip>
+                                          </JFXButton>
+                                          <JFXButton fx:id="openButtonToDecode" contentDisplay="GRAPHIC_ONLY" onAction="#handleOpenFileToDecode" ripplerFill="WHITE" styleClass="openButton" text=" " AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="30" styleClass="openButton" />
+                                             </graphic>
+                                             <tooltip>
+                                                <Tooltip text="Загрузить изображение" />
+                                             </tooltip>
+                                          </JFXButton>
+                                          <ImageView fx:id="imageViewDropToDecode" fitHeight="207.0" fitWidth="247.0" layoutX="45.0" layoutY="4.0" onDragDropped="#handleDropToDecode" onDragEntered="#handleEnteredToDecode" onDragExited="#handleExitedToDecode" onDragOver="#handleDragOver" pickOnBounds="true" preserveRatio="true">
+                                             <viewport>
+                                                <Rectangle2D />
+                                             </viewport>
+                                             <image>
+                                                <Image url="@../resources/images/DragDrop.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                       <StackPane.margin>
+                                          <Insets />
+                                       </StackPane.margin>
+                                    </AnchorPane>
+                                 </children>
+                              </StackPane>
+                              <AnchorPane>
+                                 <children>
+                                    <Label text="Изображение для извлечения:" textFill="#5f5e65" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="15.0">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.columnIndex="1" />
+                              <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <JFXTextArea fx:id="decodedText" disable="true" labelFloat="true" layoutX="-47.0" layoutY="74.0" prefHeight="357.0" prefWidth="417.0" promptText="Полученный текст" wrapText="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </JFXTextArea>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.rowIndex="3">
+                                 <children>
+                                    <JFXButton fx:id="decodeButton" alignment="CENTER" contentDisplay="CENTER" disable="true" layoutX="1.0" layoutY="1.0" onAction="#handleDecode" prefHeight="40.0" prefWidth="125.0" ripplerFill="WHITE" styleClass="decodeButton" text="Раскодировать" textAlignment="CENTER" textFill="#f2efef" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </JFXButton>
+                                 </children>
+                              </AnchorPane>
+                              <JFXTextField fx:id="inputPathToDecode" disable="true" editable="false" prefHeight="25.0" prefWidth="344.0" promptText="PATH" unFocusColor="#222121" GridPane.rowIndex="2">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </JFXTextField>
+                           </children>
+                        </GridPane>
+                     </children></AnchorPane>
               </content>
             </Tab>
          </tabs>
@@ -177,5 +279,6 @@
             <String fx:value="tab-selected-line" />
          </styleClass>
       </JFXTabPane>
+      <JFXSnackbar fx:id="snackBar" />
    </children>
 </AnchorPane>

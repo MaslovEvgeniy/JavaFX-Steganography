@@ -70,6 +70,10 @@
     -fx-background-color: #2d68b9;
 }
 
+.decodeButton {
+    -fx-background-color: #64DD17;
+}
+
 .stackPane {
     -fx-padding: 15;
     -fx-background-radius: 15;

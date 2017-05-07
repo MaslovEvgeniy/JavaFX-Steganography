@@ -36,7 +36,13 @@ public class ImageToImageController {
     private StackPane encodedStackPane;
 
     @FXML
+    private StackPane decodedStackPane;
+
+    @FXML
     private ImageView FinalImageView;
+
+    @FXML
+    private ImageView decodedImageView;
 
     @FXML
     private JFXButton saveButton;
@@ -58,6 +64,9 @@ public class ImageToImageController {
 
     @FXML
     private JFXButton closeButtonInput;
+
+    @FXML
+    private JFXButton saveButtonDecoded;
 
     @FXML
     private JFXButton openButtonInput;
@@ -96,8 +105,36 @@ public class ImageToImageController {
     private JFXSnackbar snackBar;
 
     @FXML
+    private StackPane stackPane11;
+
+    @FXML
+    private AnchorPane dottedPaneToDecode;
+
+    @FXML
+    private Rectangle rectToDecode;
+
+    @FXML
+    private ImageView imageViewToDecode;
+
+    @FXML
+    private JFXButton closeButtonToDecode;
+
+    @FXML
+    private JFXButton openButtonToDecode;
+
+    @FXML
+    private ImageView imageViewDropToDecode;
+
+    @FXML
+    private JFXTextField inputPathToDecode;
+
+    @FXML
+    private JFXButton decodeButton;
+
+    @FXML
     private void initialize() {
         imageViewInput.setImage(imageViewDropInput.getImage());
+        imageViewToDecode.setImage(imageViewDropToDecode.getImage());
 
         encodedStackPane.widthProperty().addListener((obs, oldV, newV) -> {
             Transition.LayoutImage(FinalImageView);
@@ -107,12 +144,25 @@ public class ImageToImageController {
             Transition.LayoutImage(FinalImageView);
         });
 
+        decodedStackPane.heightProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(decodedImageView);
+        });
+
+        decodedStackPane.widthProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(decodedImageView);
+        });
+
         FinalImageView.imageProperty().addListener((obs, oldV, newV) -> {
             Transition.LayoutImage(FinalImageView);
         });
 
+        decodedImageView.imageProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(decodedImageView);
+        });
+
         imageViewAlignment(dottedPaneInput, imageViewInput, imageViewDropInput, rectInput);
         imageViewAlignment(dottedPaneInfo, imageViewInfo, imageViewDropInfo, rectInfo);
+        imageViewAlignment(dottedPaneToDecode, imageViewToDecode, imageViewDropToDecode, rectToDecode);
 
     }
 
@@ -191,7 +241,6 @@ public class ImageToImageController {
         }
     }
 
-
     @FXML
     void handleDropInfo(DragEvent event) {
         try {
@@ -244,6 +293,14 @@ public class ImageToImageController {
         controller.onEncode();*/
         saveButton.setVisible(true);
         showSnackBar("Изображение внедрено");
+    }
+
+    @FXML
+    void handleDecode(ActionEvent event) {
+        /*controller.injectUI(imageView, FinalImageView, textToEncode, resultText);
+        controller.onEncode();*/
+        saveButtonDecoded.setVisible(true);
+        showSnackBar("Изображение извлечено");
     }
 
     @FXML
@@ -348,7 +405,7 @@ public class ImageToImageController {
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("File (*.png, *.bmp)", "*.png", "*.bmp");
         fileChooser.getExtensionFilters().addAll(extFilter);
 
-        fileChooser.setTitle("Save As");
+        fileChooser.setTitle("Сохранить как");
         if((file = fileChooser.showSaveDialog(imageViewInfo.getScene().getWindow())) != null)  {
             String path = file.getPath();
             String outputFileExt = path.substring(path.lastIndexOf("."));
@@ -364,6 +421,113 @@ public class ImageToImageController {
             }
         }
     }
+
+    @FXML
+    void handleSaveFileDecoded(ActionEvent event) {
+
+        File file;
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("File (*.png, *.bmp)", "*.png", "*.bmp");
+        fileChooser.getExtensionFilters().addAll(extFilter);
+
+        fileChooser.setTitle("Сохранить как");
+        if((file = fileChooser.showSaveDialog(imageViewInfo.getScene().getWindow())) != null)  {
+            String path = file.getPath();
+            String outputFileExt = path.substring(path.lastIndexOf("."));
+            //path = path.replace(outputFileExt, "*.bmp");
+            File f = new File(path);
+            outputFileExt = path.substring(path.lastIndexOf(".")+1);
+            try {
+                BufferedImage bImage = SwingFXUtils.fromFXImage(decodedImageView.getImage(), null);
+                ImageIO.write(bImage, outputFileExt.toUpperCase(), f);
+            }
+            catch(IOException e) {
+                showSnackBar("Ошибка сохранения");
+            }
+        }
+    }
+
+    @FXML
+    void handleCloseToDecode(ActionEvent event) {
+        if (imageViewToDecode.getImage() != null) {
+            Transition.fadeOut(imageViewToDecode);
+            Transition.fadeIn(imageViewDropToDecode);
+            imageViewToDecode.setImage(imageViewDropToDecode.getImage());
+            inputPathToDecode.setText("PATH");
+
+            closeButtonToDecode.setVisible(false);
+            openButtonToDecode.setVisible(true);
+            decodeButton.setDisable(true);
+        }
+    }
+
+    @FXML
+    void handleDropToDecode(DragEvent event) {
+        try {
+            List<File> files = event.getDragboard().getFiles();
+            Image img = new Image(new FileInputStream(files.get(0)));
+            String path = files.get(0).getPath();
+            inputPathToDecode.setText(path);
+
+            imageViewToDecode.setImage(img);
+            closeButtonToDecode.setVisible(true);
+            openButtonToDecode.setVisible(false);
+            decodeButton.setDisable(false);
+
+            showSnackBar("Изображение добавлено");
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void handleEnteredToDecode(DragEvent event) {
+        Transition.fill(rectToDecode, Color.valueOf("#E0E0E0"), Color.WHITE);
+        Transition.fadeOut(imageViewToDecode);
+        Transition.fadeIn(imageViewDropToDecode);
+        dottedPaneToDecode.setStyle("-fx-border-style: segments(7); -fx-border-color: #869ff3");
+    }
+
+    @FXML
+    void handleExitedToDecode(DragEvent event) {
+        Transition.fill(rectToDecode, Color.WHITE, Color.valueOf("#E0E0E0"));
+        Transition.fadeIn(imageViewToDecode);
+        Transition.fadeOut(imageViewDropToDecode);
+        if (imageViewDropToDecode.getImage() != imageViewToDecode.getImage())
+            dottedPaneToDecode.setStyle("");
+    }
+
+    @FXML
+    void handleOpenFileToDecode(ActionEvent event) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Выберите изображение");
+        fileChooser.getExtensionFilters().
+                addAll(new FileChooser.ExtensionFilter("Image Files (*.bmp, *.png, *.jpg, *.jpeg)",
+                        "*.bmp", "*.png", "*.jpg", "*.jpeg"));
+
+        File file = fileChooser.showOpenDialog(imageViewToDecode.getScene().getWindow());
+        if (file != null) {
+            String imageFile = file.toURI().toURL().toString();
+
+            Image image = new Image(imageFile);
+            imageViewToDecode.setImage(image);
+
+            String path = file.getPath();
+            inputPathToDecode.setText(path);
+            // FileExtention = path.substring(path.lastIndexOf("."));
+
+            Transition.fadeIn(imageViewToDecode);
+
+            closeButtonToDecode.setVisible(true);
+            openButtonToDecode.setVisible(false);
+            decodeButton.setDisable(false);
+
+            showSnackBar("Изображение добавлено");
+
+        }
+    }
+
 
     private void showSnackBar(String message) {
         snackBar = new JFXSnackbar(gridPane);
