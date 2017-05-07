@@ -1,25 +1,22 @@
 package model;
 
 import javafx.scene.image.Image;
-import utils.Decoder;
-import utils.Encoder;
+import utils.StegoCodec;
 
 public class Model {
 
-    private Encoder encoder;
-    private Decoder decoder;
+    private StegoCodec codec;
 
-    public Model(Encoder encoder, Decoder decoder) {
-        this.encoder = encoder;
-        this.decoder = decoder;
+    public Model(StegoCodec codec) {
+        this.codec = codec;
     }
 
     public Image encode(Image image, String message) {
-        return encoder.encode(image, message, 1);
+        return codec.encode(image, message);
     }
 
     //decoder
     public String decode(Image image) {
-        return decoder.decode(image);
+        return (String) codec.decode(image);
     }
 }

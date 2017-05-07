@@ -3,6 +3,9 @@ package model;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
+
+import java.awt.*;
 
 /**
  * Created by Немченко Анна on 24.04.2017.
@@ -11,8 +14,8 @@ public class Controller {
 
     private Model model;
 
-    public Controller(Model model){
-        this.model=model;
+    public Controller(Model model) {
+        this.model = model;
     }
 
     private ImageView originalView, modifiedView;
@@ -22,7 +25,7 @@ public class Controller {
         this.originalView = original;
         this.modifiedView = modified;
         this.text = text;
-        this.resultText=resultText;
+        this.resultText = resultText;
     }
 
     public void onEncode() {
@@ -33,5 +36,5 @@ public class Controller {
     public void onDecode() {
         String message = model.decode(modifiedView.getImage());
         resultText.setText(message);
-     }
+    }
 }

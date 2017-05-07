@@ -17,8 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import model.Controller;
 import model.Model;
-import model.TextDecoder;
-import model.TextEncoder;
+import model.TextCodec;
 import utils.FileHelper;
 import utils.Transition;
 
@@ -212,7 +211,7 @@ public class TextToImageController {
     }
 
     private Model makeModel() {
-        return new Model(new TextEncoder(), new TextDecoder());
+        return new Model(new TextCodec());
     }
 
     private void showSnackBar(String message) {

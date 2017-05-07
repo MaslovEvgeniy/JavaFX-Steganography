@@ -87,7 +87,7 @@ public class MainWindowController implements Initializable {
 
 
     private Model makeModel() {
-        return new Model(new TextEncoder(), new TextDecoder());
+        return new Model(new TextCodec());
     }
 
 
