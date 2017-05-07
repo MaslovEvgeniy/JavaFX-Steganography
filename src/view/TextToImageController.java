@@ -33,7 +33,6 @@ import java.util.List;
 
 public class TextToImageController {
 
-
     @FXML
     private AnchorPane dottedPane;
 
@@ -139,17 +138,6 @@ public class TextToImageController {
     @FXML
     private void initialize() {
         imageView.setImage(imageViewDrop.getImage());
-        dottedPane.widthProperty().addListener((obs, oldV, newV) -> {
-            Transition.LayoutImage(imageView);
-            Transition.LayoutImage(imageViewDrop);
-            rect1.setWidth((double)newV - 3);
-        });
-
-        dottedPane.heightProperty().addListener((obs, oldV, newV) -> {
-            Transition.LayoutImage(imageView);
-            Transition.LayoutImage(imageViewDrop);
-            rect1.setHeight((double)newV - 3);
-        });
 
         encodedStackPane.widthProperty().addListener((obs, oldV, newV) -> {
             Transition.LayoutImage(FinalImageView);
@@ -161,6 +149,18 @@ public class TextToImageController {
 
         FinalImageView.imageProperty().addListener((obs, oldV, newV) -> {
             Transition.LayoutImage(FinalImageView);
+        });
+
+        dottedPane.widthProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(imageView);
+            Transition.LayoutImage(imageViewDrop);
+            rect1.setWidth((double)newV - 3);
+        });
+
+        dottedPane.heightProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(imageView);
+            Transition.LayoutImage(imageViewDrop);
+            rect1.setHeight((double)newV - 3);
         });
 
         imageView.imageProperty().addListener((obs, oldV, newV) -> {
@@ -181,8 +181,9 @@ public class TextToImageController {
         Transition.LayoutImage(imageView);
         Transition.LayoutImage(imageViewDrop);
     }
-        @FXML
-        private void handleEntered(DragEvent event) {
+
+    @FXML
+    private void handleEntered(DragEvent event) {
         Transition.fill(rect1, Color.valueOf("#E0E0E0"), Color.WHITE);
         Transition.fadeOut(imageView);
         Transition.fadeIn(imageViewDrop);

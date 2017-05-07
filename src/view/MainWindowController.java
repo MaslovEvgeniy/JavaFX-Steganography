@@ -74,8 +74,6 @@ public class MainWindowController implements Initializable {
     @FXML
     private AnchorPane menuAbout;
 
-    private static String FileExtention = null;
-
     private Controller controller = new Controller(makeModel());
 
     private Parent contentTextToImage = null;
@@ -91,8 +89,6 @@ public class MainWindowController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-           /*VBox box = FXMLLoader.load(getClass().getResource("DrawerContent.fxml"));
-            drawer.setSidePane(box);*/
 
             contentTextToImage = FXMLLoader.load(getClass().getResource("TextToImage.fxml"));
             contentPane.getChildren().add(contentTextToImage);
@@ -101,11 +97,11 @@ public class MainWindowController implements Initializable {
             contentImageToImage = FXMLLoader.load(getClass().getResource("ImageToImage.fxml"));
             setAnchor(contentImageToImage);
 
-            /*contentTextToImage = FXMLLoader.load(getClass().getResource("TextToImage.fxml")); //TODO ADD OTHER
-            setAnchor(contentTextToImage);
+            contentHelp = FXMLLoader.load(getClass().getResource("Help.fxml"));
+            setAnchor(contentHelp);
 
-            contentTextToImage = FXMLLoader.load(getClass().getResource("TextToImage.fxml"));
-            setAnchor(contentTextToImage);*/
+            contentAbout = FXMLLoader.load(getClass().getResource("About.fxml"));
+            setAnchor(contentAbout);
 
             menu.addEventHandler(MouseEvent.MOUSE_ENTERED, (e) -> {
                 showMenu();
@@ -157,13 +153,13 @@ public class MainWindowController implements Initializable {
             Pane p = (Pane) n;
             for (Node img: p.getChildren())
                 if (img instanceof FontAwesomeIconView)
-                    ((FontAwesomeIconView)img).setStyle("-fx-fill: #747474");
+                    (img).setStyle("-fx-fill: #747474");
 
             if (p == pane) {
                 p.setStyle("-fx-background-color: #EEEEEE");
                 for (Node img: p.getChildren())
                     if (img instanceof FontAwesomeIconView)
-                        ((FontAwesomeIconView)img).setStyle("-fx-fill: #325bf5");
+                        (img).setStyle("-fx-fill: #325bf5");
             }
             else
                 p.setStyle("");
@@ -182,6 +178,20 @@ public class MainWindowController implements Initializable {
         selectMenuItem(menuTextToImage);
         contentPane.getChildren().clear();
         contentPane.getChildren().add(contentTextToImage);
+    }
+
+    @FXML
+    void handleHelp(MouseEvent event) {
+        selectMenuItem(menuHelp);
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(contentHelp);
+    }
+
+    @FXML
+    void handleAbout(MouseEvent event) {
+        selectMenuItem(menuAbout);
+        contentPane.getChildren().clear();
+        contentPane.getChildren().add(contentAbout);
     }
 
     private Model makeModel() {

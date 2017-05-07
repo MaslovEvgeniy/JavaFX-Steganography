@@ -42,7 +42,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuHelp" minWidth="50.0" prefHeight="50.0" prefWidth="324.0" styleClass="hbox">
+            <AnchorPane fx:id="menuHelp" minWidth="50.0" onMouseClicked="#handleHelp" prefHeight="50.0" prefWidth="324.0" styleClass="hbox">
                <children>
                   <FontAwesomeIconView glyphName="QUESTION" layoutX="22.0" layoutY="33.0" size="24" style="-fx-fill: #747474;" />
                   <Label ellipsisString="" layoutX="58.0" layoutY="16.0" prefHeight="17.0" prefWidth="197.0" text="Помощь" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0">
@@ -52,7 +52,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="menuAbout" minWidth="50.0" prefHeight="50.0" prefWidth="324.0" styleClass="hbox">
+            <AnchorPane fx:id="menuAbout" minWidth="50.0" onMouseClicked="#handleAbout" prefHeight="50.0" prefWidth="324.0" styleClass="hbox">
                <children>
                   <FontAwesomeIconView glyphName="INFO" layoutX="22.0" layoutY="33.0" size="24" style="-fx-fill: #747474;" AnchorPane.leftAnchor="24.0" />
                   <Label ellipsisString="" layoutX="58.0" layoutY="16.0" prefHeight="17.0" prefWidth="197.0" text="О программе" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="0.0">
