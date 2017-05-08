@@ -8,7 +8,7 @@ import utils.StegoCodec;
  */
 public class ImageCodec implements StegoCodec<Image> {
     @Override
-    public Image encode(Image image, Image message) {
+    public Image encode(Image image, Image message, int noOfLSB) {
         return  null;
     }
 

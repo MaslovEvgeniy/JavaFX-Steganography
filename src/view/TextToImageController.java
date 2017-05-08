@@ -43,10 +43,10 @@ public class TextToImageController {
     private StackPane encodedStackPane;
 
     @FXML
-    private ImageView FinalImageView;
+    private ImageView finalImageView;
 
     @FXML
-    private ImageView FinalImageViewAdd;
+    private ImageView finalImageViewAdd;
 
     @FXML
     private JFXButton saveButton;
@@ -140,15 +140,15 @@ public class TextToImageController {
         imageViewToDecode.setImage(imageViewDropToDecode.getImage());
 
         encodedStackPane.widthProperty().addListener((obs, oldV, newV) -> {
-            Transition.LayoutImage(FinalImageView);
+            Transition.LayoutImage(finalImageView);
         });
 
         encodedStackPane.heightProperty().addListener((obs, oldV, newV) -> {
-            Transition.LayoutImage(FinalImageView);
+            Transition.LayoutImage(finalImageView);
         });
 
-        FinalImageView.imageProperty().addListener((obs, oldV, newV) -> {
-            Transition.LayoutImage(FinalImageView);
+        finalImageView.imageProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(finalImageView);
         });
 
         imageViewAlignment(dottedPane, imageView, imageViewDrop, rect1);
@@ -207,7 +207,7 @@ public class TextToImageController {
             numbOfBitsText.setOpacity(0.5);
             encodeButton.setDisable(true);
             saveButton.setVisible(false);
-            FinalImageView.setImage(FinalImageViewAdd.getImage());
+            finalImageView.setImage(finalImageViewAdd.getImage());
         }
     }
 
@@ -248,8 +248,8 @@ public class TextToImageController {
 
     @FXML
     void handleEncode(ActionEvent event) {
-        controller.injectUI(imageView, FinalImageView, textToEncode, resultText);
-        controller.onEncode();
+        //controller.injectUI(imageView, finalImageView, textToEncode, resultText);
+        controller.onEncode(imageView, textToEncode, finalImageView);
         saveButton.setVisible(true);
         showSnackBar("Информация закодирована");
     }
@@ -319,7 +319,7 @@ public class TextToImageController {
             File f = new File(path);
             outputFileExt = path.substring(path.lastIndexOf(".")+1);
             try {
-                BufferedImage bImage = SwingFXUtils.fromFXImage(FinalImageView.getImage(), null);
+                BufferedImage bImage = SwingFXUtils.fromFXImage(finalImageView.getImage(), null);
                 ImageIO.write(bImage, outputFileExt.toUpperCase(), f);
             }
             catch(IOException e) {

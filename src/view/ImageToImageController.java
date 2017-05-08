@@ -39,7 +39,7 @@ public class ImageToImageController {
     private StackPane decodedStackPane;
 
     @FXML
-    private ImageView FinalImageView;
+    private ImageView finalImageView;
 
     @FXML
     private ImageView decodedImageView;
@@ -143,11 +143,11 @@ public class ImageToImageController {
         imageViewToDecode.setImage(imageViewDropToDecode.getImage());
 
         encodedStackPane.widthProperty().addListener((obs, oldV, newV) -> {
-            Transition.LayoutImage(FinalImageView);
+            Transition.LayoutImage(finalImageView);
         });
 
         encodedStackPane.heightProperty().addListener((obs, oldV, newV) -> {
-            Transition.LayoutImage(FinalImageView);
+            Transition.LayoutImage(finalImageView);
         });
 
         decodedStackPane.heightProperty().addListener((obs, oldV, newV) -> {
@@ -158,8 +158,8 @@ public class ImageToImageController {
             Transition.LayoutImage(decodedImageView);
         });
 
-        FinalImageView.imageProperty().addListener((obs, oldV, newV) -> {
-            Transition.LayoutImage(FinalImageView);
+        finalImageView.imageProperty().addListener((obs, oldV, newV) -> {
+            Transition.LayoutImage(finalImageView);
         });
 
         decodedImageView.imageProperty().addListener((obs, oldV, newV) -> {
@@ -209,7 +209,7 @@ public class ImageToImageController {
 
     @FXML
     void handleEncode(ActionEvent event) {
-        /*controller.injectUI(imageView, FinalImageView, textToEncode, resultText);
+        /*controller.injectUI(imageView, finalImageView, textToEncode, resultText);
         controller.onEncode();*/
         saveButton.setVisible(true);
         showSnackBar("Изображение внедрено");
@@ -231,7 +231,7 @@ public class ImageToImageController {
             File f = new File(path);
             outputFileExt = path.substring(path.lastIndexOf(".")+1);
             try {
-                BufferedImage bImage = SwingFXUtils.fromFXImage(FinalImageView.getImage(), null);
+                BufferedImage bImage = SwingFXUtils.fromFXImage(finalImageView.getImage(), null);
                 ImageIO.write(bImage, outputFileExt.toUpperCase(), f);
             }
             catch(IOException e) {
@@ -415,9 +415,7 @@ public class ImageToImageController {
         }
     }
 
-
-
-    //Decode Tab
+   //Decode Tab
 
     @FXML
     void handleDecode(ActionEvent event) {
@@ -426,6 +424,7 @@ public class ImageToImageController {
         saveButtonDecoded.setVisible(true);
         showSnackBar("Изображение извлечено");
         decodedImageView.setImage(imageViewToDecode.getImage());
+
     }
 
     @FXML

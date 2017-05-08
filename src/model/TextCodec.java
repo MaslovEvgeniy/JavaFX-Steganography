@@ -14,10 +14,10 @@ public class TextCodec implements StegoCodec<String> {
     private BufferedImage currentImage;
 
     @Override
-    public Image encode(Image image, String message) {
+    public Image encode(Image image, String message, int noOfLSB) {
         BufferedImage inImage = SwingFXUtils.fromFXImage(image, null);
         currentImage = transformImage(inImage);
-        hideMessage(message);
+        hideMessage(message, noOfLSB);
         //System.out.println(decode());
         Image outputImage = SwingFXUtils.toFXImage(currentImage, null);
         currentImage = null;
@@ -32,15 +32,15 @@ public class TextCodec implements StegoCodec<String> {
         return (new String(decode));
     }
 
-    private void hideMessage(String message) {
+    private void hideMessage(String message, int noOfLSB) {
         byte img[] = getImageData();
         byte msg[] = message.getBytes();
         byte msgLength[] = intToByteArray(message.length());
-        insertBytes(img, msgLength, 0);
-        insertBytes(img, msg, 32);
+        insertBytes(img, msgLength, 0, 1);
+        insertBytes(img, msg, 32, noOfLSB);
     }
 
-    private void insertBytes(byte[] image, byte[] message, int offset) {
+    private void insertBytes(byte[] image, byte[] message, int offset, int noOfLSB) {
         for (int i = 0; i < message.length; ++i) {
             int add = message[i];
             for (int bit = 7; bit >= 0; --bit, ++offset)
@@ -49,14 +49,31 @@ public class TextCodec implements StegoCodec<String> {
                 image[offset] = (byte) ((image[offset] & 0xFE) | b);
             }
         }
+//        for (int i = 0; i < message.length; i++) {
+//            int add = message[i];
+//            int[] arr = new int[8];
+//            for (int b = 7; b >= 0; b++) {
+//                arr[b] = (add >>> b) & 1;
+//            }
+//            for (int n = 1, b = 7; n < noOfLSB; n++, ++offset) {
+//                image[offset] = (byte) ((image[offset] & ((0xFE << n - 1) - 1) | (arr[b--] << n)));
+//                if (b == 0) break;
+//            }
+//            int b=7, n=1;
+//            while(b!=0) {
+//                if(n==1) {
+//                    image[offset] = (byte) ((image[offset] & 0xFE | arr[b--]));
+//                }
+//                b--;
+//            }
+//        }
     }
 
     private byte[] extractBytes(byte[] image) {
         int length = 0;
         int offset = 32;
 
-        for (int i = 0; i < 32; ++i)
-        {
+        for (int i = 0; i < 32; ++i) {
             length = (length << 1) | (image[i] & 1);
         }
 
@@ -78,9 +95,8 @@ public class TextCodec implements StegoCodec<String> {
         return buffer.getData();
     }
 
-    private BufferedImage transformImage(BufferedImage image)
-    {
-        BufferedImage newImg  = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
+    private BufferedImage transformImage(BufferedImage image) {
+        BufferedImage newImg = new BufferedImage(image.getWidth(), image.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
         Graphics2D graphics = newImg.createGraphics();
         graphics.drawRenderedImage(image, null);
         graphics.dispose();
