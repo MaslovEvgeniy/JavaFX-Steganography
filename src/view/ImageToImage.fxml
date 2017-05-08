@@ -21,7 +21,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="478.0" minWidth="810.0" prefHeight="556.0" prefWidth="810.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ImageToImageController">
+<AnchorPane fx:id="mainPane" minHeight="478.0" minWidth="810.0" prefHeight="556.0" prefWidth="810.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ImageToImageController">
    <children>
       <JFXTabPane prefHeight="720.0" prefWidth="810.0" tabMaxHeight="50.0" tabMaxWidth="300.0" tabMinHeight="50.0" tabMinWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
@@ -223,8 +223,8 @@
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="164.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="338.0" minHeight="10.0" prefHeight="338.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="2.0" vgrow="SOMETIMES" />
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
@@ -302,6 +302,11 @@
                               </AnchorPane>
                               <StackPane fx:id="decodedStackPane" minWidth="0.0" prefHeight="388.0" prefWidth="390.0" styleClass="stackPane" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
+                                    <ImageView fx:id="decodedImageViewAdd" fitHeight="255.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                       <image>
+                                          <Image url="@../resources/images/decoded_img.png" />
+                                       </image>
+                                    </ImageView>
                                     <ImageView fx:id="decodedImageView" fitHeight="255.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../resources/images/decoded_img.png" />

@@ -23,9 +23,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="478.0" minWidth="810.0" prefHeight="556.0" prefWidth="810.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TextToImageController">
+<AnchorPane fx:id="mainPane" minHeight="478.0" minWidth="810.0" prefHeight="556.0" prefWidth="810.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.TextToImageController">
    <children>
-      <JFXTabPane prefHeight="720.0" prefWidth="810.0" tabMaxHeight="50.0" tabMaxWidth="300.0" tabMinHeight="50.0" tabMinWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <JFXTabPane fx:id="tabPane" prefHeight="720.0" prefWidth="810.0" tabMaxHeight="50.0" tabMaxWidth="300.0" tabMinHeight="50.0" tabMinWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
             <Tab text="Внедрение текста">
               <content>
@@ -60,6 +60,11 @@
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                           </JFXButton>
+                                          <ImageView fx:id="finalImageViewAdd" fitHeight="255.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../resources/images/Result.png" />
+                                             </image>
+                                          </ImageView>
                                        </children>
                                     </StackPane>
                                     <JFXTextArea fx:id="resultText" layoutY="502.0" prefHeight="105.0" prefWidth="405.0" style="-fx-border-color: #555555;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
@@ -141,15 +146,18 @@
                                                 <Insets />
                                              </opaqueInsets>
                                           </JFXTextField>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" GridPane.rowIndex="3">
+                                          <StackPane GridPane.rowIndex="3">
                                              <children>
-                                                <JFXTextArea fx:id="textToEncode" disable="true" labelFloat="true" layoutX="-14.0" layoutY="29.0" maxHeight="-Infinity" minHeight="125.0" prefHeight="125.0" prefWidth="390.0" promptText="Введите текст для кодирования" styleClass="text" wrapText="true" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
+                                                <JFXTextArea fx:id="textToEncode" labelFloat="true" maxHeight="-Infinity" minHeight="125.0" prefHeight="125.0" prefWidth="390.0" promptText="Введите текст для кодирования" styleClass="text" wrapText="true">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
+                                                   <StackPane.margin>
+                                                      <Insets top="5.0" />
+                                                   </StackPane.margin>
                                                 </JFXTextArea>
                                              </children>
-                                          </AnchorPane>
+                                          </StackPane>
                                           <AnchorPane GridPane.rowIndex="4">
                                              <children>
                                                 <Label fx:id="numbOfBitsText" prefHeight="21.0" prefWidth="390.0" text="Количество бит" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
