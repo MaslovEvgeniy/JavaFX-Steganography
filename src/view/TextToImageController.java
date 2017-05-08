@@ -332,7 +332,7 @@ public class TextToImageController {
 
     @FXML
     void handleDecode(ActionEvent event) {
-        // controller.onDecode();
+        controller.onDecode(imageViewToDecode, decodedText);
         showSnackBar("Текст извлечен");
         decodedText.setDisable(false);
     }
