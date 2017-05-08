@@ -4,6 +4,7 @@ package view;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerBasicCloseTransition;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -73,6 +74,9 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private AnchorPane menuAbout;
+
+    @FXML
+    private AnchorPane menuExit;
 
     private Controller controller = new Controller(makeModel());
 
@@ -192,6 +196,11 @@ public class MainWindowController implements Initializable {
         selectMenuItem(menuAbout);
         contentPane.getChildren().clear();
         contentPane.getChildren().add(contentAbout);
+    }
+
+    @FXML
+    void handleExit(MouseEvent event) {
+        Platform.exit();
     }
 
     private Model makeModel() {
