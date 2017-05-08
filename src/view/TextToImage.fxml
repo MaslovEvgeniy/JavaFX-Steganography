@@ -44,7 +44,7 @@
                                  <children>
                                     <StackPane fx:id="encodedStackPane" layoutY="40.0" minHeight="321.0" minWidth="0.0" prefHeight="321.0" prefWidth="390.0" styleClass="stackPane" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
                                        <children>
-                                          <ImageView fx:id="FinalImageView" fitHeight="255.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fx:id="finalImageView" fitHeight="255.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../resources/images/Result.png" />
                                              </image>

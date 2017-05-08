@@ -11,8 +11,8 @@ public class Model {
         this.codec = codec;
     }
 
-    public Image encode(Image image, String message) {
-        return codec.encode(image, message);
+    public Image encode(Image image, String message, int noOfLSB) {
+        return codec.encode(image, message, noOfLSB);
     }
 
     //decoder

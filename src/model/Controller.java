@@ -21,19 +21,23 @@ public class Controller {
     private ImageView originalView, modifiedView;
     private TextArea text, resultText;
 
-    public void injectUI(ImageView original, ImageView modified, TextArea text, TextArea resultText) {
-        this.originalView = original;
-        this.modifiedView = modified;
-        this.text = text;
-        this.resultText = resultText;
-    }
+//    public void injectUI(ImageView original, TextArea text, TextArea resultText) {
+//        this.originalView = original;
+//
+//        this.text = text;
+//        this.resultText = resultText;
+//    }
 
-    public void onEncode() {
-        Image modified = model.encode(originalView.getImage(), text.getText());
+    public void onEncode(ImageView original, TextArea text, ImageView modifiedView) {
+        this.originalView = original;
+        this.text = text;
+        this.modifiedView = modifiedView;
+        Image modified = model.encode(originalView.getImage(), text.getText(), 1);
         modifiedView.setImage(modified);
     }
 
-    public void onDecode() {
+    public void onDecode(ImageView modified, TextArea resultText) {
+        this.modifiedView = modified;
         String message = model.decode(modifiedView.getImage());
         resultText.setText(message);
     }
