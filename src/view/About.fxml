@@ -1,34 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXTabPane?>
-<?import java.lang.String?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane minHeight="478.0" minWidth="810.0" prefHeight="556.0" prefWidth="810.0" stylesheets="@../resources/css/help.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AboutController">
    <children>
-      <JFXTabPane disable="true" prefHeight="720.0" prefWidth="810.0" tabMaxHeight="50.0" tabMaxWidth="300.0" tabMinHeight="50.0" tabMinWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <JFXTabPane prefHeight="720.0" prefWidth="810.0" stylesheets="@../resources/css/main.css" tabMaxHeight="50.0" tabMaxWidth="300.0" tabMinHeight="50.0" tabMinWidth="180.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
-            <Tab disable="true" text="О программе">
+            <Tab text="О программе">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="36.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="О программе">
+                        <JFXTextArea editable="false" prefHeight="483.0" prefWidth="580.0" text="Версия программного продукта:&#10;LSB-Steganography 1.0&#10;&#10;Дата: 15.05.2017&#10;&#10;Данная программа использует метод стеганографии LSB (Least Significant Bit) и прячет данные (текстовые и графические) от чужих глаз в файлы изображений PNG, BMP, JPG и JPEG.&#10;&#10;Технологии, которые использовались при разработке:&#10;!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" unFocusColor="BLACK" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="204.0" AnchorPane.topAnchor="33.0">
                            <font>
-                              <Font size="14.0" />
+                              <Font size="15.0" />
                            </font>
-                        </Text>
+                        </JFXTextArea>
+                        <ImageView fitHeight="183.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="39.0">
+                           <image>
+                              <Image url="@../resources/images/logo2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="О разработчиках">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="127.0" layoutY="60.0" prefHeight="506.0" prefWidth="810.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <AnchorPane>
+                                 <children>
+                                    <AnchorPane layoutX="23.0" layoutY="28.0" minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="360.0" styleClass="card" stylesheets="@../resources/css/about.css" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="28.0">
+                                       <children>
+                                          <GridPane layoutX="20.0" layoutY="20.0" prefHeight="450.0" prefWidth="367.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="250.0" prefHeight="250.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <AnchorPane fx:id="placeForPhotoEugene" prefHeight="212.0" prefWidth="347.0">
+                                                   <children>
+                                                      <ImageView fx:id="photoEugene" fitHeight="240.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../resources/images/male.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </AnchorPane>
+                                                <StackPane GridPane.rowIndex="1">
+                                                   <children>
+                                                      <Text fill="#2196f3" strokeType="OUTSIDE" strokeWidth="0.0" text="Маслов Евгений">
+                                                         <font>
+                                                            <Font size="20.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </StackPane>
+                                                <StackPane GridPane.rowIndex="2">
+                                                   <children>
+                                                      <Text fill="#a4a8ab" strokeType="OUTSIDE" strokeWidth="0.0" text="Студент ХНЭУ им. Семена Кузнеца, группы 6.04.51.15.01 " textAlignment="CENTER" wrappingWidth="323.42822265625">
+                                                         <font>
+                                                            <Font size="20.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </StackPane>
+                                                <AnchorPane GridPane.rowIndex="3">
+                                                   <children>
+                                                      <Label accessibleRole="HYPERLINK" contentDisplay="CENTER" layoutX="67.0" layoutY="10.0" prefHeight="30.0" prefWidth="213.0" text="yevhen.maslov@hneu.net" textFill="#3d444b">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <FontAwesomeIconView fill="#3d444b" glyphName="ENVELOPE" layoutX="22.0" layoutY="37.0" size="35" wrappingWidth="32.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.columnIndex="1">
+                                 <children>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="360.0" styleClass="card" stylesheets="@../resources/css/about.css" AnchorPane.bottomAnchor="28.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="28.0">
+                                       <children>
+                                          <GridPane layoutX="20.0" layoutY="20.0" prefHeight="450.0" prefWidth="367.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="200.0" prefHeight="200.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <AnchorPane fx:id="placeForPhotoAnna" prefHeight="212.0" prefWidth="347.0">
+                                                   <children>
+                                                      <ImageView fx:id="photoAnna" fitHeight="200.0" fitWidth="200.0" layoutX="74.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../resources/images/photoAnna.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </children>
+                                                </AnchorPane>
+                                                <StackPane GridPane.rowIndex="1">
+                                                   <children>
+                                                      <Text fill="#2196f3" strokeType="OUTSIDE" strokeWidth="0.0" text="Немченко Анна">
+                                                         <font>
+                                                            <Font size="20.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </StackPane>
+                                                <StackPane GridPane.rowIndex="2">
+                                                   <children>
+                                                      <Text fill="#a4a8ab" strokeType="OUTSIDE" strokeWidth="0.0" text="Студентка ХНЭУ им. Семена Кузнеца, группы 6.04.51.15.01 " textAlignment="CENTER" wrappingWidth="344.42822265625">
+                                                         <font>
+                                                            <Font size="20.0" />
+                                                         </font>
+                                                      </Text>
+                                                   </children>
+                                                </StackPane>
+                                                <AnchorPane GridPane.rowIndex="3">
+                                                   <children>
+                                                      <Label accessibleRole="HYPERLINK" contentDisplay="CENTER" layoutX="68.0" layoutY="10.0" prefHeight="30.0" prefWidth="228.0" text="anna.nemchenko@hneu.net" textFill="#3d444b">
+                                                         <font>
+                                                            <Font size="18.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <FontAwesomeIconView fill="#3d444b" glyphName="ENVELOPE" layoutX="28.0" layoutY="37.0" size="35" wrappingWidth="32.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </GridPane>
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
          </tabs>
-         <styleClass>
-            <String fx:value="jfx-tab-pane" />
-            <String fx:value="tab-selected-line" />
-         </styleClass>
       </JFXTabPane>
    </children>
 </AnchorPane>

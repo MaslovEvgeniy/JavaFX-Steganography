@@ -14,3 +14,7 @@
 .jfx-tab-pane .tab:selected{
     -fx-background-color: #595959;
 }
+
+.but:hover{
+
+}
