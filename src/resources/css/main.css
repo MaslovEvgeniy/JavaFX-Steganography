@@ -38,6 +38,13 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
 }
 
+.refreshButton {
+    -fx-background-color: #64DD17;
+    -fx-background-radius: 40;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
+}
+
+
 .hbox:hover {
     -fx-background-color: #EEEEEE;
 }

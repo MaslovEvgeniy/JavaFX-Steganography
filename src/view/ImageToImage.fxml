@@ -58,8 +58,21 @@
                                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                                              </padding>
                                           </JFXButton>
+                                          <ImageView fx:id="finalImageViewAdd" fitHeight="255.0" fitWidth="370.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                             <image>
+                                                <Image url="@../resources/images/Result.png" />
+                                             </image>
+                                          </ImageView>
                                        </children>
                                     </StackPane>
+                                    <JFXButton fx:id="refreshButtonEncode" contentDisplay="GRAPHIC_ONLY" layoutX="343.0" layoutY="452.0" onAction="#handleRefreshEncode" ripplerFill="WHITE" styleClass="refreshButton" text=" " AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0">
+                                       <graphic>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" size="30" styleClass="openButton" />
+                                       </graphic>
+                                       <tooltip>
+                                          <Tooltip text="Сбросить все" />
+                                       </tooltip>
+                                    </JFXButton>
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="506.0" prefWidth="254.0">
@@ -139,7 +152,7 @@
                                           </JFXTextField>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" GridPane.rowIndex="3">
                                              <children>
-                                                <Label layoutX="81.0" layoutY="4.0" text="Изображение, которое будет внедрено: " textFill="#5f5e65" AnchorPane.leftAnchor="0.0">
+                                                <Label fx:id="textExplain" layoutX="81.0" layoutY="4.0" opacity="0.5" text="Изображение, которое будет внедрено: " textFill="#5f5e65" AnchorPane.leftAnchor="0.0">
                                                    <font>
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
@@ -336,6 +349,18 @@
                                     <Insets left="5.0" />
                                  </padding>
                               </Label>
+                              <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <JFXButton fx:id="refreshButtonDecode" contentDisplay="GRAPHIC_ONLY" layoutX="341.0" layoutY="25.0" onAction="#handleRefreshDecode" ripplerFill="WHITE" styleClass="refreshButton" text=" " AnchorPane.bottomAnchor="24.0" AnchorPane.rightAnchor="22.0">
+                                       <graphic>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="REFRESH" size="30" styleClass="openButton" />
+                                       </graphic>
+                                       <tooltip>
+                                          <Tooltip text="Сбросить все" />
+                                       </tooltip>
+                                    </JFXButton>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </GridPane>
                      </children></AnchorPane>
