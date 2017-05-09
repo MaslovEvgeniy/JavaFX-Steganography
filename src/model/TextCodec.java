@@ -1,5 +1,7 @@
 package model;
 
+import com.ibm.icu.text.CharsetDetector;
+import com.ibm.icu.text.CharsetMatch;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import utils.StegoCodec;

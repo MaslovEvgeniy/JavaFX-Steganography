@@ -6,6 +6,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
@@ -34,6 +35,15 @@ public class ImageToImageController {
     private GridPane gridPane;
 
     @FXML
+    private JFXButton refreshButtonEncode;
+
+    @FXML
+    private JFXButton refreshButtonDecode;
+
+    @FXML
+    private Label textExplain;
+
+    @FXML
     private StackPane encodedStackPane;
 
     @FXML
@@ -41,6 +51,9 @@ public class ImageToImageController {
 
     @FXML
     private ImageView finalImageView;
+
+    @FXML
+    private ImageView finalImageViewAdd;
 
     @FXML
     private ImageView decodedImageView;
@@ -220,7 +233,7 @@ public class ImageToImageController {
         finalImageView.setImage(image);
         saveButton.setVisible(true);
         showSnackBar("Изображение внедрено");
-    }
+    } //TODO ADD
 
 
     @FXML
@@ -271,7 +284,6 @@ public class ImageToImageController {
             openButtonInput.setVisible(true);
             encodeButton.setDisable(true);
 
-
         }
     }
 
@@ -284,14 +296,19 @@ public class ImageToImageController {
             inputPathInput.setText(path);
             // FileExtention = path.substring(path.lastIndexOf("."));
 
+            if(!closeButtonInfo.isVisible())
+                encodeButton.setDisable(true);
+            else
+                encodeButton.setDisable(false);
+
             imageViewInput.setImage(img);
             closeButtonInput.setVisible(true);
             openButtonInput.setVisible(false);
-            encodeButton.setDisable(false);
 
             openButtonInfo.setDisable(false);
             imageViewInfo.setDisable(false);
             imageViewDropInfo.setDisable(false);
+            textExplain.setOpacity(1);
 
             showSnackBar("Изображение добавлено");
 
@@ -341,8 +358,11 @@ public class ImageToImageController {
 
             closeButtonInput.setVisible(true);
             openButtonInput.setVisible(false);
-            encodeButton.setDisable(false);
+            if(imageViewInfo.getImage() != imageViewDropInfo.getImage())
+                encodeButton.setDisable(false);
             openButtonInfo.setDisable(false);
+            textExplain.setOpacity(1);
+
 
             showSnackBar("Изображение добавлено");
 
@@ -435,6 +455,19 @@ public class ImageToImageController {
     }
 
     @FXML
+    void handleRefreshEncode(ActionEvent event) {
+        handleCloseInfo(event);
+        handleCloseInput(event);
+
+        stackPaneInfo.setOpacity(0.5);
+        textExplain.setOpacity(0.5);
+        saveButton.setVisible(false);
+        finalImageView.setImage(finalImageViewAdd.getImage());
+    }
+
+    //Decode Tab
+
+    @FXML
     void handleSaveFileDecoded(ActionEvent event) {
 
         File file;
@@ -469,9 +502,7 @@ public class ImageToImageController {
 
             closeButtonToDecode.setVisible(false);
             openButtonToDecode.setVisible(true);
-            saveButtonDecoded.setVisible(false);
             decodeButton.setDisable(true);
-            decodedImageView.setImage(decodedImageViewAdd.getImage());
         }
     }
 
@@ -542,6 +573,13 @@ public class ImageToImageController {
         }
     }
 
+    @FXML
+    void handleRefreshDecode(ActionEvent event) {
+        handleCloseToDecode(event);
+
+        saveButtonDecoded.setVisible(false);
+        decodedImageView.setImage(decodedImageViewAdd.getImage());
+    }
 
 
     @FXML

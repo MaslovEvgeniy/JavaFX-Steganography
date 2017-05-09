@@ -55,9 +55,6 @@ public class MainWindowController implements Initializable {
     private JFXHamburger hamburger;
 
     @FXML
-    private JFXDrawer drawer;
-
-    @FXML
     private AnchorPane contentPane;
 
     @FXML
