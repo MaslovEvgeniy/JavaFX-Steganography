@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox fx:id="vbox" prefHeight="1357.0" prefWidth="230.0" style="-fx-background-color: white;" stylesheets="@../resources/css/drawer.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DrawerContentController">
+   <children>
+      <ImageView fitHeight="137.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/images/drawer_img.jpg" />
+         </image>
+      </ImageView>
+      <HBox fx:id="textToImage" alignment="CENTER_LEFT" onMouseClicked="#openTextToImage" prefHeight="60.0" prefWidth="230.0" styleClass="hbox" stylesheets="@../resources/css/drawer.css">
+         <children>
+            <FontAwesomeIconView glyphName="FONT" size="22" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+            <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" text="Текст-Изображение">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox fx:id="imageToImage" alignment="CENTER_LEFT" layoutX="10.0" layoutY="128.0" prefHeight="60.0" prefWidth="200.0" styleClass="hbox">
+         <children>
+            <FontAwesomeIconView glyphName="IMAGE" size="22" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+            <Text onMouseClicked="#openImgToImg" strokeType="OUTSIDE" strokeWidth="0.0" text="Изображение-Изображение">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <HBox fx:id="textToImage1" alignment="CENTER_LEFT" onMouseClicked="#openAbout" prefHeight="60.0" prefWidth="230.0" styleClass="hbox" stylesheets="@../resources/css/drawer.css">
+         <children>
+            <FontAwesomeIconView glyphName="INFO" size="22" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+            <Text fx:id="text1" strokeType="OUTSIDE" strokeWidth="0.0" text="О программе">
+               <HBox.margin>
+                  <Insets left="17.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Text>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+   </children>
+   <effect>
+      <DropShadow />
+   </effect>
+</VBox>

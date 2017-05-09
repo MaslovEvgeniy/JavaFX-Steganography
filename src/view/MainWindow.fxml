@@ -17,7 +17,7 @@
       <AnchorPane fx:id="contentPane" layoutX="62.0" layoutY="40.0" prefHeight="763.0" prefWidth="767.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <JFXSnackbar fx:id="snackBar" AnchorPane.bottomAnchor="0.0" />
       <JFXDrawer fx:id="drawer" defaultDrawerSize="230.0" prefHeight="800.0" prefWidth="0.0" />
-      <VBox fx:id="menu" accessibleRole="TAB_PANE" minWidth="63.0" prefHeight="1080.0" prefWidth="63.0" style="-fx-background-color: #fdfdfd; -fx-border-color: #d7d7d7;" styleClass="vbox" AnchorPane.topAnchor="50.0">
+      <VBox fx:id="menu" accessibleRole="TAB_PANE" minWidth="63.0" prefHeight="751.0" prefWidth="63.0" style="-fx-background-color: #fdfdfd; -fx-border-color: #d7d7d7;" styleClass="vbox" AnchorPane.topAnchor="50.0">
          <children>
             <AnchorPane fx:id="menuTextToImage" minWidth="50.0" onMouseClicked="#handleTextToImage" prefHeight="50.0" prefWidth="324.0" styleClass="hbox">
                <children>

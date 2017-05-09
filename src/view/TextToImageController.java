@@ -121,12 +121,6 @@ public class TextToImageController {
     private JFXButton openButtonToDecode;
 
     @FXML
-    private JFXButton refreshButtonEncode;
-
-    @FXML
-    private JFXButton refreshButtonDecode;
-
-    @FXML
     private ImageView imageViewDropToDecode;
 
     @FXML
@@ -212,6 +206,8 @@ public class TextToImageController {
             bitsSlider.setDisable(true);
             numbOfBitsText.setOpacity(0.5);
             encodeButton.setDisable(true);
+            saveButton.setVisible(false);
+            finalImageView.setImage(finalImageViewAdd.getImage());
         }
     }
 
@@ -256,7 +252,7 @@ public class TextToImageController {
         controller.onEncode(imageView, textToEncode, finalImageView);
         saveButton.setVisible(true);
         showSnackBar("Информация закодирована");
-    } //TODO ADD
+    }
 
     @FXML
     void handleEntered(DragEvent event) {
@@ -332,23 +328,14 @@ public class TextToImageController {
         }
     }
 
-    @FXML
-    void handleRefreshEncode(ActionEvent event) {
-        handleClose(event);
-        textToEncode.clear();
-        bitsSlider.setValue(1.0);
-        saveButton.setVisible(false);
-        finalImageView.setImage(finalImageViewAdd.getImage());
-    }
-
     //Decode tab
 
     @FXML
     void handleDecode(ActionEvent event) {
-        //controller.onDecode(imageViewToDecode, decodedText);
+        // controller.onDecode();
         showSnackBar("Текст извлечен");
         decodedText.setDisable(false);
-    } //TODO ADD
+    }
 
     @FXML
     void handleCloseToDecode(ActionEvent event) {
@@ -358,9 +345,12 @@ public class TextToImageController {
             imageViewToDecode.setImage(imageViewDropToDecode.getImage());
             inputPathToDecode.setText("PATH");
 
+
+            decodedText.setDisable(true);
             closeButtonToDecode.setVisible(false);
             openButtonToDecode.setVisible(true);
             decodeButton.setDisable(true);
+            decodedText.clear();
         }
     }
 
@@ -429,13 +419,6 @@ public class TextToImageController {
             showSnackBar("Изображение добавлено");
 
         }
-    }
-
-    @FXML
-    void handleRefreshDecode(ActionEvent event) {
-        handleCloseToDecode(event);
-        decodedText.clear();
-        decodedText.setDisable(true);
     }
 
     private Model makeModel() {

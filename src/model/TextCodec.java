@@ -1,7 +1,5 @@
 package model;
 
-import com.ibm.icu.text.CharsetDetector;
-import com.ibm.icu.text.CharsetMatch;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import utils.StegoCodec;
@@ -10,9 +8,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 
 public class TextCodec implements StegoCodec<String> {
 
@@ -22,11 +17,7 @@ public class TextCodec implements StegoCodec<String> {
     public Image encode(Image image, String message, int noOfLSB) {
         BufferedImage inImage = SwingFXUtils.fromFXImage(image, null);
         currentImage = transformImage(inImage);
-        try {
-            hideMessage(message, noOfLSB);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        hideMessage(message, noOfLSB);
         //System.out.println(decode());
         Image outputImage = SwingFXUtils.toFXImage(currentImage, null);
         currentImage = null;
@@ -38,21 +29,13 @@ public class TextCodec implements StegoCodec<String> {
         BufferedImage inImage = SwingFXUtils.fromFXImage(image, null);
         currentImage = transformImage(inImage);
         byte[] decode = extractBytes(getImageData());
-        String result = null;
-        try {
-            result = new String(decode, detectEncoding(decode));
-            System.out.println(detectEncoding(decode));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return result;
+        return (new String(decode));
     }
 
-    private void hideMessage(String message, int noOfLSB) throws UnsupportedEncodingException {
+    private void hideMessage(String message, int noOfLSB) {
         byte img[] = getImageData();
-        System.out.println(detectEncoding(message.getBytes()));
-        byte msg[] = message.getBytes("UTF-8");
-        byte msgLength[] = intToByteArray(msg.length);
+        byte msg[] = message.getBytes();
+        byte msgLength[] = intToByteArray(message.length());
         insertBytes(img, msgLength, 0, 1);
         insertBytes(img, msg, 32, noOfLSB);
     }
@@ -101,9 +84,6 @@ public class TextCodec implements StegoCodec<String> {
                 result[b] = (byte) ((result[b] << 1) | (image[offset] & 1));
             }
         }
-        for (int i = 0; i < result.length; i++) {
-            System.out.print(result[i] + " ");
-        }
         return result;
     }
 
@@ -135,13 +115,5 @@ public class TextCodec implements StegoCodec<String> {
         return result;
     }
 
-    private String detectEncoding(byte[] in) throws UnsupportedEncodingException {
-        CharsetDetector detector = new CharsetDetector().setText(in);
-        CharsetMatch charsetMatch = detector.detect();
-        if (charsetMatch == null) {
-            return "UTF-8";
-        }
-        return charsetMatch.getName();
-    }
 
 }
