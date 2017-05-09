@@ -75,6 +75,7 @@
                                           <Tooltip text="Сбросить все" />
                                        </tooltip>
                                     </JFXButton>
+
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="506.0" prefWidth="254.0">

@@ -6,6 +6,9 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import utils.StegoCodec;
 
+import com.ibm.icu.text.CharsetDetector;
+import com.ibm.icu.text.CharsetMatch;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
