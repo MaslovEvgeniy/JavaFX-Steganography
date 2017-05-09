@@ -78,8 +78,6 @@ public class MainWindowController implements Initializable {
     @FXML
     private AnchorPane menuExit;
 
-    private Controller controller = new Controller(makeModel());
-
     private Parent contentTextToImage = null;
 
     private Parent contentImageToImage = null;
@@ -202,10 +200,5 @@ public class MainWindowController implements Initializable {
     void handleExit(MouseEvent event) {
         Platform.exit();
     }
-
-    private Model makeModel() {
-        return new Model(new TextCodec());
-    }
-
 
 }

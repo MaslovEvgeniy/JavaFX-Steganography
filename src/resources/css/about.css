@@ -1,0 +1,13 @@
+.card {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 3, 0, 0, 0);
+    -fx-padding: 10;
+    -fx-background-color: white;
+    -fx-background-radius: 3;
+}
+
+.photo {
+   // -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0);
+    -fx-padding: 10;
+    -fx-background-color: cyan;
+    -fx-background-radius: 120;
+}
