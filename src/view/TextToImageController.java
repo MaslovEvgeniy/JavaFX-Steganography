@@ -11,13 +11,10 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
-import model.Controller;
-import model.Model;
 import model.TextCodec;
 import utils.FileHelper;
 import utils.Transition;
@@ -28,7 +25,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.List;
 
 public class TextToImageController {
@@ -138,10 +134,13 @@ public class TextToImageController {
     @FXML
     private JFXSnackbar snackBar;
 
-    private Controller controller = new Controller(makeModel());
+    private TextCodec textCodec;
 
     @FXML
     private void initialize() {
+
+        textCodec = new TextCodec();
+
         imageView.setImage(imageViewDrop.getImage());
         imageViewToDecode.setImage(imageViewDropToDecode.getImage());
 
@@ -163,18 +162,18 @@ public class TextToImageController {
     }
 
 
-    private void imageViewAlignment(AnchorPane dottedPane, ImageView imageView, ImageView imageViewDrop, Rectangle rect){
+    private void imageViewAlignment(AnchorPane dottedPane, ImageView imageView, ImageView imageViewDrop, Rectangle rect) {
 
         dottedPane.widthProperty().addListener((obs, oldV, newV) -> {
             Transition.LayoutImage(imageView);
             Transition.LayoutImage(imageViewDrop);
-            rect.setWidth((double)newV - 3);
+            rect.setWidth((double) newV - 3);
         });
 
         dottedPane.heightProperty().addListener((obs, oldV, newV) -> {
             Transition.LayoutImage(imageView);
             Transition.LayoutImage(imageViewDrop);
-            rect.setHeight((double)newV - 3);
+            rect.setHeight((double) newV - 3);
         });
 
         imageView.imageProperty().addListener((obs, oldV, newV) -> {
@@ -184,8 +183,7 @@ public class TextToImageController {
                 dottedPane.setStyle("-fx-border-style: segments(7); -fx-border-color: #869ff3");
                 Transition.fadeOut(imageView);
                 Transition.fadeIn(imageViewDrop);
-            }
-            else {
+            } else {
                 dottedPane.setStyle("");
                 Transition.fadeOut(imageViewDrop);
                 Transition.fadeIn(imageView);
@@ -221,7 +219,7 @@ public class TextToImageController {
             List<File> files = event.getDragboard().getFiles();
             File file = files.get(0);
 
-            if(FileHelper.checkExtension(file))
+            if (FileHelper.checkExtension(file))
                 event.acceptTransferModes(TransferMode.ANY);
         }
     }
@@ -252,11 +250,19 @@ public class TextToImageController {
 
     @FXML
     void handleEncode(ActionEvent event) {
-        //controller.injectUI(imageView, finalImageView, textToEncode, resultText);
-        controller.onEncode(imageView, textToEncode, finalImageView);
+        Image image = textCodec.encode(imageView.getImage(), textToEncode.getText(), 1);
+        finalImageView.setImage(image);
         saveButton.setVisible(true);
         showSnackBar("Информация закодирована");
     } //TODO ADD
+
+    @FXML
+    void handleDecode(ActionEvent event) {
+        String text = textCodec.decode(imageViewToDecode.getImage());
+        decodedText.setText(text);
+        showSnackBar("Текст извлечен");
+        decodedText.setDisable(false);
+    }
 
     @FXML
     void handleEntered(DragEvent event) {
@@ -316,17 +322,16 @@ public class TextToImageController {
         fileChooser.getExtensionFilters().addAll(extFilter);
 
         fileChooser.setTitle("Сохранить как");
-        if((file = fileChooser.showSaveDialog(bitsSlider.getScene().getWindow())) != null)  {
+        if ((file = fileChooser.showSaveDialog(bitsSlider.getScene().getWindow())) != null) {
             String path = file.getPath();
             String outputFileExt = path.substring(path.lastIndexOf("."));
             //path = path.replace(outputFileExt, "*.bmp");
             File f = new File(path);
-            outputFileExt = path.substring(path.lastIndexOf(".")+1);
+            outputFileExt = path.substring(path.lastIndexOf(".") + 1);
             try {
                 BufferedImage bImage = SwingFXUtils.fromFXImage(finalImageView.getImage(), null);
                 ImageIO.write(bImage, outputFileExt.toUpperCase(), f);
-            }
-            catch(IOException e) {
+            } catch (IOException e) {
                 showSnackBar("Ошибка сохранения");
             }
         }
@@ -343,14 +348,6 @@ public class TextToImageController {
 
     //Decode tab
 
-    @FXML
-    void handleDecode(ActionEvent event) {
-        //controller.onDecode(imageViewToDecode, decodedText);
-
-        controller.onDecode(imageViewToDecode, decodedText);
-        showSnackBar("Текст извлечен");
-        decodedText.setDisable(false);
-    } //TODO ADD
 
     @FXML
     void handleCloseToDecode(ActionEvent event) {
@@ -438,10 +435,6 @@ public class TextToImageController {
         handleCloseToDecode(event);
         decodedText.clear();
         decodedText.setDisable(true);
-    }
-
-    private Model makeModel() {
-        return new Model(new TextCodec());
     }
 
     private void showSnackBar(String message) {

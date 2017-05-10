@@ -17,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
+import model.ImageCodec;
 import utils.FileHelper;
 import utils.Transition;
 
@@ -150,8 +151,14 @@ public class ImageToImageController {
     @FXML
     private JFXButton decodeButton;
 
+    private ImageCodec imageCodec;
+
+    private String imageInputPath;
+    private String imageInfoPath;
+
     @FXML
     private void initialize() {
+        imageCodec = new ImageCodec();
         imageViewInput.setImage(imageViewDropInput.getImage());
         imageViewToDecode.setImage(imageViewDropToDecode.getImage());
 
@@ -222,11 +229,21 @@ public class ImageToImageController {
 
     @FXML
     void handleEncode(ActionEvent event) {
-        /*controller.injectUI(imageView, finalImageView, textToEncode, resultText);
-        controller.onEncode();*/
+        Image image = imageCodec.encode1(imageInputPath, imageInfoPath, 1);
+        finalImageView.setImage(image);
         saveButton.setVisible(true);
         showSnackBar("Изображение внедрено");
     } //TODO ADD
+
+
+    @FXML
+    void handleDecode(ActionEvent event) {
+        Image image = imageCodec.decode(imageViewToDecode.getImage());
+        decodedImageView.setImage(image);
+        saveButtonDecoded.setVisible(true);
+        showSnackBar("Изображение извлечено");
+        decodedImageView.setImage(imageViewToDecode.getImage());
+    }
 
     @FXML
     void handleSaveFile(ActionEvent event) {
@@ -332,6 +349,7 @@ public class ImageToImageController {
             Image image = new Image(imageFile);
             imageViewInput.setImage(image);
 
+            imageInputPath = file.getPath();
             String path = file.getPath();
             inputPathInput.setText(path);
             // FileExtention = path.substring(path.lastIndexOf("."));
@@ -420,6 +438,7 @@ public class ImageToImageController {
             Image image = new Image(imageFile);
             imageViewInfo.setImage(image);
 
+            imageInfoPath = file.getPath();
             String path = file.getPath();
             inputPathInfo.setText(path);
             // FileExtention = path.substring(path.lastIndexOf("."));
@@ -447,15 +466,6 @@ public class ImageToImageController {
     }
 
     //Decode Tab
-
-    @FXML
-    void handleDecode(ActionEvent event) {
-        /*controller.injectUI(imageView, FinalImageView, textToEncode, resultText); //TODO ADD
-        controller.onEncode();*/
-        saveButtonDecoded.setVisible(true);
-        showSnackBar("Изображение извлечено");
-
-    }
 
     @FXML
     void handleSaveFileDecoded(ActionEvent event) {

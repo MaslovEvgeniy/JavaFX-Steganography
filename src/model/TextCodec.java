@@ -13,9 +13,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.awt.image.WritableRaster;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.util.Arrays;
+import java.util.Random;
 
 public class TextCodec implements StegoCodec<String> {
 
@@ -36,7 +36,6 @@ public class TextCodec implements StegoCodec<String> {
         return outputImage;
     }
 
-    @Override
     public String decode(Image image) {
         BufferedImage inImage = SwingFXUtils.fromFXImage(image, null);
         currentImage = transformImage(inImage);
@@ -44,7 +43,6 @@ public class TextCodec implements StegoCodec<String> {
         String result = null;
         try {
             result = new String(decode, detectEncoding(decode));
-            System.out.println(detectEncoding(decode));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -53,18 +51,17 @@ public class TextCodec implements StegoCodec<String> {
 
     private void hideMessage(String message, int noOfLSB) throws UnsupportedEncodingException {
         byte img[] = getImageData();
-        System.out.println(detectEncoding(message.getBytes()));
         byte msg[] = message.getBytes("UTF-8");
         byte msgLength[] = intToByteArray(msg.length);
-        insertBytes(img, msgLength, 0, 1);
-        insertBytes(img, msg, 32, noOfLSB);
+        hideLSB(img, noOfLSB);
+        insertBytes(img, msgLength, 2, 1);
+        insertBytes(img, msg, 34, noOfLSB);
     }
 
     private void insertBytes(byte[] image, byte[] message, int offset, int noOfLSB) {
         for (int i = 0; i < message.length; ++i) {
             int add = message[i];
-            for (int bit = 7; bit >= 0; --bit, ++offset)
-            {
+            for (int bit = 7; bit >= 0; --bit, ++offset) {
                 int b = (add >>> bit) & 1;
                 image[offset] = (byte) ((image[offset] & 0xFE) | b);
             }
@@ -89,11 +86,19 @@ public class TextCodec implements StegoCodec<String> {
 //        }
     }
 
+    private void hideLSB(byte[] image, int noOfLSB) {
+        int n = noOfLSB - 1;
+        for (int i = 2; i >= 0; i--) {
+            int b = (n >>> i) & 1;
+            image[i] = (byte) ((image[i] & 0xFE) | b);
+        }
+    }
+
     private byte[] extractBytes(byte[] image) {
         int length = 0;
-        int offset = 32;
+        int offset = 34;
 
-        for (int i = 0; i < 32; ++i) {
+        for (int i = 2; i < 34; ++i) {
             length = (length << 1) | (image[i] & 1);
         }
 
@@ -103,9 +108,6 @@ public class TextCodec implements StegoCodec<String> {
             for (int i = 0; i < 8; ++i, ++offset) {
                 result[b] = (byte) ((result[b] << 1) | (image[offset] & 1));
             }
-        }
-        for (int i = 0; i < result.length; i++) {
-            System.out.print(result[i] + " ");
         }
         return result;
     }
