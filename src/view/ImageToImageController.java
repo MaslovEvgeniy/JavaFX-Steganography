@@ -125,9 +125,6 @@ public class ImageToImageController {
     private JFXSnackbar snackBar;
 
     @FXML
-    private StackPane stackPane11;
-
-    @FXML
     private AnchorPane dottedPaneToDecode;
 
     @FXML
@@ -152,7 +149,6 @@ public class ImageToImageController {
     private JFXButton decodeButton;
 
     private ImageCodec imageCodec;
-
     private String imageInputPath;
     private String imageInfoPath;
 
@@ -233,7 +229,7 @@ public class ImageToImageController {
         finalImageView.setImage(image);
         saveButton.setVisible(true);
         showSnackBar("Изображение внедрено");
-    } //TODO ADD
+    }
 
 
     @FXML
@@ -309,6 +305,7 @@ public class ImageToImageController {
             imageViewInfo.setDisable(false);
             imageViewDropInfo.setDisable(false);
             textExplain.setOpacity(1);
+            stackPaneInfo.setOpacity(1);
 
             showSnackBar("Изображение добавлено");
 
@@ -362,7 +359,7 @@ public class ImageToImageController {
                 encodeButton.setDisable(false);
             openButtonInfo.setDisable(false);
             textExplain.setOpacity(1);
-
+            stackPaneInfo.setOpacity(1);
 
             showSnackBar("Изображение добавлено");
 
@@ -398,6 +395,7 @@ public class ImageToImageController {
             closeButtonInfo.setVisible(true);
             openButtonInfo.setVisible(false);
             encodeButton.setDisable(false);
+            stackPaneInfo.setOpacity(1);
 
             showSnackBar("Изображение добавлено");
 
