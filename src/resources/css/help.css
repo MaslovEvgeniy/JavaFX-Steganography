@@ -15,6 +15,14 @@
     -fx-background-color: #595959;
 }
 
-.but:hover{
+.stepButton{
+    -fx-background-color: #2196f3;
+    -fx-background-radius: 40;
+    /*-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );*/
+}
 
+.line{
+-fx-stroke-line-cap: butt;
+-fx-stroke-dash-offset: 6;
+-fx-stroke-dash-array: 2 2 2 2;
 }
