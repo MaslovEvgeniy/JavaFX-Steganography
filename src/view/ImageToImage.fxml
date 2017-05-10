@@ -168,7 +168,7 @@
                                                 </Label>
                                              </children>
                                           </AnchorPane>
-                                          <StackPane fx:id="stackPaneInfo" prefHeight="225.0" prefWidth="390.0" styleClass="stackPane" GridPane.rowIndex="4">
+                                          <StackPane fx:id="stackPaneInfo" opacity="0.5" prefHeight="225.0" prefWidth="390.0" styleClass="stackPane" GridPane.rowIndex="4">
                                              <children>
                                                 <AnchorPane fx:id="dottedPaneInfo" minHeight="0.0" minWidth="0.0" prefHeight="109.0" prefWidth="160.0" style="-fx-border-style: segments(7); -fx-border-color: #869ff3;" StackPane.alignment="CENTER">
                                                    <children>
