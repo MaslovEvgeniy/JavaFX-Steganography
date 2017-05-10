@@ -21,11 +21,9 @@ import utils.Transition;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class TextToImageController {
 
@@ -54,10 +52,7 @@ public class TextToImageController {
     private JFXButton encodeButton;
 
     @FXML
-    private JFXButton DecodeButton;
-
-    @FXML
-    private StackPane stackPane1;
+    private StackPane paneForImage;
 
     @FXML
     private AnchorPane dottedPane;
@@ -66,7 +61,7 @@ public class TextToImageController {
     private AnchorPane mainPane;
 
     @FXML
-    private Rectangle rect1;
+    private Rectangle backgroundInputImage;
 
     @FXML
     private ImageView imageView;
@@ -79,6 +74,9 @@ public class TextToImageController {
 
     @FXML
     private JFXButton decodeButton;
+
+    @FXML
+    private JFXButton saveTextButton;
 
     @FXML
     private ImageView imageViewDrop;
@@ -97,9 +95,6 @@ public class TextToImageController {
 
     @FXML
     private JFXSlider bitsSlider;
-
-    @FXML
-    private StackPane stackPane11;
 
     @FXML
     private AnchorPane dottedPaneToDecode;
@@ -129,10 +124,8 @@ public class TextToImageController {
     private JFXTextArea decodedText;
 
     @FXML
-    private JFXButton encodeButton1;
-
-    @FXML
     private JFXSnackbar snackBar;
+
 
     private TextCodec textCodec;
 
@@ -156,7 +149,7 @@ public class TextToImageController {
             Transition.LayoutImage(finalImageView);
         });
 
-        imageViewAlignment(dottedPane, imageView, imageViewDrop, rect1);
+        imageViewAlignment(dottedPane, imageView, imageViewDrop, backgroundInputImage);
         imageViewAlignment(dottedPaneToDecode, imageViewToDecode, imageViewDropToDecode, rectToDecode);
 
     }
@@ -231,7 +224,6 @@ public class TextToImageController {
             Image img = new Image(new FileInputStream(files.get(0)));
             String path = files.get(0).getPath();
             inputPath.setText(path);
-            //FileExtention = path.substring(path.lastIndexOf("."));
 
             imageView.setImage(img);
             closeButton.setVisible(true);
@@ -258,15 +250,17 @@ public class TextToImageController {
 
     @FXML
     void handleDecode(ActionEvent event) {
-        String text = textCodec.decode(imageViewToDecode.getImage());
-        decodedText.setText(text);
+        /*String text = textCodec.decode(imageViewToDecode.getImage());
+        decodedText.setText(text);*/
         showSnackBar("Текст извлечен");
+        decodedText.setText("Anya");
         decodedText.setDisable(false);
+        saveTextButton.setOpacity(1);
     }
 
     @FXML
     void handleEntered(DragEvent event) {
-        Transition.fill(rect1, Color.valueOf("#E0E0E0"), Color.WHITE);
+        Transition.fill(backgroundInputImage, Color.valueOf("#E0E0E0"), Color.WHITE);
         Transition.fadeOut(imageView);
         Transition.fadeIn(imageViewDrop);
         dottedPane.setStyle("-fx-border-style: segments(7); -fx-border-color: #869ff3");
@@ -274,7 +268,7 @@ public class TextToImageController {
 
     @FXML
     void handleExited(DragEvent event) {
-        Transition.fill(rect1, Color.WHITE, Color.valueOf("#E0E0E0"));
+        Transition.fill(backgroundInputImage, Color.WHITE, Color.valueOf("#E0E0E0"));
         Transition.fadeIn(imageView);
         Transition.fadeOut(imageViewDrop);
         if (imageViewDrop.getImage() != imageView.getImage())
@@ -431,10 +425,32 @@ public class TextToImageController {
     }
 
     @FXML
+    void handleSaveTextFile(ActionEvent event) throws IOException{ //TODO IGNORE ENTER!!!!!!!!!!
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        //Show save file dialog
+        File file = fileChooser.showSaveDialog(decodeButton.getScene().getWindow());
+
+        if(file != null){
+                FileWriter fileWriter = null;
+
+                fileWriter = new FileWriter(file);
+                fileWriter.write(decodedText.getText());
+                fileWriter.close();
+                showSnackBar("Текст сохранен в файл");
+        }
+    }
+
+    @FXML
     void handleRefreshDecode(ActionEvent event) {
         handleCloseToDecode(event);
         decodedText.clear();
         decodedText.setDisable(true);
+        saveTextButton.setOpacity(0);
     }
 
     private void showSnackBar(String message) {

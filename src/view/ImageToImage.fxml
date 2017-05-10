@@ -249,7 +249,7 @@
                                     <Insets left="15.0" />
                                  </GridPane.margin>
                               </Label>
-                              <StackPane fx:id="stackPane11" prefHeight="225.0" prefWidth="390.0" styleClass="stackPane" GridPane.rowIndex="1">
+                              <StackPane prefHeight="225.0" prefWidth="390.0" styleClass="stackPane" GridPane.rowIndex="1">
                                  <children>
                                     <AnchorPane fx:id="dottedPaneToDecode" minHeight="0.0" minWidth="0.0" prefHeight="109.0" prefWidth="160.0" style="-fx-border-style: segments(7); -fx-border-color: #869ff3;" StackPane.alignment="CENTER">
                                        <children>

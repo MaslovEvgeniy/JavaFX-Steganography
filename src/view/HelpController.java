@@ -46,38 +46,56 @@ public class HelpController {
     @FXML
     void handleFirstStep(ActionEvent event) {
         if(firstStepText.getOpacity()!=0) {
-            line1.setPrefHeight(15);
+            showStep(secondStepText, secondStepPane, 15, 140);
+            hideStep(thirdStepText, thirdStepPane);
+            hideStep(firstStepText, firstStepPane);
+
         }
         else{
-            line1.setPrefHeight(140);
+            showStep(firstStepText, firstStepPane, 140, 15);
+            hideStep(secondStepText, secondStepPane);
+            hideStep(thirdStepText, thirdStepPane);
         }
-       handleStepButton(firstStepText, firstStepPane);
     }
 
     @FXML
     void handleSecondStep(ActionEvent event) {
         if(secondStepText.getOpacity()!=0) {
-            line2.setPrefHeight(15);
+            showStep(thirdStepText, thirdStepPane, 15, 15);
+            hideStep(secondStepText, secondStepPane);
+            hideStep(firstStepText, firstStepPane);
+
         }
         else{
-            line2.setPrefHeight(140);
+            showStep(secondStepText, secondStepPane, 15, 140);
+            hideStep(firstStepText, firstStepPane);
+            hideStep(thirdStepText, thirdStepPane);
         }
-        handleStepButton(secondStepText, secondStepPane);
     }
 
     @FXML
     void handleThirdStep(ActionEvent event) {
-        handleStepButton(thirdStepText, thirdStepPane);
-    }
-
-    private void handleStepButton(TextArea text, AnchorPane pane ){
-        if(text.getOpacity()!=0) {
-            text.setOpacity(0);
-            pane.setPrefHeight(70);
+        if(thirdStepText.getOpacity()!=0) {
+            showStep(firstStepText, firstStepPane, 140, 15);
+            hideStep(thirdStepText, thirdStepPane);
+            hideStep(secondStepText, secondStepPane);
         }
         else{
-            text.setOpacity(1);
-            pane.setPrefHeight(text.getPrefHeight()+60);
+            showStep(thirdStepText, thirdStepPane, 15, 15);
+            hideStep(secondStepText, secondStepPane);
+            hideStep(firstStepText, firstStepPane);
         }
+    }
+
+    private void hideStep(TextArea text, AnchorPane pane){
+        text.setOpacity(0);
+        pane.setPrefHeight(70);
+    }
+
+    private void showStep(TextArea text, AnchorPane pane, double a, double b){
+        line1.setPrefHeight(a);
+        line2.setPrefHeight(b);
+        text.setOpacity(1);
+        pane.setPrefHeight(text.getPrefHeight()+60);
     }
 }
