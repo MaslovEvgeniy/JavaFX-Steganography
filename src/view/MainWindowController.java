@@ -85,6 +85,12 @@ public class MainWindowController implements Initializable {
 
     private HamburgerBasicCloseTransition close;
 
+    /**
+     * Initializes the controller class. This method is automatically called
+	 * after the fxml file has been loaded
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -127,18 +133,27 @@ public class MainWindowController implements Initializable {
         });
     }
 
+    /**
+     * Hide vertical menu
+     */
     private void hideMenu(){
         menu.setMinWidth(63);
         close.setRate(-1);
         close.play();
     }
 
+    /**
+     * Show vertical menu
+     */
     private void showMenu(){
         menu.setMinWidth(270);
         close.setRate(1);
         close.play();
     }
 
+    /**
+     * Set specific pane ?????????? //TODO
+     */
     private void setAnchor(Parent p){
         AnchorPane.setBottomAnchor(p, 0.0);
         AnchorPane.setTopAnchor(p, 0.0);
@@ -146,6 +161,10 @@ public class MainWindowController implements Initializable {
         AnchorPane.setRightAnchor(p, 0.0);
     }
 
+    /**
+     * Customize menu item if it is selected
+     * @param pane
+     */
     private void selectMenuItem(Pane pane){
         for (Node n:
              menu.getChildren()) {
@@ -165,6 +184,10 @@ public class MainWindowController implements Initializable {
         }
     }
 
+    /**
+     * Select menu item for Image-to-Image encoding
+     * @param event click
+     */
     @FXML
     void handleImageToImage(MouseEvent event) {
         selectMenuItem(menuImageToImage);
@@ -172,6 +195,10 @@ public class MainWindowController implements Initializable {
         contentPane.getChildren().add(contentImageToImage);
     }
 
+    /**
+     * Select menu item for Text-to-Image encoding
+     * @param event click
+     */
     @FXML
     void handleTextToImage(MouseEvent event) {
         selectMenuItem(menuTextToImage);
@@ -179,6 +206,10 @@ public class MainWindowController implements Initializable {
         contentPane.getChildren().add(contentTextToImage);
     }
 
+    /**
+     * Select menu item for Help
+     * @param event click
+     */
     @FXML
     void handleHelp(MouseEvent event) {
         selectMenuItem(menuHelp);
@@ -186,6 +217,10 @@ public class MainWindowController implements Initializable {
         contentPane.getChildren().add(contentHelp);
     }
 
+    /**
+     * Select menu item for About
+     * @param event click
+     */
     @FXML
     void handleAbout(MouseEvent event) {
         selectMenuItem(menuAbout);
@@ -193,6 +228,10 @@ public class MainWindowController implements Initializable {
         contentPane.getChildren().add(contentAbout);
     }
 
+    /**
+     * Select menu item for Exit
+     * @param event click
+     */
     @FXML
     void handleExit(MouseEvent event) {
         Platform.exit();

@@ -45,7 +45,7 @@
                                           <Font size="15.0" />
                                        </font>
                                     </JFXTextArea>
-                                    <AnchorPane fx:id="line1" layoutX="14.0" layoutY="50.0" maxWidth="1.0" minWidth="2.0" prefHeight="140.0" prefWidth="5.0" style="-fx-border-style: segments(1.3, 3); -fx-border-color: #b5b4b4; -fx-border-width: 2;" />
+                                    <AnchorPane fx:id="line1" layoutX="14.0" layoutY="52.0" maxWidth="1.0" minWidth="2.0" prefHeight="140.0" prefWidth="5.0" style="-fx-border-style: segments(1.3, 3); -fx-border-color: #b5b4b4; -fx-border-width: 2;" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane fx:id="secondStepPane" minHeight="0.0" minWidth="0.0" prefHeight="70.0" prefWidth="709.0">
@@ -68,7 +68,7 @@
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <AnchorPane fx:id="line2" layoutX="14.0" layoutY="50.0" maxWidth="1.0" minWidth="2.0" prefHeight="15.0" prefWidth="5.0" style="-fx-border-style: segments(1.3, 3); -fx-border-color: #b5b4b4; -fx-border-width: 2;" />
+                                    <AnchorPane fx:id="line2" layoutX="14.0" layoutY="51.0" maxWidth="1.0" minWidth="2.0" prefHeight="15.0" prefWidth="5.0" style="-fx-border-style: segments(1.3, 3); -fx-border-color: #b5b4b4; -fx-border-width: 2;" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane fx:id="thirdStepPane" minHeight="0.0" minWidth="0.0" prefHeight="70.0">

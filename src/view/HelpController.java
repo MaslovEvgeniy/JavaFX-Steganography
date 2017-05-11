@@ -43,6 +43,10 @@ public class HelpController {
     @FXML
     private JFXTextArea thirdStepText;
 
+    /**
+     * Show information on first step click
+     * @param event click
+     */
     @FXML
     void handleFirstStep(ActionEvent event) {
         if(firstStepText.getOpacity()!=0) {
@@ -58,6 +62,10 @@ public class HelpController {
         }
     }
 
+    /**
+     * Show information on first step click
+     * @param event click
+     */
     @FXML
     void handleSecondStep(ActionEvent event) {
         if(secondStepText.getOpacity()!=0) {
@@ -73,6 +81,10 @@ public class HelpController {
         }
     }
 
+    /**
+     * Show information on first step click
+     * @param event click
+     */
     @FXML
     void handleThirdStep(ActionEvent event) {
         if(thirdStepText.getOpacity()!=0) {
@@ -87,11 +99,23 @@ public class HelpController {
         }
     }
 
+    /**
+     * Hide specific step
+     * @param text text
+     * @param pane step pane
+     */
     private void hideStep(TextArea text, AnchorPane pane){
         text.setOpacity(0);
         pane.setPrefHeight(70);
     }
 
+    /**
+     * Show specific step
+     * @param text text
+     * @param pane step pane
+     * @param a height of line1
+     * @param b height of line2
+     */
     private void showStep(TextArea text, AnchorPane pane, double a, double b){
         line1.setPrefHeight(a);
         line2.setPrefHeight(b);

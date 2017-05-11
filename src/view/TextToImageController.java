@@ -126,6 +126,9 @@ public class TextToImageController {
     private TextCodec textCodec;
     private String resultText;
 
+    /**
+     * Set image views alignment (Text-to-Image)
+     */
     @FXML
     private void initialize() {
 
@@ -151,7 +154,13 @@ public class TextToImageController {
 
     }
 
-
+    /**
+     * Set image views alignment for transition
+     * @param dottedPane dotted frame
+     * @param imageView main image
+     * @param imageViewDrop background image
+     * @param rect background color for transition
+     */
     private void imageViewAlignment(AnchorPane dottedPane, ImageView imageView, ImageView imageViewDrop, Rectangle rect) {
 
         dottedPane.widthProperty().addListener((obs, oldV, newV) -> {
@@ -186,6 +195,10 @@ public class TextToImageController {
 
     //Encode tab
 
+    /**
+     * Close input image for encoding
+     * @param event click
+     */
     @FXML
     void handleClose(ActionEvent event) {
         if (imageView.getImage() != null) {
@@ -203,6 +216,10 @@ public class TextToImageController {
         }
     }
 
+    /**
+     * Check if the file can be dropped into the image view
+     * @param event drag event
+     */
     @FXML
     void handleDragOver(DragEvent event) {
         if (event.getDragboard().hasFiles()) {
@@ -214,6 +231,10 @@ public class TextToImageController {
         }
     }
 
+    /**
+     * Assign dragged image to the image view for encoding
+     * @param event drag event
+     */
     @FXML
     void handleDrop(DragEvent event) {
         try {
@@ -237,15 +258,22 @@ public class TextToImageController {
         }
     }
 
+    /**
+     * Action for encode button
+     * @param event click
+     */
     @FXML
-    void handleEncode(ActionEvent event) {
+    void handleEncode(ActionEvent event) { //TODO ADD
         Image image = textCodec.encode(imageView.getImage(), textToEncode.getText(), 1);
         finalImageView.setImage(image);
         saveButton.setVisible(true);
         showSnackBar("Информация закодирована");
-    } //TODO ADD
+    }
 
-
+    /**
+     * Set transition if image is dragged into the image view for encoding
+     * @param event drag event
+     */
     @FXML
     void handleEntered(DragEvent event) {
         Transition.fill(backgroundInputImage, Color.valueOf("#E0E0E0"), Color.WHITE);
@@ -254,6 +282,10 @@ public class TextToImageController {
         dottedPane.setStyle("-fx-border-style: segments(7); -fx-border-color: #869ff3");
     }
 
+    /**
+     * Set transition if image is dropped into the image view for encoding
+     * @param event drag event
+     */
     @FXML
     void handleExited(DragEvent event) {
         Transition.fill(backgroundInputImage, Color.WHITE, Color.valueOf("#E0E0E0"));
@@ -263,6 +295,11 @@ public class TextToImageController {
             dottedPane.setStyle("");
     }
 
+    /**
+     * Open input image for encoding
+     * @param event click
+     * @throws IOException
+     */
     @FXML
     void handleOpenFile(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -296,6 +333,10 @@ public class TextToImageController {
         }
     }
 
+    /**
+     * Save the encoded image to file
+     * @param event click
+     */
     @FXML
     void handleSaveFile(ActionEvent event) {
         File file;
@@ -319,6 +360,10 @@ public class TextToImageController {
         }
     }
 
+    /**
+     * Set default settings for encode tab (Text-to-Image)
+     * @param event click
+     */
     @FXML
     void handleRefreshEncode(ActionEvent event) {
         handleClose(event);
@@ -330,6 +375,10 @@ public class TextToImageController {
 
     //Decode tab
 
+    /**
+     * Action for decode button
+     * @param event click
+     */
     @FXML
     void handleDecode(ActionEvent event) {
             resultText = textCodec.decode(imageViewToDecode.getImage());
@@ -339,7 +388,10 @@ public class TextToImageController {
             saveTextButton.setOpacity(1);
     }
 
-
+    /**
+     * Close input image for decoding
+     * @param event click
+     */
     @FXML
     void handleCloseToDecode(ActionEvent event) {
         if (imageViewToDecode.getImage() != null) {
@@ -354,6 +406,10 @@ public class TextToImageController {
         }
     }
 
+    /**
+     * Assign dragged image to the image view for decoding
+     * @param event drag event
+     */
     @FXML
     void handleDropToDecode(DragEvent event) {
         try {
@@ -374,6 +430,10 @@ public class TextToImageController {
         }
     }
 
+    /**
+     * Set transition if image is dragged into the image view for decoding
+     * @param event drag event
+     */
     @FXML
     void handleEnteredToDecode(DragEvent event) {
         Transition.fill(rectToDecode, Color.valueOf("#E0E0E0"), Color.WHITE);
@@ -382,6 +442,10 @@ public class TextToImageController {
         dottedPaneToDecode.setStyle("-fx-border-style: segments(7); -fx-border-color: #869ff3");
     }
 
+    /**
+     * Set transition if image is dropped into the image view for decoding
+     * @param event drag event
+     */
     @FXML
     void handleExitedToDecode(DragEvent event) {
         Transition.fill(rectToDecode, Color.WHITE, Color.valueOf("#E0E0E0"));
@@ -391,6 +455,11 @@ public class TextToImageController {
             dottedPaneToDecode.setStyle("");
     }
 
+    /**
+     * Open input image for decoding
+     * @param event click
+     * @throws IOException
+     */
     @FXML
     void handleOpenFileToDecode(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -420,8 +489,12 @@ public class TextToImageController {
         }
     }
 
+    /**
+     * Save the result text to file
+     * @param event click
+     */
     @FXML
-    void handleSaveTextFile(ActionEvent event) throws IOException{ //TODO IGNORE ENTER!!!!!!!!!!
+    void handleSaveTextFile(ActionEvent event) throws IOException{
         FileChooser fileChooser = new FileChooser();
 
         //Set extension filter
@@ -444,6 +517,10 @@ public class TextToImageController {
 
     }
 
+    /**
+     * Set default settings for decode tab (Text-to-Image)
+     * @param event click
+     */
     @FXML
     void handleRefreshDecode(ActionEvent event) {
         handleCloseToDecode(event);
@@ -452,6 +529,10 @@ public class TextToImageController {
         saveTextButton.setOpacity(0);
     }
 
+    /**
+     * Show inform message
+     * @param message message to show
+     */
     private void showSnackBar(String message) {
         snackBar = new JFXSnackbar(mainPane);
         snackBar.show(message, 2000);

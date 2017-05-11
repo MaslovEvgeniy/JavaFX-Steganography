@@ -18,16 +18,27 @@ public class PreLoaderController implements Initializable {
     @FXML
     private StackPane rootPane;
 
+    /**
+     *  //TODO
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         new PreLoader().start();
     }
 
+    /**
+     * Class for preloader
+     */
     class PreLoader extends Thread {
+        /**
+         *  //TODO
+         */
         @Override
         public void run() {
             try {
-                Thread.sleep(0);
+                Thread.sleep(1000);
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
