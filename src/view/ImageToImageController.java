@@ -546,8 +546,8 @@ public class ImageToImageController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Выберите изображение");
         fileChooser.getExtensionFilters().
-                addAll(new FileChooser.ExtensionFilter("Image Files (*.bmp, *.png, *.jpg, *.jpeg)",
-                        "*.bmp", "*.png", "*.jpg", "*.jpeg"));
+                addAll(new FileChooser.ExtensionFilter("Image Files (*.bmp, *.png)",
+                        "*.bmp", "*.png"));
 
         File file = fileChooser.showOpenDialog(imageViewToDecode.getScene().getWindow());
         if (file != null) {
@@ -558,7 +558,6 @@ public class ImageToImageController {
 
             String path = file.getPath();
             inputPathToDecode.setText(path);
-            // FileExtention = path.substring(path.lastIndexOf("."));
 
             Transition.fadeIn(imageViewToDecode);
 
