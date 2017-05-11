@@ -262,7 +262,7 @@
                               <AnchorPane GridPane.columnIndex="1" />
                               <StackPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
-                                    <JFXTextArea fx:id="decodedText" disable="true" focusColor="#f4f4f4" labelFloat="true" prefHeight="357.0" prefWidth="417.0" promptText="Полученный текст" unFocusColor="#f4f4f4" wrapText="true">
+                                    <JFXTextArea fx:id="decodedText" disable="true" editable="false" focusColor="#f4f4f4" labelFloat="true" prefHeight="357.0" prefWidth="417.0" promptText="Полученный текст" unFocusColor="#f4f4f4" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>

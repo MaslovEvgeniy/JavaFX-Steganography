@@ -250,10 +250,10 @@ public class TextToImageController {
 
     @FXML
     void handleDecode(ActionEvent event) {
-        /*String text = textCodec.decode(imageViewToDecode.getImage());
-        decodedText.setText(text);*/
+        String text = textCodec.decode(imageViewToDecode.getImage());
+        decodedText.setText(text);
         showSnackBar("Текст извлечен");
-        decodedText.setText("Anya");
+        //decodedText.setText("Anya");
         decodedText.setDisable(false);
         saveTextButton.setOpacity(1);
     }
