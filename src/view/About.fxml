@@ -127,7 +127,7 @@
                                                    <children>
                                                       <ImageView fx:id="photoAnna" fitHeight="200.0" fitWidth="200.0" layoutX="74.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
                                                          <image>
-                                                            <Image url="@../resources/images/photoAnna.png" />
+                                                            <Image url="@../resources/images/photoAnna2.png" />
                                                          </image>
                                                       </ImageView>
                                                    </children>

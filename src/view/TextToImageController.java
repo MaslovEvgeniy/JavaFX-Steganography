@@ -46,9 +46,6 @@ public class TextToImageController {
     private JFXButton saveButton;
 
     @FXML
-    private JFXTextArea resultText;
-
-    @FXML
     private JFXButton encodeButton;
 
     @FXML
@@ -126,8 +123,8 @@ public class TextToImageController {
     @FXML
     private JFXSnackbar snackBar;
 
-
     private TextCodec textCodec;
+    private String resultText;
 
     @FXML
     private void initialize() {
@@ -248,15 +245,6 @@ public class TextToImageController {
         showSnackBar("Информация закодирована");
     } //TODO ADD
 
-    @FXML
-    void handleDecode(ActionEvent event) {
-        String text = textCodec.decode(imageViewToDecode.getImage());
-        decodedText.setText(text);
-        showSnackBar("Текст извлечен");
-        //decodedText.setText("Anya");
-        decodedText.setDisable(false);
-        saveTextButton.setOpacity(1);
-    }
 
     @FXML
     void handleEntered(DragEvent event) {
@@ -342,6 +330,15 @@ public class TextToImageController {
 
     //Decode tab
 
+    @FXML
+    void handleDecode(ActionEvent event) {
+            resultText = textCodec.decode(imageViewToDecode.getImage());
+            decodedText.setText(resultText);
+            showSnackBar("Текст извлечен");
+            decodedText.setDisable(false);
+            saveTextButton.setOpacity(1);
+    }
+
 
     @FXML
     void handleCloseToDecode(ActionEvent event) {
@@ -399,8 +396,8 @@ public class TextToImageController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Выберите изображение");
         fileChooser.getExtensionFilters().
-                addAll(new FileChooser.ExtensionFilter("Image Files (*.bmp, *.png, *.jpg, *.jpeg)",
-                        "*.bmp", "*.png", "*.jpg", "*.jpeg"));
+                addAll(new FileChooser.ExtensionFilter("Image Files (*.bmp, *.png)",
+                        "*.bmp", "*.png"));
 
         File file = fileChooser.showOpenDialog(imageViewToDecode.getScene().getWindow());
         if (file != null) {
@@ -411,7 +408,6 @@ public class TextToImageController {
 
             String path = file.getPath();
             inputPathToDecode.setText(path);
-            // FileExtention = path.substring(path.lastIndexOf("."));
 
             Transition.fadeIn(imageViewToDecode);
 
@@ -436,13 +432,16 @@ public class TextToImageController {
         File file = fileChooser.showSaveDialog(decodeButton.getScene().getWindow());
 
         if(file != null){
-                FileWriter fileWriter = null;
-
-                fileWriter = new FileWriter(file);
-                fileWriter.write(decodedText.getText());
-                fileWriter.close();
-                showSnackBar("Текст сохранен в файл");
+            try (
+                    BufferedReader reader = new BufferedReader(new StringReader(resultText));
+                    PrintWriter writer = new PrintWriter(new FileWriter(file));
+            ) {
+                reader.lines().forEach(line -> writer.println(line));
+            }
+            showSnackBar("Текст сохранен в файл '" + file.getName() + "'");
         }
+
+
     }
 
     @FXML
