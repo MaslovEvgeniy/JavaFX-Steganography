@@ -17,7 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Created by Maslov on 12.03.2017.
+ * Class for encoding and decoding (Image-to-Image)
  */
 public class ImageCodec implements StegoCodec<Image> {
     private BufferedImage currentImage;
@@ -25,6 +25,13 @@ public class ImageCodec implements StegoCodec<Image> {
     private byte data[];
     private byte dataToHide[];
 
+    /**
+     *  //TODO
+     * @param image
+     * @param message
+     * @param noOfLSB
+     * @return
+     */
     @Override
     public Image encode(Image image, Image message, int noOfLSB) {
         BufferedImage inImage = SwingFXUtils.fromFXImage(image, null);
@@ -36,6 +43,7 @@ public class ImageCodec implements StegoCodec<Image> {
         return img;
         //return getImageFromByteArray(getImageData(transformImage(encImage)));
     }
+
     public Image encode1(String imagePath, String messagePath, int noOfLSB) {
         Path path = Paths.get(imagePath);
         Path pathHid = Paths.get(messagePath);

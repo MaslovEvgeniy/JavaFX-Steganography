@@ -67,11 +67,15 @@
                                              <children>
                                                 <AnchorPane fx:id="placeForPhotoEugene" prefHeight="212.0" prefWidth="347.0">
                                                    <children>
-                                                      <ImageView fx:id="photoEugene" fitHeight="240.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../resources/images/male.png" />
-                                                         </image>
-                                                      </ImageView>
+                                                      <StackPane prefHeight="250.0" prefWidth="347.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <ImageView fx:id="photoEugene" fitHeight="240.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../resources/images/photoEugene.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </children>
+                                                      </StackPane>
                                                    </children>
                                                 </AnchorPane>
                                                 <StackPane GridPane.rowIndex="1">
@@ -125,11 +129,15 @@
                                              <children>
                                                 <AnchorPane fx:id="placeForPhotoAnna" prefHeight="212.0" prefWidth="347.0">
                                                    <children>
-                                                      <ImageView fx:id="photoAnna" fitHeight="200.0" fitWidth="200.0" layoutX="74.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
-                                                         <image>
-                                                            <Image url="@../resources/images/photoAnna2.png" />
-                                                         </image>
-                                                      </ImageView>
+                                                      <StackPane prefHeight="230.0" prefWidth="347.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <ImageView fx:id="photoAnna" fitHeight="240.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../resources/images/photoAnna2.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </children>
+                                                      </StackPane>
                                                    </children>
                                                 </AnchorPane>
                                                 <StackPane GridPane.rowIndex="1">

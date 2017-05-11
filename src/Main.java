@@ -10,6 +10,11 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    /**
+     *  //TODO
+     * @param stage
+     * @throws Exception
+     */
     @Override
     public void start(Stage stage) throws Exception {
 
@@ -22,6 +27,10 @@ public class Main extends Application {
 
     }
 
+    /**
+     * Entry point of application
+     * @param args command line arguments
+     */
     public static void main(String args[]) {
         launch(args);
     }
