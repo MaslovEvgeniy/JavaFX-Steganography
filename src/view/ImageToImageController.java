@@ -151,6 +151,9 @@ public class ImageToImageController {
     private StegoCodec codec;
     private String imageInfoPath;
 
+    /**
+     * Sets image views alignment (Image-to-Image)
+     */
     @FXML
     private void initialize() {
         codec = new StegoCodec();
@@ -187,7 +190,15 @@ public class ImageToImageController {
 
     }
 
-    private void imageViewAlignment(AnchorPane dottedPane, ImageView imageView, ImageView imageViewDrop, Rectangle rect) {
+
+    /**
+     * Sets image views alignment for transition
+     * @param dottedPane dotted frame
+     * @param imageView main image
+     * @param imageViewDrop background image
+     * @param rect background color for transition
+     */
+    private void imageViewAlignment(AnchorPane dottedPane, ImageView imageView, ImageView imageViewDrop, Rectangle rect){
 
         dottedPane.widthProperty().addListener((obs, oldV, newV) -> {
             Transition.LayoutImage(imageView);
@@ -221,6 +232,10 @@ public class ImageToImageController {
 
     //EncodeTab
 
+    /**
+     * Action for encode button
+     * @param event click
+     */
     @FXML
     void handleEncode(ActionEvent event) {
         Image image = null;
@@ -237,21 +252,10 @@ public class ImageToImageController {
     }
 
 
-    @FXML
-    void handleDecode(ActionEvent event) {
-        Image image = null;
-        try {
-            image = codec.decodeImage(imageViewToDecode.getImage());
-        } catch (IOException e) {
-            showSnackBar("Изображение не содержит закодированной информации!");
-            return;
-        }
-        decodedImageView.setImage(image);
-        saveButtonDecoded.setVisible(true);
-        showSnackBar("Изображение извлечено");
-        decodedImageView.setImage(image);
-    }
-
+    /**
+     * Saves the encoded image to file
+     * @param event click
+     */
     @FXML
     void handleSaveFile(ActionEvent event) {
 
@@ -278,6 +282,10 @@ public class ImageToImageController {
 
     //ImageView as source
 
+    /**
+     * Closes input image (as source) for encoding
+     * @param event click
+     */
     @FXML
     void handleCloseInput(ActionEvent event) {
         if (imageViewInput.getImage() != null) {
@@ -293,6 +301,10 @@ public class ImageToImageController {
         }
     }
 
+    /**
+     * Assigns dragged image to the image view (as source) for encoding
+     * @param event drag event
+     */
     @FXML
     void handleDropInput(DragEvent event) {
         try {
@@ -324,6 +336,10 @@ public class ImageToImageController {
         }
     }
 
+    /**
+     * Sets transition if image is dragged into the image view (as source) for encoding
+     * @param event drag event
+     */
     @FXML
     void handleEnteredInput(DragEvent event) {
         Transition.fill(rectInput, Color.valueOf("#E0E0E0"), Color.WHITE);
@@ -332,6 +348,10 @@ public class ImageToImageController {
         dottedPaneInput.setStyle("-fx-border-style: segments(7); -fx-border-color: #869ff3");
     }
 
+    /**
+     * Sets transition if image is dropped into the image view (as source) for encoding
+     * @param event drag event
+     */
     @FXML
     void handleExitedInput(DragEvent event) {
         Transition.fill(rectInput, Color.WHITE, Color.valueOf("#E0E0E0"));
@@ -341,6 +361,11 @@ public class ImageToImageController {
             dottedPaneInput.setStyle("");
     }
 
+    /**
+     * Opens input image (as source) for encoding
+     * @param event click
+     * @throws IOException
+     */
     @FXML
     void handleOpenFileInput(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -377,6 +402,10 @@ public class ImageToImageController {
 
     //ImageView as information
 
+    /**
+     * Closes input image (as information) for encoding
+     * @param event click
+     */
     @FXML
     void handleCloseInfo(ActionEvent event) {
         if (imageViewInfo.getImage() != null) {
@@ -391,6 +420,10 @@ public class ImageToImageController {
         }
     }
 
+    /**
+     * Assigns dragged image to the image view (as information) for encoding
+     * @param event drag event
+     */
     @FXML
     void handleDropInfo(DragEvent event) {
         try {
@@ -413,6 +446,10 @@ public class ImageToImageController {
         }
     }
 
+    /**
+     * Sets transition if image is dragged into the image view (as information) for encoding
+     * @param event drag event
+     */
     @FXML
     void handleEnteredInfo(DragEvent event) {
         Transition.fill(rectInfo, Color.valueOf("#E0E0E0"), Color.WHITE);
@@ -421,6 +458,10 @@ public class ImageToImageController {
         dottedPaneInfo.setStyle("-fx-border-style: segments(7); -fx-border-color: #869ff3");
     }
 
+    /**
+     * Sets transition if image is dropped into the image view (as information) for encoding
+     * @param event drag event
+     */
     @FXML
     void handleExitedInfo(DragEvent event) {
         Transition.fill(rectInfo, Color.WHITE, Color.valueOf("#E0E0E0"));
@@ -430,6 +471,11 @@ public class ImageToImageController {
             dottedPaneInfo.setStyle("");
     }
 
+    /**
+     * Opens input image (as information) for encoding
+     * @param event click
+     * @throws IOException
+     */
     @FXML
     void handleOpenFileInfo(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -461,6 +507,10 @@ public class ImageToImageController {
         }
     }
 
+    /**
+     * Sets default settings for encode tab (Image-to-Image)
+     * @param event click
+     */
     @FXML
     void handleRefreshEncode(ActionEvent event) {
         handleCloseInfo(event);
@@ -474,6 +524,29 @@ public class ImageToImageController {
 
     //Decode Tab
 
+    /**
+     * Action for decode button
+     * @param event click
+     */
+    @FXML
+    void handleDecode(ActionEvent event) {
+        Image image = null;
+        try {
+            image = codec.decodeImage(imageViewToDecode.getImage());
+        } catch (IOException e) {
+            showSnackBar("Изображение не содержит закодированной информации!");
+            return;
+        }
+        decodedImageView.setImage(image);
+        saveButtonDecoded.setVisible(true);
+        showSnackBar("Изображение извлечено");
+        decodedImageView.setImage(image);
+    }
+
+    /**
+     * Saves the decoded image to file
+     * @param event click
+     */
     @FXML
     void handleSaveFileDecoded(ActionEvent event) {
 
@@ -498,6 +571,10 @@ public class ImageToImageController {
         }
     }
 
+    /**
+     * Closes input image for decoding
+     * @param event click
+     */
     @FXML
     void handleCloseToDecode(ActionEvent event) {
         if (imageViewToDecode.getImage() != null) {
@@ -512,6 +589,10 @@ public class ImageToImageController {
         }
     }
 
+    /**
+     * Assigns dragged image to the image view for decoding
+     * @param event drag event
+     */
     @FXML
     void handleDropToDecode(DragEvent event) {
         try {
@@ -532,6 +613,10 @@ public class ImageToImageController {
         }
     }
 
+    /**
+     * Sets transition if image is dragged into the image view for decoding
+     * @param event drag event
+     */
     @FXML
     void handleEnteredToDecode(DragEvent event) {
         Transition.fill(rectToDecode, Color.valueOf("#E0E0E0"), Color.WHITE);
@@ -540,6 +625,10 @@ public class ImageToImageController {
         dottedPaneToDecode.setStyle("-fx-border-style: segments(7); -fx-border-color: #869ff3");
     }
 
+    /**
+     * Sets transition if image is dropped into the image view for coding
+     * @param event drag event
+     */
     @FXML
     void handleExitedToDecode(DragEvent event) {
         Transition.fill(rectToDecode, Color.WHITE, Color.valueOf("#E0E0E0"));
@@ -549,6 +638,11 @@ public class ImageToImageController {
             dottedPaneToDecode.setStyle("");
     }
 
+    /**
+     * Opens input image for decoding
+     * @param event click
+     * @throws IOException
+     */
     @FXML
     void handleOpenFileToDecode(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -578,6 +672,10 @@ public class ImageToImageController {
         }
     }
 
+    /**
+     * Sets default settings for decode tab (Image-to-Image)
+     * @param event click
+     */
     @FXML
     void handleRefreshDecode(ActionEvent event) {
         handleCloseToDecode(event);
@@ -587,6 +685,10 @@ public class ImageToImageController {
     }
 
 
+    /**
+     * Checks if the file can be dropped into the image view
+     * @param event drag event
+     */
     @FXML
     void handleDragOver(DragEvent event) {
         if (event.getDragboard().hasFiles()) {
@@ -598,6 +700,10 @@ public class ImageToImageController {
         }
     }
 
+    /**
+     * Shows inform message
+     * @param message message to show
+     */
     private void showSnackBar(String message) {
         snackBar = new JFXSnackbar(mainPane);
         snackBar.show(message, 2000);

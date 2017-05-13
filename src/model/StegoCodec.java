@@ -160,7 +160,7 @@ public class StegoCodec {
     }
 
     private boolean checkSize(int msgLength) {
-        return (msgLength + 4) * 8 + 3 > currentImage.getWidth() * currentImage.getHeight() * 3;
+        return (msgLength + 4) * 8 + 3 < currentImage.getWidth() * currentImage.getHeight() * 3;
     }
 
     private byte[] intToByteArray(int length) {

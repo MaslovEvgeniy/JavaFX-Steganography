@@ -24,7 +24,7 @@
                               <Font size="15.0" />
                            </font>
                         </JFXTextArea>
-                        <VBox layoutX="15.0" layoutY="13.0" prefHeight="483.0" prefWidth="786.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="55.0">
+                        <VBox layoutX="15.0" layoutY="13.0" prefHeight="483.0" prefWidth="786.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="55.0">
                            <children>
                               <AnchorPane fx:id="firstStepPane" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="709.0">
                                  <children>
@@ -36,21 +36,21 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </JFXButton>
-                                    <Label layoutX="56.0" layoutY="13.0" text="Выбрать данные" textFill="#544f4f">
+                                    <Label layoutX="56.0" layoutY="13.0" text="Выбрать тип данных – текстовый или графический" textFill="#544f4f">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font></Label>
-                                    <JFXTextArea fx:id="firstStepText" editable="false" focusColor="#f4f4f4" layoutX="56.0" layoutY="50.0" prefHeight="146.0" prefWidth="719.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." unFocusColor="#f4f4f4">
+                                    <JFXTextArea fx:id="firstStepText" editable="false" focusColor="#f4f4f4" layoutX="56.0" layoutY="50.0" prefHeight="146.0" prefWidth="719.0" text="Программа поддерживает 2 основных режима сокрытия данных: «Текст – Изображение» и «Изображение – Изображение».&#10;Для внедрения/извлечения текстовых данных воспользуйтесь пунктом меню «Текст – Изображение».&#10;Для работы и графическими данными выберите – «Изображение – Изображение». &#10;" unFocusColor="#f4f4f4" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="15.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </JFXTextArea>
-                                    <AnchorPane fx:id="line1" layoutX="14.0" layoutY="50.0" maxWidth="1.0" minWidth="2.0" prefHeight="140.0" prefWidth="5.0" style="-fx-border-style: segments(1.3, 3); -fx-border-color: #b5b4b4; -fx-border-width: 2;" />
+                                    <AnchorPane fx:id="line1" layoutX="14.0" layoutY="52.0" maxWidth="1.0" minWidth="2.0" prefHeight="140.0" prefWidth="5.0" style="-fx-border-style: segments(1.3, 3); -fx-border-color: #b5b4b4; -fx-border-width: 2;" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane fx:id="secondStepPane" minHeight="0.0" minWidth="0.0" prefHeight="70.0" prefWidth="709.0">
                                  <children>
-                                    <JFXTextArea fx:id="secondStepText" editable="false" layoutX="56.0" layoutY="50.0" opacity="0.0" prefHeight="146.0" prefWidth="719.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." unFocusColor="#f4f4f4">
+                                    <JFXTextArea fx:id="secondStepText" editable="false" focusColor="#f4f4f4" layoutX="56.0" layoutY="50.0" opacity="0.0" prefHeight="146.0" prefWidth="719.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." unFocusColor="#f4f4f4" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="11.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -63,12 +63,12 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </JFXButton>
-                                    <Label layoutX="56.0" layoutY="13.0" text="Нажать кнопку (?????)" textFill="#544f4f">
+                                    <Label layoutX="56.0" layoutY="13.0" text="Выбрать режим – «Внедрить информацию» или «Извлечь информацию»" textFill="#544f4f">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <AnchorPane fx:id="line2" layoutX="14.0" layoutY="50.0" maxWidth="1.0" minWidth="2.0" prefHeight="15.0" prefWidth="5.0" style="-fx-border-style: segments(1.3, 3); -fx-border-color: #b5b4b4; -fx-border-width: 2;" />
+                                    <AnchorPane fx:id="line2" layoutX="14.0" layoutY="51.0" maxWidth="1.0" minWidth="2.0" prefHeight="15.0" prefWidth="5.0" style="-fx-border-style: segments(1.3, 3); -fx-border-color: #b5b4b4; -fx-border-width: 2;" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane fx:id="thirdStepPane" minHeight="0.0" minWidth="0.0" prefHeight="70.0">
@@ -81,12 +81,12 @@
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </JFXButton>
-                                    <Label layoutX="56.0" layoutY="13.0" text="Результат и сохранить (?????)" textFill="#544f4f">
+                                    <Label layoutX="56.0" layoutY="13.0" text="Сохранить полученный результат" textFill="#544f4f">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextArea fx:id="thirdStepText" editable="false" layoutX="56.0" layoutY="50.0" opacity="0.0" prefHeight="146.0" prefWidth="719.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." unFocusColor="#f4f4f4">
+                                    <JFXTextArea fx:id="thirdStepText" editable="false" focusColor="#f4f4f4" layoutX="56.0" layoutY="50.0" opacity="0.0" prefHeight="146.0" prefWidth="719.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." unFocusColor="#f4f4f4" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="11.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
