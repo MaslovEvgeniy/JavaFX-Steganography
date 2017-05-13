@@ -153,7 +153,7 @@ public class ImageToImageController {
     private String imageInfoPath;
 
     /**
-     * Set image views alignment (Image-to-Image)
+     * Sets image views alignment (Image-to-Image)
      */
     @FXML
     private void initialize() {
@@ -192,7 +192,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Set image views alignment for transition
+     * Sets image views alignment for transition
      * @param dottedPane dotted frame
      * @param imageView main image
      * @param imageViewDrop background image
@@ -246,7 +246,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Save the encoded image to file
+     * Saves the encoded image to file
      * @param event click
      */
     @FXML
@@ -277,7 +277,7 @@ public class ImageToImageController {
     //ImageView as source
 
     /**
-     * Close input image (as source) for encoding
+     * Closes input image (as source) for encoding
      * @param event click
      */
     @FXML
@@ -296,7 +296,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Assign dragged image to the image view (as source) for encoding
+     * Assigns dragged image to the image view (as source) for encoding
      * @param event drag event
      */
     @FXML
@@ -331,7 +331,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Set transition if image is dragged into the image view (as source) for encoding
+     * Sets transition if image is dragged into the image view (as source) for encoding
      * @param event drag event
      */
     @FXML
@@ -343,7 +343,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Set transition if image is dropped into the image view (as source) for encoding
+     * Sets transition if image is dropped into the image view (as source) for encoding
      * @param event drag event
      */
     @FXML
@@ -356,7 +356,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Open input image (as source) for encoding
+     * Opens input image (as source) for encoding
      * @param event click
      * @throws IOException
      */
@@ -398,7 +398,7 @@ public class ImageToImageController {
     //ImageView as information
 
     /**
-     * Close input image (as information) for encoding
+     * Closes input image (as information) for encoding
      * @param event click
      */
     @FXML
@@ -416,7 +416,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Assign dragged image to the image view (as information) for encoding
+     * Assigns dragged image to the image view (as information) for encoding
      * @param event drag event
      */
     @FXML
@@ -442,7 +442,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Set transition if image is dragged into the image view (as information) for encoding
+     * Sets transition if image is dragged into the image view (as information) for encoding
      * @param event drag event
      */
     @FXML
@@ -454,7 +454,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Set transition if image is dropped into the image view (as information) for encoding
+     * Sets transition if image is dropped into the image view (as information) for encoding
      * @param event drag event
      */
     @FXML
@@ -467,7 +467,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Open input image (as information) for encoding
+     * Opens input image (as information) for encoding
      * @param event click
      * @throws IOException
      */
@@ -503,7 +503,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Set default settings for encode tab (Image-to-Image)
+     * Sets default settings for encode tab (Image-to-Image)
      * @param event click
      */
     @FXML
@@ -533,7 +533,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Save the decoded image to file
+     * Saves the decoded image to file
      * @param event click
      */
     @FXML
@@ -562,7 +562,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Close input image for decoding
+     * Closes input image for decoding
      * @param event click
      */
     @FXML
@@ -580,7 +580,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Assign dragged image to the image view for decoding
+     * Assigns dragged image to the image view for decoding
      * @param event drag event
      */
     @FXML
@@ -604,7 +604,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Set transition if image is dragged into the image view for decoding
+     * Sets transition if image is dragged into the image view for decoding
      * @param event drag event
      */
     @FXML
@@ -616,7 +616,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Set transition if image is dropped into the image view for coding
+     * Sets transition if image is dropped into the image view for coding
      * @param event drag event
      */
     @FXML
@@ -629,7 +629,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Open input image for decoding
+     * Opens input image for decoding
      * @param event click
      * @throws IOException
      */
@@ -663,7 +663,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Set default settings for decode tab (Image-to-Image)
+     * Sets default settings for decode tab (Image-to-Image)
      * @param event click
      */
     @FXML
@@ -676,7 +676,7 @@ public class ImageToImageController {
 
 
     /**
-     * Check if the file can be dropped into the image view
+     * Checks if the file can be dropped into the image view
      * @param event drag event
      */
     @FXML
@@ -691,7 +691,7 @@ public class ImageToImageController {
     }
 
     /**
-     * Show inform message
+     * Shows inform message
      * @param message message to show
      */
     private void showSnackBar(String message) {

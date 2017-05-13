@@ -96,9 +96,9 @@ public class TextCodec implements StegoCodec<String> {
 
     private byte[] extractBytes(byte[] image) {
         int length = 0;
-        int offset = 34;
+        int offset = 35;
 
-        for (int i = 2; i < 34; ++i) {
+        for (int i = 3; i < 35; ++i) {
             length = (length << 1) | (image[i] & 1);
         }
 

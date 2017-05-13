@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Line;
 
 public class HelpController {
 
@@ -44,7 +43,7 @@ public class HelpController {
     private JFXTextArea thirdStepText;
 
     /**
-     * Show information on first step click
+     * Shows information on first step click
      * @param event click
      */
     @FXML
@@ -63,7 +62,7 @@ public class HelpController {
     }
 
     /**
-     * Show information on first step click
+     * Shows information on second step click
      * @param event click
      */
     @FXML
@@ -82,7 +81,7 @@ public class HelpController {
     }
 
     /**
-     * Show information on first step click
+     * Shows information on third step click
      * @param event click
      */
     @FXML
@@ -100,7 +99,7 @@ public class HelpController {
     }
 
     /**
-     * Hide specific step
+     * Hides specific step
      * @param text text
      * @param pane step pane
      */
@@ -110,7 +109,7 @@ public class HelpController {
     }
 
     /**
-     * Show specific step
+     * Shows specific step
      * @param text text
      * @param pane step pane
      * @param a height of line1

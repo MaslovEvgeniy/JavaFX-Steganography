@@ -14,6 +14,9 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+/**
+ * Class for preloader window
+ */
 public class PreLoaderController implements Initializable {
     @FXML
     private StackPane rootPane;
