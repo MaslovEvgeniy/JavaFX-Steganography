@@ -11,8 +11,8 @@ import java.util.List;
  */
 public class FileHelper {
     /**
-     * Check if file is image
-     * @param file file
+     * Checks if file is image
+     * @param file input file
      * @return
      */
     public static Boolean checkExtension(File file) {
@@ -28,7 +28,7 @@ public class FileHelper {
     }
 
     /**
-     * Get file extension
+     * Gets file extension
      * @param fileName file name
      * @return file extension
      */

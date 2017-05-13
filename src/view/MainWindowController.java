@@ -43,6 +43,9 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Class for main window of application
+ */
 public class MainWindowController implements Initializable {
 
     @FXML
@@ -134,7 +137,7 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Hide vertical menu
+     * Hides vertical menu
      */
     private void hideMenu(){
         menu.setMinWidth(63);
@@ -143,7 +146,7 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Show vertical menu
+     * Shows vertical menu
      */
     private void showMenu(){
         menu.setMinWidth(270);
@@ -152,7 +155,7 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Set specific pane ?????????? //TODO
+     * Sets specific pane ?????????? //TODO
      */
     private void setAnchor(Parent p){
         AnchorPane.setBottomAnchor(p, 0.0);
@@ -162,7 +165,7 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Customize menu item if it is selected
+     * Customizes menu item if it is selected
      * @param pane
      */
     private void selectMenuItem(Pane pane){
@@ -185,7 +188,7 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Select menu item for Image-to-Image encoding
+     * Selects menu item for Image-to-Image encoding
      * @param event click
      */
     @FXML
@@ -196,7 +199,7 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Select menu item for Text-to-Image encoding
+     * Selects menu item for Text-to-Image encoding
      * @param event click
      */
     @FXML
@@ -207,7 +210,7 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Select menu item for Help
+     * Selects menu item for Help
      * @param event click
      */
     @FXML
@@ -218,7 +221,7 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Select menu item for About
+     * Selects menu item for About
      * @param event click
      */
     @FXML
@@ -229,7 +232,7 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Select menu item for Exit
+     * Selects menu item for Exit
      * @param event click
      */
     @FXML

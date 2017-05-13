@@ -389,7 +389,7 @@ public class TextToImageController {
     }
 
     /**
-     * Close input image for decoding
+     * Closes input image for decoding
      * @param event click
      */
     @FXML
@@ -407,7 +407,7 @@ public class TextToImageController {
     }
 
     /**
-     * Assign dragged image to the image view for decoding
+     * Assigns dragged image to the image view for decoding
      * @param event drag event
      */
     @FXML
