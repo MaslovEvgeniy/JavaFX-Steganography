@@ -127,7 +127,7 @@ public class TextToImageController {
     private String resultText;
 
     /**
-     * Set image views alignment (Text-to-Image)
+     * Sets image views alignment (Text-to-Image)
      */
     @FXML
     private void initialize() {
@@ -155,7 +155,7 @@ public class TextToImageController {
     }
 
     /**
-     * Set image views alignment for transition
+     * Sets image views alignment for transition
      * @param dottedPane dotted frame
      * @param imageView main image
      * @param imageViewDrop background image
@@ -196,7 +196,7 @@ public class TextToImageController {
     //Encode tab
 
     /**
-     * Close input image for encoding
+     * Closes input image for encoding
      * @param event click
      */
     @FXML
@@ -217,7 +217,7 @@ public class TextToImageController {
     }
 
     /**
-     * Check if the file can be dropped into the image view
+     * Checks if the file can be dropped into the image view
      * @param event drag event
      */
     @FXML
@@ -232,7 +232,7 @@ public class TextToImageController {
     }
 
     /**
-     * Assign dragged image to the image view for encoding
+     * Assigns dragged image to the image view for encoding
      * @param event drag event
      */
     @FXML
@@ -271,7 +271,7 @@ public class TextToImageController {
     }
 
     /**
-     * Set transition if image is dragged into the image view for encoding
+     * Sets transition if image is dragged into the image view for encoding
      * @param event drag event
      */
     @FXML
@@ -283,7 +283,7 @@ public class TextToImageController {
     }
 
     /**
-     * Set transition if image is dropped into the image view for encoding
+     * Sets transition if image is dropped into the image view for encoding
      * @param event drag event
      */
     @FXML
@@ -296,7 +296,7 @@ public class TextToImageController {
     }
 
     /**
-     * Open input image for encoding
+     * Opens input image for encoding
      * @param event click
      * @throws IOException
      */
@@ -334,7 +334,7 @@ public class TextToImageController {
     }
 
     /**
-     * Save the encoded image to file
+     * Saves the encoded image to file
      * @param event click
      */
     @FXML
@@ -348,12 +348,12 @@ public class TextToImageController {
         if ((file = fileChooser.showSaveDialog(bitsSlider.getScene().getWindow())) != null) {
             String path = file.getPath();
             String outputFileExt = path.substring(path.lastIndexOf("."));
-            //path = path.replace(outputFileExt, "*.bmp");
             File f = new File(path);
             outputFileExt = path.substring(path.lastIndexOf(".") + 1);
             try {
                 BufferedImage bImage = SwingFXUtils.fromFXImage(finalImageView.getImage(), null);
                 ImageIO.write(bImage, outputFileExt.toUpperCase(), f);
+                showSnackBar("Изображение сохранено в файл '" + file.getName() + "'");
             } catch (IOException e) {
                 showSnackBar("Ошибка сохранения");
             }
@@ -361,7 +361,7 @@ public class TextToImageController {
     }
 
     /**
-     * Set default settings for encode tab (Text-to-Image)
+     * Sets default settings for encode tab (Text-to-Image)
      * @param event click
      */
     @FXML
@@ -443,7 +443,7 @@ public class TextToImageController {
     }
 
     /**
-     * Set transition if image is dropped into the image view for decoding
+     * Sets transition if image is dropped into the image view for decoding
      * @param event drag event
      */
     @FXML
@@ -456,7 +456,7 @@ public class TextToImageController {
     }
 
     /**
-     * Open input image for decoding
+     * Opens input image for decoding
      * @param event click
      * @throws IOException
      */
@@ -490,7 +490,7 @@ public class TextToImageController {
     }
 
     /**
-     * Save the result text to file
+     * Saves the result text to file
      * @param event click
      */
     @FXML
@@ -518,7 +518,7 @@ public class TextToImageController {
     }
 
     /**
-     * Set default settings for decode tab (Text-to-Image)
+     * Sets default settings for decode tab (Text-to-Image)
      * @param event click
      */
     @FXML
@@ -530,7 +530,7 @@ public class TextToImageController {
     }
 
     /**
-     * Show inform message
+     * Shows inform message
      * @param message message to show
      */
     private void showSnackBar(String message) {
