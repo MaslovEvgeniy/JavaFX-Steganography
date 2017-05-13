@@ -15,7 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
-import model.TextCodec;
+import model.StegoCodec;
 import utils.FileHelper;
 import utils.Transition;
 
@@ -23,7 +23,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class TextToImageController {
 
@@ -123,7 +122,7 @@ public class TextToImageController {
     @FXML
     private JFXSnackbar snackBar;
 
-    private TextCodec textCodec;
+    private StegoCodec codec;
     private String resultText;
 
     /**
@@ -132,7 +131,7 @@ public class TextToImageController {
     @FXML
     private void initialize() {
 
-        textCodec = new TextCodec();
+        codec = new StegoCodec();
 
         imageView.setImage(imageViewDrop.getImage());
         imageViewToDecode.setImage(imageViewDropToDecode.getImage());
@@ -263,8 +262,15 @@ public class TextToImageController {
      * @param event click
      */
     @FXML
-    void handleEncode(ActionEvent event) { //TODO ADD
-        Image image = textCodec.encode(imageView.getImage(), textToEncode.getText(), 1);
+    void handleEncode(ActionEvent event) {
+        Image image = null;
+        try {
+            image = codec.encodeText(imageView.getImage(), textToEncode.getText());
+        } catch (ArrayIndexOutOfBoundsException e) {
+            showSnackBar("Невозможно закодировать данное сообщение");
+            return;
+        }
+
         finalImageView.setImage(image);
         saveButton.setVisible(true);
         showSnackBar("Информация закодирована");
@@ -381,11 +387,16 @@ public class TextToImageController {
      */
     @FXML
     void handleDecode(ActionEvent event) {
-            resultText = textCodec.decode(imageViewToDecode.getImage());
-            decodedText.setText(resultText);
-            showSnackBar("Текст извлечен");
-            decodedText.setDisable(false);
-            saveTextButton.setOpacity(1);
+        try {
+            resultText = codec.decodeText(imageViewToDecode.getImage());
+        } catch (IOException e) {
+            showSnackBar("Изображение не содержит закодированной информации");
+            return;
+        }
+        decodedText.setText(resultText);
+        showSnackBar("Текст извлечен");
+        decodedText.setDisable(false);
+        saveTextButton.setOpacity(1);
     }
 
     /**
@@ -494,7 +505,7 @@ public class TextToImageController {
      * @param event click
      */
     @FXML
-    void handleSaveTextFile(ActionEvent event) throws IOException{
+    void handleSaveTextFile(ActionEvent event) throws IOException { //TODO IGNORE ENTER!!!!!!!!!!
         FileChooser fileChooser = new FileChooser();
 
         //Set extension filter
@@ -504,7 +515,7 @@ public class TextToImageController {
         //Show save file dialog
         File file = fileChooser.showSaveDialog(decodeButton.getScene().getWindow());
 
-        if(file != null){
+        if (file != null) {
             try (
                     BufferedReader reader = new BufferedReader(new StringReader(resultText));
                     PrintWriter writer = new PrintWriter(new FileWriter(file));

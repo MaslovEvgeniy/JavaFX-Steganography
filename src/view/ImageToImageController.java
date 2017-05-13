@@ -17,7 +17,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
-import model.ImageCodec;
+import model.StegoCodec;
 import utils.FileHelper;
 import utils.Transition;
 
@@ -148,8 +148,7 @@ public class ImageToImageController {
     @FXML
     private JFXButton decodeButton;
 
-    private ImageCodec imageCodec;
-    private String imageInputPath;
+    private StegoCodec codec;
     private String imageInfoPath;
 
     /**
@@ -157,7 +156,7 @@ public class ImageToImageController {
      */
     @FXML
     private void initialize() {
-        imageCodec = new ImageCodec();
+        codec = new StegoCodec();
         imageViewInput.setImage(imageViewDropInput.getImage());
         imageViewToDecode.setImage(imageViewDropToDecode.getImage());
 
@@ -191,6 +190,7 @@ public class ImageToImageController {
 
     }
 
+
     /**
      * Sets image views alignment for transition
      * @param dottedPane dotted frame
@@ -203,13 +203,13 @@ public class ImageToImageController {
         dottedPane.widthProperty().addListener((obs, oldV, newV) -> {
             Transition.LayoutImage(imageView);
             Transition.LayoutImage(imageViewDrop);
-            rect.setWidth((double)newV - 3);
+            rect.setWidth((double) newV - 3);
         });
 
         dottedPane.heightProperty().addListener((obs, oldV, newV) -> {
             Transition.LayoutImage(imageView);
             Transition.LayoutImage(imageViewDrop);
-            rect.setHeight((double)newV - 3);
+            rect.setHeight((double) newV - 3);
         });
 
         imageView.imageProperty().addListener((obs, oldV, newV) -> {
@@ -219,8 +219,7 @@ public class ImageToImageController {
                 dottedPane.setStyle("-fx-border-style: segments(7); -fx-border-color: #869ff3");
                 Transition.fadeOut(imageView);
                 Transition.fadeIn(imageViewDrop);
-            }
-            else {
+            } else {
                 dottedPane.setStyle("");
                 Transition.fadeOut(imageViewDrop);
                 Transition.fadeIn(imageView);
@@ -239,11 +238,19 @@ public class ImageToImageController {
      */
     @FXML
     void handleEncode(ActionEvent event) {
-        Image image = imageCodec.encode1(imageInputPath, imageInfoPath, 1);
+        Image image = null;
+        try {
+            image = codec.encodeImage(imageViewInput.getImage(), imageInfoPath);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            showSnackBar("Невозможно закодировать данное сообщение");
+            return;
+        }
+
         finalImageView.setImage(image);
         saveButton.setVisible(true);
         showSnackBar("Изображение внедрено");
     }
+
 
     /**
      * Saves the encoded image to file
@@ -258,17 +265,16 @@ public class ImageToImageController {
         fileChooser.getExtensionFilters().addAll(extFilter);
 
         fileChooser.setTitle("Сохранить как");
-        if((file = fileChooser.showSaveDialog(imageViewInfo.getScene().getWindow())) != null)  {
+        if ((file = fileChooser.showSaveDialog(imageViewInfo.getScene().getWindow())) != null) {
             String path = file.getPath();
             String outputFileExt = path.substring(path.lastIndexOf("."));
             //path = path.replace(outputFileExt, "*.bmp");
             File f = new File(path);
-            outputFileExt = path.substring(path.lastIndexOf(".")+1);
+            outputFileExt = path.substring(path.lastIndexOf(".") + 1);
             try {
                 BufferedImage bImage = SwingFXUtils.fromFXImage(finalImageView.getImage(), null);
                 ImageIO.write(bImage, outputFileExt.toUpperCase(), f);
-            }
-            catch(IOException e) {
+            } catch (IOException e) {
                 showSnackBar("Ошибка сохранения");
             }
         }
@@ -308,7 +314,7 @@ public class ImageToImageController {
             inputPathInput.setText(path);
             // FileExtention = path.substring(path.lastIndexOf("."));
 
-            if(!closeButtonInfo.isVisible())
+            if (!closeButtonInfo.isVisible())
                 encodeButton.setDisable(true);
             else
                 encodeButton.setDisable(false);
@@ -374,8 +380,7 @@ public class ImageToImageController {
 
             Image image = new Image(imageFile);
             imageViewInput.setImage(image);
-
-            imageInputPath = file.getPath();
+            
             String path = file.getPath();
             inputPathInput.setText(path);
             // FileExtention = path.substring(path.lastIndexOf("."));
@@ -384,7 +389,7 @@ public class ImageToImageController {
 
             closeButtonInput.setVisible(true);
             openButtonInput.setVisible(false);
-            if(imageViewInfo.getImage() != imageViewDropInfo.getImage())
+            if (imageViewInfo.getImage() != imageViewDropInfo.getImage())
                 encodeButton.setDisable(false);
             openButtonInfo.setDisable(false);
             textExplain.setOpacity(1);
@@ -525,11 +530,17 @@ public class ImageToImageController {
      */
     @FXML
     void handleDecode(ActionEvent event) {
-        Image image = imageCodec.decode(imageViewToDecode.getImage());
+        Image image = null;
+        try {
+            image = codec.decodeImage(imageViewToDecode.getImage());
+        } catch (IOException e) {
+            showSnackBar("Изображение не содержит закодированной информации!");
+            return;
+        }
         decodedImageView.setImage(image);
         saveButtonDecoded.setVisible(true);
         showSnackBar("Изображение извлечено");
-        decodedImageView.setImage(imageViewToDecode.getImage());
+        decodedImageView.setImage(image);
     }
 
     /**
@@ -545,17 +556,16 @@ public class ImageToImageController {
         fileChooser.getExtensionFilters().addAll(extFilter);
 
         fileChooser.setTitle("Сохранить как");
-        if((file = fileChooser.showSaveDialog(imageViewInfo.getScene().getWindow())) != null)  {
+        if ((file = fileChooser.showSaveDialog(imageViewInfo.getScene().getWindow())) != null) {
             String path = file.getPath();
             String outputFileExt = path.substring(path.lastIndexOf("."));
             //path = path.replace(outputFileExt, "*.bmp");
             File f = new File(path);
-            outputFileExt = path.substring(path.lastIndexOf(".")+1);
+            outputFileExt = path.substring(path.lastIndexOf(".") + 1);
             try {
                 BufferedImage bImage = SwingFXUtils.fromFXImage(decodedImageView.getImage(), null);
                 ImageIO.write(bImage, outputFileExt.toUpperCase(), f);
-            }
-            catch(IOException e) {
+            } catch (IOException e) {
                 showSnackBar("Ошибка сохранения");
             }
         }
@@ -685,7 +695,7 @@ public class ImageToImageController {
             List<File> files = event.getDragboard().getFiles();
             File file = files.get(0);
 
-            if(FileHelper.checkExtension(file))
+            if (FileHelper.checkExtension(file))
                 event.acceptTransferModes(TransferMode.ANY);
         }
     }
