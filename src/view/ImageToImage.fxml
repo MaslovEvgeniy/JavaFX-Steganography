@@ -20,6 +20,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="mainPane" minHeight="478.0" minWidth="810.0" prefHeight="556.0" prefWidth="810.0" stylesheets="@../resources/css/main.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ImageToImageController">
    <children>
@@ -157,6 +158,12 @@
                                                       <Font name="System Bold" size="14.0" />
                                                    </font>
                                                 </Label>
+                                                <JFXTextField fx:id="maxSize" alignment="BOTTOM_CENTER" editable="false" focusColor="WHITE" layoutX="329.0" layoutY="1.0" prefHeight="29.0" prefWidth="56.0" text="0 КБ" unFocusColor="WHITE" AnchorPane.rightAnchor="5.0">
+                                                   <font>
+                                                      <Font size="12.0" />
+                                                   </font>
+                                                </JFXTextField>
+                                                <Text layoutX="289.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MAX:" wrappingWidth="40.6708984375" AnchorPane.rightAnchor="60.0" />
                                              </children>
                                           </AnchorPane>
                                           <AnchorPane>

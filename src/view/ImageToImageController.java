@@ -148,8 +148,11 @@ public class ImageToImageController {
     @FXML
     private JFXButton decodeButton;
 
+    @FXML
+    private JFXTextField maxSize;
+
     private StegoCodec codec;
-    private String imageInfoPath;
+    private double maxInformSize = 0.0;
 
     /**
      * Sets image views alignment (Image-to-Image)
@@ -183,6 +186,7 @@ public class ImageToImageController {
         decodedImageView.imageProperty().addListener((obs, oldV, newV) -> {
             Transition.LayoutImage(decodedImageView);
         });
+
 
         imageViewAlignment(dottedPaneInput, imageViewInput, imageViewDropInput, rectInput);
         imageViewAlignment(dottedPaneInfo, imageViewInfo, imageViewDropInfo, rectInfo);
@@ -240,9 +244,9 @@ public class ImageToImageController {
     void handleEncode(ActionEvent event) {
         Image image = null;
         try {
-            image = codec.encodeImage(imageViewInput.getImage(), imageInfoPath);
+            image = codec.encodeImage(imageViewInput.getImage(), inputPathInfo.getText());
         } catch (ArrayIndexOutOfBoundsException e) {
-            showSnackBar("Невозможно закодировать данное сообщение");
+            showSnackBar("Невозможно закодировать данное изображение");
             return;
         }
 
@@ -328,6 +332,7 @@ public class ImageToImageController {
             imageViewDropInfo.setDisable(false);
             textExplain.setOpacity(1);
             stackPaneInfo.setOpacity(1);
+            calcMaxInformationSize();
 
             showSnackBar("Изображение добавлено");
 
@@ -394,6 +399,7 @@ public class ImageToImageController {
             openButtonInfo.setDisable(false);
             textExplain.setOpacity(1);
             stackPaneInfo.setOpacity(1);
+            calcMaxInformationSize();
 
             showSnackBar("Изображение добавлено");
 
@@ -491,7 +497,7 @@ public class ImageToImageController {
             Image image = new Image(imageFile);
             imageViewInfo.setImage(image);
 
-            imageInfoPath = file.getPath();
+            //imageInfoPath = file.getPath();
             String path = file.getPath();
             inputPathInfo.setText(path);
             // FileExtention = path.substring(path.lastIndexOf("."));
@@ -552,7 +558,7 @@ public class ImageToImageController {
 
         File file;
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("File (*.png, *.bmp)", "*.png", "*.bmp");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("File (*.png)", "*.png");
         fileChooser.getExtensionFilters().addAll(extFilter);
 
         fileChooser.setTitle("Сохранить как");
@@ -698,6 +704,14 @@ public class ImageToImageController {
             if (FileHelper.checkExtension(file))
                 event.acceptTransferModes(TransferMode.ANY);
         }
+    }
+
+    private void calcMaxInformationSize() {
+        Image image = imageViewInput.getImage();
+        //3 - 3 channels(RGB), 35 = message length(32) + secretCode(3)
+        maxInformSize = ((int) image.getWidth() * (int) image.getHeight() * 3 - 35) / 8 / 1024;
+        String res = String.format("%.1f", maxInformSize);
+        maxSize.setText(res + " КБ");
     }
 
     /**

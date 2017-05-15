@@ -1,6 +1,8 @@
 package view;
 
 import com.jfoenix.controls.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -87,12 +89,6 @@ public class TextToImageController {
     private JFXTextArea textToEncode;
 
     @FXML
-    private Label numbOfBitsText;
-
-    @FXML
-    private JFXSlider bitsSlider;
-
-    @FXML
     private AnchorPane dottedPaneToDecode;
 
     @FXML
@@ -123,7 +119,10 @@ public class TextToImageController {
     private JFXSnackbar snackBar;
 
     private StegoCodec codec;
+
     private String resultText;
+
+    private int maxInformSize = 0;
 
     /**
      * Sets image views alignment (Text-to-Image)
@@ -148,6 +147,15 @@ public class TextToImageController {
             Transition.LayoutImage(finalImageView);
         });
 
+        textToEncode.textProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println(textToEncode.getText().getBytes().length * 8);
+            if (textToEncode.getText().getBytes().length * 8 >  maxInformSize) {
+               // String s = textToEncode.getText().substring(0, maxInformSize-1);
+                textToEncode.setText(oldValue);
+                showSnackBar("Превышен максимальный размер информации, которую можно спрятать");
+            }
+        });
+
         imageViewAlignment(dottedPane, imageView, imageViewDrop, backgroundInputImage);
         imageViewAlignment(dottedPaneToDecode, imageViewToDecode, imageViewDropToDecode, rectToDecode);
 
@@ -155,10 +163,11 @@ public class TextToImageController {
 
     /**
      * Sets image views alignment for transition
-     * @param dottedPane dotted frame
-     * @param imageView main image
+     *
+     * @param dottedPane    dotted frame
+     * @param imageView     main image
      * @param imageViewDrop background image
-     * @param rect background color for transition
+     * @param rect          background color for transition
      */
     private void imageViewAlignment(AnchorPane dottedPane, ImageView imageView, ImageView imageViewDrop, Rectangle rect) {
 
@@ -196,6 +205,7 @@ public class TextToImageController {
 
     /**
      * Closes input image for encoding
+     *
      * @param event click
      */
     @FXML
@@ -209,14 +219,13 @@ public class TextToImageController {
             closeButton.setVisible(false);
             openButton.setVisible(true);
             textToEncode.setDisable(true);
-            bitsSlider.setDisable(true);
-            numbOfBitsText.setOpacity(0.5);
             encodeButton.setDisable(true);
         }
     }
 
     /**
      * Checks if the file can be dropped into the image view
+     *
      * @param event drag event
      */
     @FXML
@@ -232,6 +241,7 @@ public class TextToImageController {
 
     /**
      * Assigns dragged image to the image view for encoding
+     *
      * @param event drag event
      */
     @FXML
@@ -246,9 +256,8 @@ public class TextToImageController {
             closeButton.setVisible(true);
             openButton.setVisible(false);
             textToEncode.setDisable(false);
-            bitsSlider.setDisable(false);
-            numbOfBitsText.setOpacity(1);
             encodeButton.setDisable(false);
+            calcMaxInformationSize();
 
             showSnackBar("Изображение добавлено");
 
@@ -259,6 +268,7 @@ public class TextToImageController {
 
     /**
      * Action for encode button
+     *
      * @param event click
      */
     @FXML
@@ -278,6 +288,7 @@ public class TextToImageController {
 
     /**
      * Sets transition if image is dragged into the image view for encoding
+     *
      * @param event drag event
      */
     @FXML
@@ -290,6 +301,7 @@ public class TextToImageController {
 
     /**
      * Sets transition if image is dropped into the image view for encoding
+     *
      * @param event drag event
      */
     @FXML
@@ -303,6 +315,7 @@ public class TextToImageController {
 
     /**
      * Opens input image for encoding
+     *
      * @param event click
      * @throws IOException
      */
@@ -330,9 +343,8 @@ public class TextToImageController {
             closeButton.setVisible(true);
             openButton.setVisible(false);
             textToEncode.setDisable(false);
-            bitsSlider.setDisable(false);
-            numbOfBitsText.setOpacity(1);
             encodeButton.setDisable(false);
+            calcMaxInformationSize();
 
             showSnackBar("Изображение добавлено");
 
@@ -341,17 +353,18 @@ public class TextToImageController {
 
     /**
      * Saves the encoded image to file
+     *
      * @param event click
      */
     @FXML
     void handleSaveFile(ActionEvent event) {
         File file;
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("File (*.png, *.bmp)", "*.png", "*.bmp");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("File (*.png)", "*.png");
         fileChooser.getExtensionFilters().addAll(extFilter);
 
         fileChooser.setTitle("Сохранить как");
-        if ((file = fileChooser.showSaveDialog(bitsSlider.getScene().getWindow())) != null) {
+        if ((file = fileChooser.showSaveDialog(imageView.getScene().getWindow())) != null) {
             String path = file.getPath();
             String outputFileExt = path.substring(path.lastIndexOf("."));
             File f = new File(path);
@@ -368,13 +381,13 @@ public class TextToImageController {
 
     /**
      * Sets default settings for encode tab (Text-to-Image)
+     *
      * @param event click
      */
     @FXML
     void handleRefreshEncode(ActionEvent event) {
         handleClose(event);
         textToEncode.clear();
-        bitsSlider.setValue(1.0);
         saveButton.setVisible(false);
         finalImageView.setImage(finalImageViewAdd.getImage());
     }
@@ -383,6 +396,7 @@ public class TextToImageController {
 
     /**
      * Action for decode button
+     *
      * @param event click
      */
     @FXML
@@ -401,6 +415,7 @@ public class TextToImageController {
 
     /**
      * Closes input image for decoding
+     *
      * @param event click
      */
     @FXML
@@ -419,6 +434,7 @@ public class TextToImageController {
 
     /**
      * Assigns dragged image to the image view for decoding
+     *
      * @param event drag event
      */
     @FXML
@@ -443,6 +459,7 @@ public class TextToImageController {
 
     /**
      * Set transition if image is dragged into the image view for decoding
+     *
      * @param event drag event
      */
     @FXML
@@ -455,6 +472,7 @@ public class TextToImageController {
 
     /**
      * Sets transition if image is dropped into the image view for decoding
+     *
      * @param event drag event
      */
     @FXML
@@ -468,6 +486,7 @@ public class TextToImageController {
 
     /**
      * Opens input image for decoding
+     *
      * @param event click
      * @throws IOException
      */
@@ -502,6 +521,7 @@ public class TextToImageController {
 
     /**
      * Saves the result text to file
+     *
      * @param event click
      */
     @FXML
@@ -530,6 +550,7 @@ public class TextToImageController {
 
     /**
      * Sets default settings for decode tab (Text-to-Image)
+     *
      * @param event click
      */
     @FXML
@@ -540,8 +561,16 @@ public class TextToImageController {
         saveTextButton.setOpacity(0);
     }
 
+    private void calcMaxInformationSize() {
+        Image image = imageView.getImage();
+        //3 - 3 channels(RGB), 35 = message length(32) + secretCode(3)
+        maxInformSize = (int) image.getWidth() * (int) image.getHeight() * 3 - 35;
+        System.out.println(maxInformSize);
+    }
+
     /**
      * Shows inform message
+     *
      * @param message message to show
      */
     private void showSnackBar(String message) {
