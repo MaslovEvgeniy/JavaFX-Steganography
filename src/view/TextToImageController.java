@@ -1,12 +1,9 @@
 package view;
 
 import com.jfoenix.controls.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
@@ -29,12 +26,6 @@ import java.util.List;
 public class TextToImageController {
 
     @FXML
-    private JFXTabPane tabPane;
-
-    @FXML
-    private GridPane gridPane;
-
-    @FXML
     private StackPane encodedStackPane;
 
     @FXML
@@ -48,9 +39,6 @@ public class TextToImageController {
 
     @FXML
     private JFXButton encodeButton;
-
-    @FXML
-    private StackPane paneForImage;
 
     @FXML
     private AnchorPane dottedPane;
@@ -102,12 +90,6 @@ public class TextToImageController {
 
     @FXML
     private JFXButton openButtonToDecode;
-
-    @FXML
-    private JFXButton refreshButtonEncode;
-
-    @FXML
-    private JFXButton refreshButtonDecode;
 
     @FXML
     private ImageView imageViewDropToDecode;

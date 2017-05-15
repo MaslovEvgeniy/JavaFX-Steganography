@@ -12,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -30,15 +29,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class ImageToImageController {
-
-    @FXML
-    private GridPane gridPane;
-
-    @FXML
-    private JFXButton refreshButtonEncode;
-
-    @FXML
-    private JFXButton refreshButtonDecode;
 
     @FXML
     private Label textExplain;
@@ -63,9 +53,6 @@ public class ImageToImageController {
 
     @FXML
     private JFXButton encodeButton;
-
-    @FXML
-    private StackPane stackPaneInput;
 
     @FXML
     private AnchorPane dottedPaneInput;

@@ -11,7 +11,7 @@ import java.io.IOException;
 public class Main extends Application {
 
     /**
-     *  //TODO
+     * Main entry point for application
      * @param stage
      * @throws Exception
      */
@@ -28,7 +28,7 @@ public class Main extends Application {
     }
 
     /**
-     * Entry point of application
+     * Launch application
      * @param args command line arguments
      */
     public static void main(String args[]) {
