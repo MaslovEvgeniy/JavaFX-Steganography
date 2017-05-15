@@ -19,7 +19,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <JFXTextArea editable="false" focusColor="#f4f4f4" layoutX="7.0" prefHeight="18.0" prefWidth="712.0" text="Какой-то текст вступление" unFocusColor="#f4f4f4" AnchorPane.topAnchor="10.0">
+                        <JFXTextArea editable="false" focusColor="#f4f4f4" layoutX="7.0" prefHeight="10.0" prefWidth="712.0" text="Для работы с программой, следуйте следующим пунктам." unFocusColor="#f4f4f4" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="15.0">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -30,40 +30,45 @@
                                  <children>
                                     <JFXButton fx:id="firstStepButton" contentDisplay="TEXT_ONLY" layoutX="-6.0" layoutY="3.0" onAction="#handleFirstStep" ripplerFill="WHITE" styleClass="stepButton" stylesheets="@../resources/css/help.css" text=" 1 " textFill="WHITE">
                                        <tooltip>
-                                          <Tooltip text="Загрузить изображение" />
+                                          <Tooltip text="Первый шаг" />
                                        </tooltip>
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </JFXButton>
-                                    <Label layoutX="56.0" layoutY="13.0" text="Выбрать тип данных – текстовый или графический" textFill="#544f4f">
+                                    <Label layoutX="56.0" text="Выбрать тип данных – текстовый или графический и   " textFill="#544f4f">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font></Label>
-                                    <JFXTextArea fx:id="firstStepText" editable="false" focusColor="#f4f4f4" layoutX="56.0" layoutY="50.0" prefHeight="146.0" prefWidth="719.0" text="Программа поддерживает 2 основных режима сокрытия данных: «Текст – Изображение» и «Изображение – Изображение».&#10;Для внедрения/извлечения текстовых данных воспользуйтесь пунктом меню «Текст – Изображение».&#10;Для работы и графическими данными выберите – «Изображение – Изображение». &#10;" unFocusColor="#f4f4f4" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="15.0">
+                                    <JFXTextArea fx:id="firstStepText" editable="false" focusColor="#f4f4f4" layoutX="56.0" layoutY="50.0" prefHeight="146.0" prefWidth="719.0" text="Для внедрения/извлечения текстовых данных воспользуйтесь пунктом меню «Текст – Изображение». &#10;Для работы с графическими данными выберите – «Изображение – Изображение». &#10;&#10;В верхней панели окна Вы можете переключаться между вкладками внедрения/извлечения." unFocusColor="#f4f4f4" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="15.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </JFXTextArea>
                                     <AnchorPane fx:id="line1" layoutX="14.0" layoutY="52.0" maxWidth="1.0" minWidth="2.0" prefHeight="140.0" prefWidth="5.0" style="-fx-border-style: segments(1.3, 3); -fx-border-color: #b5b4b4; -fx-border-width: 2;" />
+                                    <Label layoutX="56.0" layoutY="19.0" text="режим «Внедрение информации» или «Извлечение информации»" textFill="#544f4f">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </AnchorPane>
                               <AnchorPane fx:id="secondStepPane" minHeight="0.0" minWidth="0.0" prefHeight="70.0" prefWidth="709.0">
                                  <children>
-                                    <JFXTextArea fx:id="secondStepText" editable="false" focusColor="#f4f4f4" layoutX="56.0" layoutY="50.0" opacity="0.0" prefHeight="146.0" prefWidth="719.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." unFocusColor="#f4f4f4" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="11.0">
+                                    <JFXTextArea fx:id="secondStepText" editable="false" focusColor="#f4f4f4" layoutX="56.0" layoutY="40.0" opacity="0.0" prefHeight="185.0" prefWidth="704.0" text="Для загрузки изображений воспользуйтесь кнопкой «Загрузить изображение» или просто перетащите нужный Вам файл в поле «Перетащите изображение».&#10;В режиме «Текст – Изображение» при превышение максимального размера сообщения, Вы увидите предупреждающее сообщение.&#10;В режиме «Изображение – Изображение» после загрузки исходного изображения, можно увидеть максимально допустимый размер внедряемого изображения&#10;Текстовое сообщение для внедрения следует вводить в поле «Введите текст для кодирования».&#10;Замечание! Поддерживаемые форматы изображений: PNG, BMP, JPEG и JPG." unFocusColor="#f4f4f4" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="11.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </JFXTextArea>
                                     <JFXButton fx:id="secondStepButton" contentDisplay="TEXT_ONLY" layoutX="-6.0" layoutY="3.0" onAction="#handleSecondStep" ripplerFill="WHITE" styleClass="stepButton" stylesheets="@../resources/css/help.css" text=" 2 " textFill="WHITE">
                                        <tooltip>
-                                          <Tooltip text="Загрузить изображение" />
+                                          <Tooltip text="Второй шаг" />
                                        </tooltip>
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </JFXButton>
-                                    <Label layoutX="56.0" layoutY="13.0" text="Выбрать режим – «Внедрить информацию» или «Извлечь информацию»" textFill="#544f4f">
+                                    <Label layoutX="56.0" layoutY="13.0" text="Загрузить исходное изображение и  скрываемое сообщение " textFill="#544f4f">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -75,18 +80,18 @@
                                  <children>
                                     <JFXButton fx:id="thirdStepButton" contentDisplay="TEXT_ONLY" layoutX="-6.0" layoutY="3.0" onAction="#handleThirdStep" ripplerFill="WHITE" styleClass="stepButton" stylesheets="@../resources/css/help.css" text=" 3 " textFill="WHITE">
                                        <tooltip>
-                                          <Tooltip text="Загрузить изображение" />
+                                          <Tooltip text="Третий шаг" />
                                        </tooltip>
                                        <font>
                                           <Font name="System Bold" size="16.0" />
                                        </font>
                                     </JFXButton>
-                                    <Label layoutX="56.0" layoutY="13.0" text="Сохранить полученный результат" textFill="#544f4f">
+                                    <Label layoutX="56.0" layoutY="13.0" text="Нажать на «Закодировать» или «Раскодировать» и сохранить результат" textFill="#544f4f">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
                                     </Label>
-                                    <JFXTextArea fx:id="thirdStepText" editable="false" focusColor="#f4f4f4" layoutX="56.0" layoutY="50.0" opacity="0.0" prefHeight="146.0" prefWidth="719.0" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." unFocusColor="#f4f4f4" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="11.0">
+                                    <JFXTextArea fx:id="thirdStepText" editable="false" focusColor="#f4f4f4" layoutX="56.0" layoutY="50.0" opacity="0.0" prefHeight="182.0" prefWidth="704.0" text="Убедитесь в том, что Вы заполнили все необходимые поля для внедерения/извлечения данных.&#10;Нажмите на кнопку «Закодировать» / «Раскодировать».&#10;После этого должен появиться результат выпоняемой Вами операции и уведомительное сообщение.&#10;Если Ваше уведомительное сообщение не подтвердило выполнение желаемой операции, проверьте размер помещаемого сообщения.&#10;Чтобы сохранить результат, нажмите на кнопку «Сохранить»." unFocusColor="#f4f4f4" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="11.0">
                                        <font>
                                           <Font size="15.0" />
                                        </font>

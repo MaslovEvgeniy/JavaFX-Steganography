@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Control;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,6 +41,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -87,6 +90,9 @@ public class MainWindowController implements Initializable {
     private Parent contentAbout = null;
 
     private HamburgerBasicCloseTransition close;
+
+    private static Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Вы действительно хотите завершить работу?");
+    private Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
 
     /**
      * Initializes the controller class. This method is automatically called
@@ -155,7 +161,7 @@ public class MainWindowController implements Initializable {
     }
 
     /**
-     * Sets specific pane ?????????? //TODO
+     * Sets anchor settings for specific pan
      */
     private void setAnchor(Parent p){
         AnchorPane.setBottomAnchor(p, 0.0);
@@ -236,8 +242,17 @@ public class MainWindowController implements Initializable {
      * @param event click
      */
     @FXML
-    void handleExit(MouseEvent event) {
-        Platform.exit();
+    private void handleExit(MouseEvent event) {
+        //stage = (Stage) alert.getDialogPane().getScene().getWindow();
+
+        // Add a custom icon.
+        stage.getIcons().add(new Image("/resources/images/logo2.png",3000,3000,false,true));
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            Platform.exit();
+        } else {
+            alert.close();
+        }
     }
 
 }

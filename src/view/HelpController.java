@@ -49,7 +49,7 @@ public class HelpController {
     @FXML
     void handleFirstStep(ActionEvent event) {
         if(firstStepText.getOpacity()!=0) {
-            showStep(secondStepText, secondStepPane, 15, 140);
+            showStep(secondStepText, secondStepPane, 15, 165);
             hideStep(thirdStepText, thirdStepPane);
             hideStep(firstStepText, firstStepPane);
 
@@ -74,7 +74,7 @@ public class HelpController {
 
         }
         else{
-            showStep(secondStepText, secondStepPane, 15, 140);
+            showStep(secondStepText, secondStepPane, 15, 165);
             hideStep(firstStepText, firstStepPane);
             hideStep(thirdStepText, thirdStepPane);
         }
