@@ -81,34 +81,4 @@ public class Transition {
         }
     }
 
-    public static void LayoutImage(ImageView imgV, Region parent) {
-        LayoutImage(imgV, parent.getWidth(), parent.getHeight());
-    }
-
-    public static void LayoutImage(ImageView imgV, double nw, double nh) {
-        if (imgV != null && imgV.getImage() != null) {
-            int padding = 10;
-            double reflectionKoeff = 0.1;
-            double w = 0;
-            double h = 0;
-            double pw = nw - padding * 2;
-            double ph = nh - padding * 2;
-
-            Image img = imgV.getImage();
-            double raitoX = pw / img.getWidth();
-            double raitoY = ph / img.getHeight() / (1 + reflectionKoeff);
-
-            double reduceKoeff = Math.min(Math.min(raitoY, raitoX), 1.0);// не
-            // растягивать
-
-            w = img.getWidth() * reduceKoeff;
-            h = img.getHeight() * reduceKoeff;
-
-            imgV.setFitWidth(w);
-            imgV.setFitHeight(h);
-
-            imgV.setX((pw - imgV.getFitWidth()) / 2 + padding);
-            imgV.setY((ph - img.getHeight() * reduceKoeff * (1 + reflectionKoeff)) / 2 + padding);
-        }
-    }
 }

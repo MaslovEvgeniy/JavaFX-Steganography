@@ -23,7 +23,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <JFXTextArea editable="false" prefHeight="483.0" prefWidth="580.0" text="Версия программного продукта:&#10;LSB-Steganography 1.0&#10;&#10;Дата: 15.05.2017&#10;&#10;Данная программа использует метод стеганографии LSB (Least Significant Bit) и прячет данные (текстовые и графические) от чужих глаз в файлы изображений PNG, BMP, JPG и JPEG.&#10;&#10;Технологии, которые использовались при разработке:&#10;- JavaFX&#10;- Библиотека JFoenix (http://www.jfoenix.com)" unFocusColor="BLACK" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="204.0" AnchorPane.topAnchor="33.0">
+                        <JFXTextArea editable="false" prefHeight="483.0" prefWidth="580.0" text="Версия программного продукта:&#10;LSB-Steganography 1.0&#10;&#10;Дата: 15.05.2017&#10;&#10;Данная программа использует метод стеганографии LSB (Least Significant Bit) и прячет данные (текстовые и графические) от чужих глаз в файлы изображений PNG, BMP, JPG и JPEG.&#10;&#10;Технологии, которые использовались при разработке:&#10;- JavaFX&#10;- Библиотека JFoenix (http://www.jfoenix.com)&#10;&#10;&#10;&#10;&#10;Разработка выполнялась на основании задания для выполнения курсового проекта, утвержденного кафедрой информационных систем Харьковского национального экономического университета им. Семена Кузнеца." unFocusColor="BLACK" AnchorPane.bottomAnchor="-10.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="204.0" AnchorPane.topAnchor="33.0">
                            <font>
                               <Font size="15.0" />
                            </font>
