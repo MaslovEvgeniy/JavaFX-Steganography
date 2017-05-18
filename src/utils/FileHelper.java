@@ -12,6 +12,7 @@ import java.util.List;
 public class FileHelper {
     /**
      * Checks if file is image
+     *
      * @param file input file
      * @return
      */
@@ -29,12 +30,13 @@ public class FileHelper {
 
     /**
      * Gets file extension
+     *
      * @param fileName file name
      * @return file extension
      */
     private static String getExtension(String fileName) {
-        if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
-            return fileName.substring(fileName.lastIndexOf(".")+1);
-        else return  "";
+        if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+            return fileName.substring(fileName.lastIndexOf(".") + 1);
+        else return "";
     }
 }

@@ -28,6 +28,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Class controller for ImageToImage.fxml
+ */
 public class ImageToImageController {
 
     @FXML
@@ -184,12 +187,13 @@ public class ImageToImageController {
 
     /**
      * Sets image views alignment for transition
-     * @param dottedPane dotted frame
-     * @param imageView main image
+     *
+     * @param dottedPane    dotted frame
+     * @param imageView     main image
      * @param imageViewDrop background image
-     * @param rect background color for transition
+     * @param rect          background color for transition
      */
-    private void imageViewAlignment(AnchorPane dottedPane, ImageView imageView, ImageView imageViewDrop, Rectangle rect){
+    private void imageViewAlignment(AnchorPane dottedPane, ImageView imageView, ImageView imageViewDrop, Rectangle rect) {
 
         dottedPane.widthProperty().addListener((obs, oldV, newV) -> {
             Transition.LayoutImage(imageView);
@@ -225,6 +229,7 @@ public class ImageToImageController {
 
     /**
      * Action for encode button
+     *
      * @param event click
      */
     @FXML
@@ -245,6 +250,7 @@ public class ImageToImageController {
 
     /**
      * Saves the encoded image to file
+     *
      * @param event click
      */
     @FXML
@@ -275,6 +281,7 @@ public class ImageToImageController {
 
     /**
      * Closes input image (as source) for encoding
+     *
      * @param event click
      */
     @FXML
@@ -294,6 +301,7 @@ public class ImageToImageController {
 
     /**
      * Assigns dragged image to the image view (as source) for encoding
+     *
      * @param event drag event
      */
     @FXML
@@ -330,6 +338,7 @@ public class ImageToImageController {
 
     /**
      * Sets transition if image is dragged into the image view (as source) for encoding
+     *
      * @param event drag event
      */
     @FXML
@@ -342,6 +351,7 @@ public class ImageToImageController {
 
     /**
      * Sets transition if image is dropped into the image view (as source) for encoding
+     *
      * @param event drag event
      */
     @FXML
@@ -355,6 +365,7 @@ public class ImageToImageController {
 
     /**
      * Opens input image (as source) for encoding
+     *
      * @param event click
      * @throws IOException
      */
@@ -372,7 +383,7 @@ public class ImageToImageController {
 
             Image image = new Image(imageFile);
             imageViewInput.setImage(image);
-            
+
             String path = file.getPath();
             inputPathInput.setText(path);
             // FileExtention = path.substring(path.lastIndexOf("."));
@@ -397,6 +408,7 @@ public class ImageToImageController {
 
     /**
      * Closes input image (as information) for encoding
+     *
      * @param event click
      */
     @FXML
@@ -415,6 +427,7 @@ public class ImageToImageController {
 
     /**
      * Assigns dragged image to the image view (as information) for encoding
+     *
      * @param event drag event
      */
     @FXML
@@ -441,6 +454,7 @@ public class ImageToImageController {
 
     /**
      * Sets transition if image is dragged into the image view (as information) for encoding
+     *
      * @param event drag event
      */
     @FXML
@@ -453,6 +467,7 @@ public class ImageToImageController {
 
     /**
      * Sets transition if image is dropped into the image view (as information) for encoding
+     *
      * @param event drag event
      */
     @FXML
@@ -466,6 +481,7 @@ public class ImageToImageController {
 
     /**
      * Opens input image (as information) for encoding
+     *
      * @param event click
      * @throws IOException
      */
@@ -502,6 +518,7 @@ public class ImageToImageController {
 
     /**
      * Sets default settings for encode tab (Image-to-Image)
+     *
      * @param event click
      */
     @FXML
@@ -519,6 +536,7 @@ public class ImageToImageController {
 
     /**
      * Action for decode button
+     *
      * @param event click
      */
     @FXML
@@ -538,6 +556,7 @@ public class ImageToImageController {
 
     /**
      * Saves the decoded image to file
+     *
      * @param event click
      */
     @FXML
@@ -566,6 +585,7 @@ public class ImageToImageController {
 
     /**
      * Closes input image for decoding
+     *
      * @param event click
      */
     @FXML
@@ -584,6 +604,7 @@ public class ImageToImageController {
 
     /**
      * Assigns dragged image to the image view for decoding
+     *
      * @param event drag event
      */
     @FXML
@@ -608,6 +629,7 @@ public class ImageToImageController {
 
     /**
      * Sets transition if image is dragged into the image view for decoding
+     *
      * @param event drag event
      */
     @FXML
@@ -620,6 +642,7 @@ public class ImageToImageController {
 
     /**
      * Sets transition if image is dropped into the image view for coding
+     *
      * @param event drag event
      */
     @FXML
@@ -633,6 +656,7 @@ public class ImageToImageController {
 
     /**
      * Opens input image for decoding
+     *
      * @param event click
      * @throws IOException
      */
@@ -667,6 +691,7 @@ public class ImageToImageController {
 
     /**
      * Sets default settings for decode tab (Image-to-Image)
+     *
      * @param event click
      */
     @FXML
@@ -680,6 +705,7 @@ public class ImageToImageController {
 
     /**
      * Checks if the file can be dropped into the image view
+     *
      * @param event drag event
      */
     @FXML
@@ -693,6 +719,9 @@ public class ImageToImageController {
         }
     }
 
+    /**
+     * Calculate max amount of information, that can be hidden
+     */
     private void calcMaxInformationSize() {
         Image image = imageViewInput.getImage();
         //3 - 3 channels(RGB), 35 = message length(32) + secretCode(3)
@@ -703,6 +732,7 @@ public class ImageToImageController {
 
     /**
      * Shows inform message
+     *
      * @param message message to show
      */
     private void showSnackBar(String message) {

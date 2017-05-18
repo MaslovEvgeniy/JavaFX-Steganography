@@ -17,6 +17,7 @@ import javafx.util.Duration;
 public class Transition {
     /**
      * Transparency transition (object appearance)
+     *
      * @param node object
      */
     public static void fadeIn(Node node) {
@@ -28,6 +29,7 @@ public class Transition {
 
     /**
      * Transparency transition (object fading)
+     *
      * @param node object
      */
     public static void fadeOut(Node node) {
@@ -39,11 +41,12 @@ public class Transition {
 
     /**
      * Color transition for background figure
-     * @param shape figure
+     *
+     * @param shape     figure
      * @param colorFrom primary color
-     * @param colorTo fina
+     * @param colorTo   fina
      */
-    public static void fill(Shape shape, Color colorFrom, Color colorTo ) {
+    public static void fill(Shape shape, Color colorFrom, Color colorTo) {
         FillTransition ft = new FillTransition(Duration.millis(500), shape, colorFrom, colorTo);
         ft.setCycleCount(1);
         ft.setAutoReverse(false);
@@ -54,7 +57,7 @@ public class Transition {
      * Set image size to fit parent
      */
     public static void LayoutImage(ImageView imgV) {
-        Pane parent = (Pane)imgV.getParent();
+        Pane parent = (Pane) imgV.getParent();
         if (imgV != null && imgV.getImage() != null) {
             int padding = 10;
             double reflectionKoeff = 0.0;
@@ -81,34 +84,4 @@ public class Transition {
         }
     }
 
-    public static void LayoutImage(ImageView imgV, Region parent) {
-        LayoutImage(imgV, parent.getWidth(), parent.getHeight());
-    }
-
-    public static void LayoutImage(ImageView imgV, double nw, double nh) {
-        if (imgV != null && imgV.getImage() != null) {
-            int padding = 10;
-            double reflectionKoeff = 0.1;
-            double w = 0;
-            double h = 0;
-            double pw = nw - padding * 2;
-            double ph = nh - padding * 2;
-
-            Image img = imgV.getImage();
-            double raitoX = pw / img.getWidth();
-            double raitoY = ph / img.getHeight() / (1 + reflectionKoeff);
-
-            double reduceKoeff = Math.min(Math.min(raitoY, raitoX), 1.0);// не
-            // растягивать
-
-            w = img.getWidth() * reduceKoeff;
-            h = img.getHeight() * reduceKoeff;
-
-            imgV.setFitWidth(w);
-            imgV.setFitHeight(h);
-
-            imgV.setX((pw - imgV.getFitWidth()) / 2 + padding);
-            imgV.setY((ph - img.getHeight() * reduceKoeff * (1 + reflectionKoeff)) / 2 + padding);
-        }
-    }
 }

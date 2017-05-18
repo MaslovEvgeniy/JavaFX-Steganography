@@ -12,6 +12,7 @@ public class Main extends Application {
 
     /**
      * Main entry point for application
+     *
      * @param stage
      * @throws Exception
      */
@@ -22,13 +23,14 @@ public class Main extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.getIcons().add(new Image("/resources/images/logo2.png",3000,3000,false,true));
+        stage.getIcons().add(new Image("/resources/images/logo2.png", 3000, 3000, false, true));
         stage.show();
 
     }
 
     /**
      * Launch application
+     *
      * @param args command line arguments
      */
     public static void main(String args[]) {

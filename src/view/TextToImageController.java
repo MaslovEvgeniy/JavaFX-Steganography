@@ -23,6 +23,10 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.List;
 
+
+/**
+ * Class controller for TextToImage.fxml
+ */
 public class TextToImageController {
 
     @FXML
@@ -130,9 +134,8 @@ public class TextToImageController {
         });
 
         textToEncode.textProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println(textToEncode.getText().getBytes().length * 8);
-            if (textToEncode.getText().getBytes().length * 8 >  maxInformSize) {
-               // String s = textToEncode.getText().substring(0, maxInformSize-1);
+            if (textToEncode.getText().getBytes().length * 8 > maxInformSize) {
+                // String s = textToEncode.getText().substring(0, maxInformSize-1);
                 textToEncode.setText(oldValue);
                 showSnackBar("Превышен максимальный размер информации, которую можно спрятать");
             }
@@ -255,6 +258,10 @@ public class TextToImageController {
      */
     @FXML
     void handleEncode(ActionEvent event) {
+        if (textToEncode.getText().length() == 0) {
+            showSnackBar("Введите сообщение для кодирования");
+            return;
+        }
         Image image = null;
         try {
             image = codec.encodeText(imageView.getImage(), textToEncode.getText());
@@ -543,11 +550,13 @@ public class TextToImageController {
         saveTextButton.setOpacity(0);
     }
 
+    /**
+     * Calculate max amount of information, that can be hidden
+     */
     private void calcMaxInformationSize() {
         Image image = imageView.getImage();
         //3 - 3 channels(RGB), 35 = message length(32) + secretCode(3)
         maxInformSize = (int) image.getWidth() * (int) image.getHeight() * 3 - 35;
-        System.out.println(maxInformSize);
     }
 
     /**

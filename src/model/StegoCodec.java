@@ -147,15 +147,12 @@ public class StegoCodec {
                 currentImage.setRGB(i % w, i / w, new Color(r, g, b, color.getAlpha()).getRGB());
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            //return to last byte of message and extract last bit, that don't inserted into image
-            //by the reason of catching exception before it
             currentByte--;
-            currentBit = 6;
-            g = (color.getGreen() & 0xFE | (generateNextBit()));
+            currentBit = 7;
             b = (color.getBlue() & 0xFE | (generateNextBit()));
             currentImage.setRGB(i % w, i / w, new Color(r, g, b, color.getAlpha()).getRGB());
-
             Image image = SwingFXUtils.toFXImage(currentImage, null);//convert BufferedImage into Image
+            this.data = null;
             return image;
         }
         return null;
@@ -182,6 +179,7 @@ public class StegoCodec {
         int length = 0;
         this.data = new byte[4];
         int i = 1;
+
         try {
             for (i = 1; i < w * h; i++) {
                 //extract pixel from image and set his last bits into data array

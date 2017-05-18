@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Control;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,6 +41,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -88,9 +91,13 @@ public class MainWindowController implements Initializable {
 
     private HamburgerBasicCloseTransition close;
 
+    private static Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Вы действительно хотите завершить работу?");
+    private Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+
     /**
      * Initializes the controller class. This method is automatically called
-	 * after the fxml file has been loaded
+     * after the fxml file has been loaded
+     *
      * @param location
      * @param resources
      */
@@ -128,7 +135,7 @@ public class MainWindowController implements Initializable {
         close = new HamburgerBasicCloseTransition(hamburger);
         close.setRate(-1);
         hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-            if (menu.getWidth()== 270) {
+            if (menu.getWidth() == 270) {
                 hideMenu();
             } else {
                 showMenu();
@@ -139,7 +146,7 @@ public class MainWindowController implements Initializable {
     /**
      * Hides vertical menu
      */
-    private void hideMenu(){
+    private void hideMenu() {
         menu.setMinWidth(63);
         close.setRate(-1);
         close.play();
@@ -148,16 +155,16 @@ public class MainWindowController implements Initializable {
     /**
      * Shows vertical menu
      */
-    private void showMenu(){
+    private void showMenu() {
         menu.setMinWidth(270);
         close.setRate(1);
         close.play();
     }
 
     /**
-     * Sets specific pane ?????????? //TODO
+     * Sets anchor settings for specific pan
      */
-    private void setAnchor(Parent p){
+    private void setAnchor(Parent p) {
         AnchorPane.setBottomAnchor(p, 0.0);
         AnchorPane.setTopAnchor(p, 0.0);
         AnchorPane.setLeftAnchor(p, 0.0);
@@ -166,29 +173,30 @@ public class MainWindowController implements Initializable {
 
     /**
      * Customizes menu item if it is selected
+     *
      * @param pane
      */
-    private void selectMenuItem(Pane pane){
-        for (Node n:
-             menu.getChildren()) {
+    private void selectMenuItem(Pane pane) {
+        for (Node n :
+                menu.getChildren()) {
             Pane p = (Pane) n;
-            for (Node img: p.getChildren())
+            for (Node img : p.getChildren())
                 if (img instanceof FontAwesomeIconView)
                     (img).setStyle("-fx-fill: #747474");
 
             if (p == pane) {
                 p.setStyle("-fx-background-color: #EEEEEE");
-                for (Node img: p.getChildren())
+                for (Node img : p.getChildren())
                     if (img instanceof FontAwesomeIconView)
                         (img).setStyle("-fx-fill: #325bf5");
-            }
-            else
+            } else
                 p.setStyle("");
         }
     }
 
     /**
      * Selects menu item for Image-to-Image encoding
+     *
      * @param event click
      */
     @FXML
@@ -200,6 +208,7 @@ public class MainWindowController implements Initializable {
 
     /**
      * Selects menu item for Text-to-Image encoding
+     *
      * @param event click
      */
     @FXML
@@ -211,6 +220,7 @@ public class MainWindowController implements Initializable {
 
     /**
      * Selects menu item for Help
+     *
      * @param event click
      */
     @FXML
@@ -222,6 +232,7 @@ public class MainWindowController implements Initializable {
 
     /**
      * Selects menu item for About
+     *
      * @param event click
      */
     @FXML
@@ -233,11 +244,21 @@ public class MainWindowController implements Initializable {
 
     /**
      * Selects menu item for Exit
+     *
      * @param event click
      */
     @FXML
-    void handleExit(MouseEvent event) {
-        Platform.exit();
+    private void handleExit(MouseEvent event) {
+        //stage = (Stage) alert.getDialogPane().getScene().getWindow();
+
+        // Add a custom icon.
+        stage.getIcons().add(new Image("/resources/images/logo2.png", 3000, 3000, false, true));
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            Platform.exit();
+        } else {
+            alert.close();
+        }
     }
 
 }

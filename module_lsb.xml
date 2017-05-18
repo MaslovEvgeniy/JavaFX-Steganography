@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_lsb" default="compile.module.lsb">
+  <dirname property="module.lsb.basedir" file="${ant.file.module_lsb}"/>
+  
+  <property name="module.jdk.home.lsb" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.lsb" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.lsb" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.lsb" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="lsb.output.dir" value="${module.lsb.basedir}/out/production/LSB"/>
+  <property name="lsb.testoutput.dir" value="${module.lsb.basedir}/out/test/LSB"/>
+  
+  <path id="lsb.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="lsb.module.production.classpath">
+    <path refid="${module.jdk.classpath.lsb}"/>
+    <path refid="library.jfoenix.classpath"/>
+  </path>
+  
+  <path id="lsb.runtime.production.module.classpath">
+    <pathelement location="${lsb.output.dir}"/>
+    <path refid="library.jfoenix.classpath"/>
+  </path>
+  
+  <path id="lsb.module.classpath">
+    <path refid="${module.jdk.classpath.lsb}"/>
+    <pathelement location="${lsb.output.dir}"/>
+    <path refid="library.jfoenix.classpath"/>
+  </path>
+  
+  <path id="lsb.runtime.module.classpath">
+    <pathelement location="${lsb.testoutput.dir}"/>
+    <pathelement location="${lsb.output.dir}"/>
+    <path refid="library.jfoenix.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.lsb">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.lsb">
+    <patternset refid="excluded.from.module.lsb"/>
+  </patternset>
+  
+  <path id="lsb.module.sourcepath">
+    <dirset dir="${module.lsb.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.lsb" depends="compile.module.lsb.production,compile.module.lsb.tests" description="Compile module LSB"/>
+  
+  <target name="compile.module.lsb.production" depends="register.custom.compilers" description="Compile module LSB; production classes">
+    <mkdir dir="${lsb.output.dir}"/>
+    <javac2 destdir="${lsb.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.lsb}/javac">
+      <compilerarg line="${compiler.args.lsb}"/>
+      <bootclasspath refid="lsb.module.bootclasspath"/>
+      <classpath refid="lsb.module.production.classpath"/>
+      <src refid="lsb.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.lsb"/>
+    </javac2>
+    
+    <copy todir="${lsb.output.dir}">
+      <fileset dir="${module.lsb.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.lsb.tests" depends="register.custom.compilers,compile.module.lsb.production" description="compile module LSB; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.lsb" description="cleanup module">
+    <delete dir="${lsb.output.dir}"/>
+    <delete dir="${lsb.testoutput.dir}"/>
+  </target>
+</project>
